@@ -29,7 +29,7 @@
 }
 
 .page {
-    max-width: 1280px;
+    max-width: 880px;
     margin: auto;
     font-family: 'Inter', Arial, sans-serif;
     background-color: #000000;
@@ -40,3 +40,31 @@
     -moz-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
 }
+
+.header {
+    max-width: 880px;
+    padding: 45px 0 0 0;
+    border-bottom: #545454 solid 1px;
+}
+
+@media screen and (max-width:320px) {
+    .header {
+        max-width:100%;
+        padding: 28px 0 0 0;
+    }
+}
+
+.logo {
+    width: 142px;
+    padding-bottom: 41px;
+    margin: 0;
+}
+
+@media screen and (max-width:320px) {
+    .logo {
+        max-width:104px;
+        padding: 0 0 31px 27px;
+    }
+}
+
+
