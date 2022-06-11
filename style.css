@@ -50,7 +50,7 @@
 @media screen and (max-width:320px) {
     .header {
         max-width:100%;
-        padding: 28px 0 0 0;
+        padding: 28px 0 20px 0;
     }
 }
 
@@ -68,3 +68,18 @@
 }
 
 
+.profile {
+    display:flex;
+    justify-content: space-between;
+    padding: 40px 0 50px 0;
+}
+
+.profile__info {
+    display: flex;
+}
+
+.profile__avatar {
+    max-width: 120px;
+    max-height: 120px;
+    border-radius: 50%;
+}
