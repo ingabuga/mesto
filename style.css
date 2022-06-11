@@ -69,6 +69,12 @@
     padding-bottom: 41px;
 }
 
+@media screen and (max-width:920px) {
+    .header__logo {
+        padding: 0 0 31px 27px;
+    }
+}
+
 @media screen and (max-width:320px) {
     .header__logo {
         padding: 0 0 31px 27px;
@@ -90,6 +96,12 @@
     display:flex;
     justify-content: space-between;
     padding: 40px 0 50px 0;
+}
+
+@media screen and (max-width:920px) {
+    .profile {
+        margin: 0 19px;
+    }
 }
 
 @media screen and (max-width:720px) {
@@ -163,12 +175,13 @@
     }
 }
 
-@media screen and (max-width:320px) {
+@media screen and (max-width:400px) {
     .profile__title {
         font-size: 27px;
         line-height: 1.2;
     }
 }
+
 
 .profile__title-job {
     font-weight: 400;
