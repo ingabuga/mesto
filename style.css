@@ -51,6 +51,7 @@
     text-rendering: optimizeLegibility;
 }
 
+
 .header {
     max-width: 880px;
     padding: 45px 0 0 0;
@@ -91,9 +92,24 @@
     padding: 40px 0 50px 0;
 }
 
+@media screen and (max-width:720px) {
+    .profile {
+        flex-direction: column;
+        padding-bottom: 36px;
+    }
+}
+
 .profile__info {
     display: flex;
 }
+
+@media screen and (max-width:720px) {
+    .profile__info {
+        flex-direction: column;
+    }
+}
+
+
 
 .profile__avatar {
     max-width: 120px;
@@ -102,12 +118,24 @@
     margin-right: 30px;
 }
 
+@media screen and (max-width:720px) {
+    .profile__avatar {
+        margin: 0 0 26px 0;
+        align-self: center;
+    }
+}
+
 .profile__text {
     align-self: center;
 }
 
+@media screen and (max-width:720px) {
+    .profile__text {
+        align-self: center;
+    }
+}
+
 .profile__title {
-    font-family: Inter 'Arial', sans-serif;
     font-weight: 500;
     font-size: 42px;
     line-height: 1.15;
@@ -115,13 +143,25 @@
     margin: 0 16px 18px 0;
 }
 
+@media screen and (max-width:720px) {
+    .profile__title {
+        margin-right: 0;
+        text-align: center;
+    }
+}
+
 .profile__title-job {
-    font-family: Inter 'Arial', sans-serif;
     font-weight: 400;
     font-size: 18px;
     line-height: 1;
     color: #FFFFFF;
     margin: 0;
+}
+
+@media screen and (max-width:720px) {
+    .profile__title-job {
+        text-align: center;
+    }
 }
 
 .profile__edit-button {
@@ -160,7 +200,15 @@
     opacity:.6;
 }
 
+.element {
+    margin: 0 auto;
+}
 
+@media screen and (max-width:920px) {
+    .element {
+        margin: 0 19px;
+    }
+}
 
 .elements__element {
     display: grid;
@@ -172,7 +220,7 @@
     max-width: 100%;
     list-style-type: none;
     padding: 0;
-    margin: 0 auto;
+   
 }
 
 .elements__item {
