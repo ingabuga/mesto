@@ -339,7 +339,7 @@ footer {
 }
 
 .popup {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -459,6 +459,12 @@ footer {
     font-size: 18px;
     border-radius: 2px;
     margin-top: 48px;
+    cursor: pointer;
+}
+
+
+.popup__save-btn:hover {
+    background-color: rgba(0, 0, 0, .8);
 }
 
 @media screen and (max-width:400px) {
