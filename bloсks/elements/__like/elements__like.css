@@ -1,8 +1,9 @@
 .elements__like {
-    width: 24px;
+    width: 22px;
     background-image: url(../../../images/like-icon-disabled.svg);
     background-repeat: no-repeat;
     background-position: center;
+    background-size: contain;
     background-color: #FFFFFF;
     border-width: 0;
     cursor: pointer;

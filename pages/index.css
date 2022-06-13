@@ -36,7 +36,8 @@
 /* Попап */
 @import url(../bloсks/popup/popup.css);
 @import url(../bloсks/popup/__opened/popup__opened.css);
-@import url(../bloсks/popup/__card/popup__card.css);
+@import url(../bloсks/popup/__container/popup__container.css);
+@import url(../bloсks/popup/__form/popup__form.css);
 @import url(../bloсks/popup/__close-btn/popup__close-btn.css);
 @import url(../bloсks/popup/__title/popup__title.css);
 @import url(../bloсks/popup/__text/popup__text.css);

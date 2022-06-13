@@ -1,6 +1,7 @@
 .profile__name {
     display: flex;
     margin-bottom: 12px;
+   
 }
 
 @media screen and (max-width:320px) {

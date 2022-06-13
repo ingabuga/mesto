@@ -3,7 +3,11 @@
     font-size: 18px;
     line-height: 1;
     color: #FFFFFF;
-    margin: 0;
+    margin: 0 auto;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap; 
 }
 
 @media screen and (max-width:720px) {
@@ -17,5 +21,9 @@
     .profile__title-job {
         font-size: 14px;
         padding-bottom: 34px;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap; 
     }
 }
