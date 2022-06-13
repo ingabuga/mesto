@@ -1,0 +1,19 @@
+.elements__like {
+    width: 24px;
+    background-image: url(../../../images/like-icon-disabled.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #FFFFFF;
+    border-width: 0;
+    cursor: pointer;
+}
+
+.elements__like:hover {
+    opacity:.5;
+}
+
+.elements__like:active {
+    width: 22px;
+    opacity:1;
+    background-image: url(../../../images/like-icon.svg);
+}
