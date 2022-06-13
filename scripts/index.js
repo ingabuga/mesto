@@ -17,8 +17,8 @@ function closePopup(event) {
 
 let formElement = document.querySelector('.popup__card');
 // Находим поля формы в DOM
-let nameInput = popup.querySelector('.popup__text_name');
-let jobInput = popup.querySelector('.popup__text_job');
+let nameInput = popup.querySelector('.popup__text-name');
+let jobInput = popup.querySelector('.popup__text-job');
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function formSubmitHandler (evt) {
@@ -27,8 +27,8 @@ function formSubmitHandler (evt) {
                                     // О том, как это делать, расскажем позже.
 
     // Получите значение полей jobInput и nameInput из свойства value
-    let nameInput = popup.querySelector('.popup__text_name');
-    let jobInput = popup.querySelector('.popup__text_job');
+    let nameInput = popup.querySelector('.popup__text-name');
+    let jobInput = popup.querySelector('.popup__text-job');
 
     // Выберите элементы, куда должны быть вставлены значения полей
     let name = document.querySelector('.profile__title');
