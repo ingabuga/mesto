@@ -4,41 +4,41 @@
 
 /* Header */
 @import url(../bloсks/header/header.css);
-@import url(../bloсks/header/header__logo/header__logo.css);
+@import url(../bloсks/header/__logo/header__logo.css);
 
 /* Логотип */
 @import url(../bloсks/logo/logo.css);
 
 /* Профиль */
 @import url(../bloсks/profile/profile.css);
-@import url(../bloсks/profile/profile__info/profile__info.css);
-@import url(../bloсks/profile/profile__avatar/profile__avatar.css);
-@import url(../bloсks/profile/profile__text/profile__text.css);
-@import url(../bloсks/profile/profile__name/profile__name.css);
-@import url(../bloсks/profile/profile__title/profile__title.css);
-@import url(../bloсks/profile/profile__title-job/profile__title-job.css);
-@import url(../bloсks/profile/profile__edit-button/profile__edit-button.css);
-@import url(../bloсks/profile/profile__add-button/profile__add-button.css);
+@import url(../bloсks/profile/__info/profile__info.css);
+@import url(../bloсks/profile/__avatar/profile__avatar.css);
+@import url(../bloсks/profile/__text/profile__text.css);
+@import url(../bloсks/profile/__name/profile__name.css);
+@import url(../bloсks/profile/__title/profile__title.css);
+@import url(../bloсks/profile/__title-job/profile__title-job.css);
+@import url(../bloсks/profile/__edit-button/profile__edit-button.css);
+@import url(../bloсks/profile/__add-button/profile__add-button.css);
 
 /* Карточки мест */
 @import url(../bloсks/elements/elements.css);
-@import url(../bloсks/elements/elements__element/elements__element.css);
-@import url(../bloсks/elements/elements__item/elements__item.css);
-@import url(../bloсks/elements/elements__image/elements__image.css);
-@import url(../bloсks/elements/elements__container/elements__container.css);
-@import url(../bloсks/elements/elements__title/elements__title.css);
-@import url(../bloсks/elements/elements__like/elements__like.css);
+@import url(../bloсks/elements/__element/elements__element.css);
+@import url(../bloсks/elements/__item/elements__item.css);
+@import url(../bloсks/elements/__image/elements__image.css);
+@import url(../bloсks/elements/__container/elements__container.css);
+@import url(../bloсks/elements/__title/elements__title.css);
+@import url(../bloсks/elements/__like/elements__like.css);
 
 /* Подвал */
 @import url(../bloсks/footer/footer.css);
-@import url(../bloсks/footer/footer__copyright/footer__copyright.css);
+@import url(../bloсks/footer/__copyright/footer__copyright.css);
 
 /* Попап */
 @import url(../bloсks/popup/popup.css);
-@import url(../bloсks/popup/popup__opened/popup__opened.css);
-@import url(../bloсks/popup/popup__card/popup__card.css);
-@import url(../bloсks/popup/popup__close-btn/popup__close-btn.css);
-@import url(../bloсks/popup/popup__title/popup__title.css);
-@import url(../bloсks/popup/popup__text/popup__text.css);
-@import url(../bloсks/popup/popup__text-name/popup__text-name.css);
-@import url(../bloсks/popup/popup__save-btn/popup__save-btn.css);
+@import url(../bloсks/popup/__opened/popup__opened.css);
+@import url(../bloсks/popup/__card/popup__card.css);
+@import url(../bloсks/popup/__close-btn/popup__close-btn.css);
+@import url(../bloсks/popup/__title/popup__title.css);
+@import url(../bloсks/popup/__text/popup__text.css);
+@import url(../bloсks/popup/__text-name/popup__text-name.css);
+@import url(../bloсks/popup/__save-btn/popup__save-btn.css);
