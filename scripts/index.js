@@ -4,6 +4,8 @@ const closeBtn = document.querySelector('.popup__close-btn'); // выбирае�
 let nameInput = popup.querySelector('.popup__text_input_name');//выбираем имя в попапе
 let jobInput = popup.querySelector('.popup__text_input_job'); //выбираем должность в попапе
 let formElement = document.querySelector('.popup__form'); //выбираем попап-форму
+let name = document.querySelector('.profile__title');
+let job = document.querySelector('.profile__title-job');
 
 //функция открытия попапа
 function openPopup(event) {
@@ -23,18 +25,14 @@ function formSubmitHandler (evt) {
                                     // О том, как это делать, расскажем позже.
 
     // Получите значение полей jobInput и nameInput из свойства value
-    let nameInput = popup.querySelector('.popup__text_input_name');
-    let jobInput = popup.querySelector('.popup__text_input_job');
-
+    
     // Выберите элементы, куда должны быть вставлены значения полей
-    let name = document.querySelector('.profile__title');
-    let job = document.querySelector('.profile__title-job');
     
     // Вставьте новые значения с помощью textContent
     name.textContent = nameInput.value; 
     job.textContent = jobInput.value;
     // Закрываем попап после добавления новых данных
-    popup.classList.remove('popup_opened_true');
+    closePopup();
 }
 
 // Прикрепляем обработчик к форме:
