@@ -3,3 +3,10 @@
     flex-direction: column;
     row-gap: 12px;
 }
+
+
+@media screen and (max-width:400px) {
+    .popup__form {
+        row-gap: 19px;
+    }
+}

@@ -5,6 +5,13 @@
     padding: 12px 0;
 }
 
+@media screen and (max-width:400px) {
+    .popup__text { 
+        padding: 10px 0;
+    }
+}
+
+
 .popup__text::-webkit-input-placeholder {
     font-family: 'Inter', Arial, sans-serif;
     color:#000000;
