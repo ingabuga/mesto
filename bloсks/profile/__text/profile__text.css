@@ -1,3 +1,9 @@
 .profile__text {
-    align-self: center;
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: 350px 24px;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    "title button"
+    "job job";
 }
