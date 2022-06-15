@@ -20,7 +20,7 @@
 @media screen and (max-width:320px) {
     .profile__title-job {
         font-size: 14px;
-        padding-bottom: 34px;
+        padding-bottom: 35px;
         text-overflow: ellipsis;
         max-width: 100%;
         overflow: hidden;
