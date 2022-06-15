@@ -10,14 +10,14 @@ let jobProfile = document.querySelector('.profile__title-job');
 //функция открытия попапа
 function openPopup(event) {
     event.preventDefault()
-    popup.classList.add('popup_opened_true');
+    popup.classList.add('popup_opened');
     nameInput.value = nameProfile.textContent;
     jobInput.value = jobProfile.textContent;
 }
 
 //функция закрытия попапа
 function closePopup(event) {
-    popup.classList.remove('popup_opened_true');
+    popup.classList.remove('popup_opened');
 }
 
 

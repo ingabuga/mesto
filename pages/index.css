@@ -35,12 +35,12 @@
 
 /* Попап */
 @import url(../bloсks/popup/popup.css);
-@import url(../bloсks/popup/_opened/popup_opened_true.css);
+@import url(../bloсks/popup/_opened/popup_opened.css);
 @import url(../bloсks/popup/__container/popup__container.css);
 @import url(../bloсks/popup/__form/popup__form.css);
 @import url(../bloсks/popup/__close-btn/popup__close-btn.css);
 @import url(../bloсks/popup/__title/popup__title.css);
 @import url(../bloсks/popup/__text/popup__text.css);
-@import url(../bloсks/popup/__input/popup__input_name.css);
-@import url(../bloсks/popup/__input/popup__input_job.css);
+@import url(../bloсks/popup/__text/_input/popup__text_input_job.css);
+@import url(../bloсks/popup/__text/_input/popup__text_input_name.css);
 @import url(../bloсks/popup/__save-btn/popup__save-btn.css);

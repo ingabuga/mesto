@@ -5,7 +5,7 @@
     color: #FFFFFF;
     margin: 0 auto;
     text-overflow: ellipsis;
-    max-width: 100%;
+    max-width: 380px;
     overflow: hidden;
     white-space: nowrap; 
 }
@@ -21,9 +21,6 @@
     .profile__title-job {
         font-size: 14px;
         padding-bottom: 35px;
-        text-overflow: ellipsis;
-        max-width: 100%;
-        overflow: hidden;
-        white-space: nowrap; 
+        max-width: 282px;
     }
 }

@@ -4,8 +4,8 @@
     line-height: 1.15;
     color: #FFFFFF;
     margin: 0 18px 0 0;
-    text-overflow: ellipsis;
     max-width: 330px;
+    text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap; 
 }
@@ -21,10 +21,6 @@
     .profile__title {
         font-size: 27px;
         line-height: 1.2;
-        margin: 0 10px 0 27px;
-        text-overflow: ellipsis;
-        max-width: 220px;
-        overflow: hidden;
-        white-space: nowrap; 
+        margin: 0 10px 0 27px; 
     }
 }
