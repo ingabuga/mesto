@@ -28,7 +28,7 @@ function formSubmitHandler (evt) {
     
     // Выберите элементы, куда должны быть вставлены значения полей
     
-    // Вставьте новые значения с помощью textContent
+    // Вставьте новые значения с помощью textContent ()
     name.textContent = nameInput.value; 
     job.textContent = jobInput.value;
     // Закрываем попап после добавления новых данных
