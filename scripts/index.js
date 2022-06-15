@@ -11,6 +11,8 @@ let jobProfile = document.querySelector('.profile__title-job');
 function openPopup(event) {
     event.preventDefault()
     popup.classList.add('popup_opened_true');
+    nameInput.value = nameProfile.textContent;
+    jobInput.value = jobProfile.textContent;
 }
 
 //функция закрытия попапа
@@ -18,8 +20,6 @@ function closePopup(event) {
     popup.classList.remove('popup_opened_true');
 }
 
-nameInput.value = nameProfile.textContent;
-jobInput.value = jobProfile.textContent;
 
 //Обработчик формы
 function formSubmitHandler (evt) {
