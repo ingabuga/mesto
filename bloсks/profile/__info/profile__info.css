@@ -2,8 +2,16 @@
     display: flex;
 }
 
+@media screen and (max-width:800px) {
+    .profile__info {
+
+        margin-bottom: 36px;
+    }
+}
+
 @media screen and (max-width:720px) {
     .profile__info {
         flex-direction: column;
+        margin-bottom: 0;
     }
 }

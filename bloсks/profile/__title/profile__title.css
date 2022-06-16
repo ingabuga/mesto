@@ -11,17 +11,9 @@
     grid-area: title;
 }
 
-@media screen and (max-width:720px) {
-    .profile__title {
-        margin-right: 10px;
-        text-align: center;
-    }
-}
 
-@media screen and (max-width:400px) {
+@media screen and (max-width:460px) {
     .profile__title {
         font-size: 27px;
-        line-height: 1.2;
-        margin: 0 10px 0 27px; 
     }
 }

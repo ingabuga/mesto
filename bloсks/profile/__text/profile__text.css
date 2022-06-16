@@ -1,9 +1,24 @@
 .profile__text {
-    display: grid;
-    margin: 0 auto;
-    grid-template-columns: 350px 24px;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: 
-    "title button"
-    "job job";
+    display: flex;
+    max-width: 350px;
+    row-gap: 12px;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+@media screen and (max-width:720px) {
+    .profile__text {
+        flex-direction: column;
+        margin: 0 auto;
+    }
+}
+
+
+@media screen and (max-width:460px) {
+    .profile__text {
+        display: flex;
+        max-width: 200px;
+    }
 }
