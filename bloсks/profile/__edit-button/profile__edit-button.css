@@ -11,9 +11,6 @@
     align-self: center;
     grid-area: btn;
     margin-top: 9px;
-    display: flex;
-    min-height: auto;
-    align-self: center;
 }
 
 
