@@ -9,9 +9,11 @@
     background-repeat: no-repeat;
     background-position: center;
     align-self: center;
-    position: absolute;
-    top: 37px;
-    right: -42px;
+    grid-area: btn;
+    margin-top: 9px;
+    display: flex;
+    min-height: auto;
+    align-self: center;
 }
 
 
@@ -21,7 +23,10 @@
 
 @media screen and (max-width:720px) {
     .profile__edit-button {
+        position:absolute;
         top: 16px;
+        right: -30px;
+        margin: 0;
     }
 }
 
@@ -31,5 +36,6 @@
         height: 18px;
         top: 8px;
         right: -30px;
+        margin: 0;
     }
 }
