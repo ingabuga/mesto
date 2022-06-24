@@ -7,6 +7,60 @@ let formElement = document.querySelector('.popup__form'); //выбираем п�
 let nameProfile = document.querySelector('.profile__title');
 let jobProfile = document.querySelector('.profile__title-job');
 
+const elementsElement = document.querySelector('.elements__element'); //выбираем элемент списка карточек
+const elementsTemplate = document.querySelector('.elements-template').content; //выбираем шаблон для вставки карточки
+
+const directorsList = document.querySelector('.directors');
+const directorTemplate = document.querySelector('.director-template').content;
+
+
+const initialCards = [
+    {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+]; 
+
+//цикл добавления карточек 
+/*initialCards.forEach(function (element) {
+  const elementsCards = elementsTemplate.cloneNode(true);
+
+  elementsCards.querySelector('.elements__image').src = element.link;
+  elementsCards.querySelector('.elements__title').textContent = element.name;
+  elementsCards.querySelector('.directors__films').href = element.films;
+
+  directorsList.append(elementsCards)
+})*/
+
+initialCards.forEach(function (element) {
+  const directorElement = directorTemplate.cloneNode(true);
+
+  directorElement.querySelector('.directors__name').textContent = element.name;
+  directorElement.querySelector('.directors__description').textContent = element.link;
+
+  directorsList.append(directorElement)
+})
+
 //функция открытия попапа
 function openPopup(event) {
     event.preventDefault()
