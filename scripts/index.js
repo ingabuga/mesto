@@ -1,6 +1,12 @@
+//Кнопки
 const editBtn = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля
-const popup = document.querySelector('.popup'); //выбираем попап
-const closeBtn = document.querySelector('.popup__close-btn'); // выбираем кнопку закрытия попапа
+const closeBtn = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа
+const addBtn = document.querySelector('.profile__add-button') //выбираем кнопку добавления карточки
+
+//Попап
+const popup = document.querySelector('.popup_profile'); //выбираем попап
+const popupCard = document.querySelector('.popup_card'); //выбираем попап карточки
+
 let nameInput = popup.querySelector('.popup__text_input_name');//выбираем имя в попапе
 let jobInput = popup.querySelector('.popup__text_input_job'); //выбираем должность в попапе
 let formElement = document.querySelector('.popup__form'); //выбираем попап-форму
@@ -57,10 +63,22 @@ function openPopup(event) {
     jobInput.value = jobProfile.textContent;
 }
 
+//функция открытия попапа добавления карточки
+function openPopupCard(event) {
+  event.preventDefault()
+  popupCard.classList.add('popup_opened');
+}
+
 //функция закрытия попапа
 function closePopup(event) {
     popup.classList.remove('popup_opened');
 }
+
+function closePopupCard(event) {
+  popupCard.classList.remove('popup_opened');
+}
+
+
 
 
 //Обработчик формы
@@ -77,5 +95,7 @@ function formSubmitHandler (evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 editBtn.addEventListener('click', openPopup);
-closeBtn.addEventListener('click', closePopup);
+closeBtn[0].addEventListener('click', closePopup);
+addBtn.addEventListener('click', openPopupCard);
+closeBtn[1].addEventListener('click', closePopupCard);
 formElement.addEventListener('submit', formSubmitHandler);
