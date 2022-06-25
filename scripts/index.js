@@ -4,13 +4,13 @@ const closeBtn = document.querySelectorAll('.popup__close-btn'); // выбира
 const addBtn = document.querySelector('.profile__add-button') //выбираем кнопку добавления карточки
 
 //Попап
-const popup = document.querySelector('.popup_profile'); //выбираем попап
-const popupCard = document.querySelector('.popup_card'); //выбираем попап карточки
+/*const popup = document.querySelector('.popup_profile'); //выбираем попап
+const popupCard = document.querySelector('.popup_card'); //выбираем попап карточки*/
 const popups = document.querySelectorAll('.popup');
 
 
-let nameInput = popup.querySelector('.popup__text_input_name');//выбираем имя в попапе
-let jobInput = popup.querySelector('.popup__text_input_job'); //выбираем должность в попапе
+let nameInput = popups[0].querySelector('.popup__text_input_name');//выбираем имя в попапе
+let jobInput = popups[0].querySelector('.popup__text_input_job'); //выбираем должность в попапе
 let formElement = document.querySelector('.popup__form'); //выбираем попап-форму
 let nameProfile = document.querySelector('.profile__title');
 let jobProfile = document.querySelector('.profile__title-job');
@@ -58,9 +58,9 @@ initialCards.forEach(function (element) {
 
 
 //функция открытия попапа
-function openPopup(event) {
+/*function openPopup(event) {
     event.preventDefault()
-    popup.classList.add('popup_opened');
+    popups[0].classList.add('popup_opened');
     nameInput.value = nameProfile.textContent;
     jobInput.value = jobProfile.textContent;
 }
@@ -68,12 +68,21 @@ function openPopup(event) {
 //функция открытия попапа добавления карточки
 function openPopupCard(event) {
   event.preventDefault()
-  popupCard.classList.add('popup_opened');
+  popups[1].classList.add('popup_opened');
+}*/
+
+function inputName(event) {
+  event.preventDefault()
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = jobProfile.textContent;
+  openPopups(0);
+}
+
+function openPopups(index) {
+  popups[index].classList.add('popup_opened');
 }
 
 //функция закрытия попапа
-
-
 function closePopups(index) {
   popups[index].classList.remove('popup_opened');
 }
@@ -91,10 +100,12 @@ function formSubmitHandler (evt) {
     closePopups(0);
 }
 
+
+
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-editBtn.addEventListener('click', openPopup);
+editBtn.addEventListener('click', inputName);
 closeBtn[0].addEventListener('click', () => closePopups(0));
-addBtn.addEventListener('click', openPopupCard);
+addBtn.addEventListener('click', () => openPopups(1));
 closeBtn[1].addEventListener('click', () => closePopups(1));
 formElement.addEventListener('submit', formSubmitHandler);
