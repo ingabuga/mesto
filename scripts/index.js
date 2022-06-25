@@ -1,17 +1,15 @@
 const editBtn = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля
 const popup = document.querySelector('.popup'); //выбираем попап
-const closeBtn = document.querySelector('.popup__close-btn'); // выбираем кнопку закррытия попапа
+const closeBtn = document.querySelector('.popup__close-btn'); // выбираем кнопку закрытия попапа
 let nameInput = popup.querySelector('.popup__text_input_name');//выбираем имя в попапе
 let jobInput = popup.querySelector('.popup__text_input_job'); //выбираем должность в попапе
 let formElement = document.querySelector('.popup__form'); //выбираем попап-форму
 let nameProfile = document.querySelector('.profile__title');
 let jobProfile = document.querySelector('.profile__title-job');
 
-const elementsElement = document.querySelector('.elements__element'); //выбираем элемент списка карточек
-const elementsTemplate = document.querySelector('.elements-template').content; //выбираем шаблон для вставки карточки
+const elementsList = document.querySelector('.elements__element');
+const elementsTemplate = document.querySelector('.elements-template').content;
 
-const directorsList = document.querySelector('.directors');
-const directorTemplate = document.querySelector('.director-template').content;
 
 
 const initialCards = [
@@ -41,25 +39,15 @@ const initialCards = [
     }
 ]; 
 
-//цикл добавления карточек 
-/*initialCards.forEach(function (element) {
-  const elementsCards = elementsTemplate.cloneNode(true);
-
-  elementsCards.querySelector('.elements__image').src = element.link;
-  elementsCards.querySelector('.elements__title').textContent = element.name;
-  elementsCards.querySelector('.directors__films').href = element.films;
-
-  directorsList.append(elementsCards)
-})*/
-
 initialCards.forEach(function (element) {
-  const directorElement = directorTemplate.cloneNode(true);
+  const placeElement = elementsTemplate.cloneNode(true);
 
-  directorElement.querySelector('.directors__name').textContent = element.name;
-  directorElement.querySelector('.directors__description').textContent = element.link;
+  placeElement.querySelector('.elements__title').textContent = element.name;
+  placeElement.querySelector('.elements__image').src = element.link;
 
-  directorsList.append(directorElement)
+  elementsList.append(placeElement)
 })
+
 
 //функция открытия попапа
 function openPopup(event) {
