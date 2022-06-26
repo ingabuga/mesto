@@ -132,10 +132,6 @@ addBtn.addEventListener('click', () => openPopups(1));
 closeBtn[1].addEventListener('click', () => closePopups(1));
 formElement[0].addEventListener('submit', formSubmitHandler);
 formElement[1].addEventListener('submit', handleSubmit);
-/*trashBtn.addEventListener('click', function () {
-  const trashItem = trashBtn.closest('.elements__trash');
-  trashItem.remove();
-})*/
 
 
 

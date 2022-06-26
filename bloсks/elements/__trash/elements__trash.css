@@ -12,3 +12,7 @@
     top: 20px;
     right: 20px;
 }
+
+.elements__trash:hover {
+    opacity: .6;
+}
