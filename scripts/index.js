@@ -58,8 +58,12 @@ const renderItem = (element) => {
   const placeElement = elementsTemplate.cloneNode(true);
   placeElement.querySelector('.elements__title').textContent = element.name;
   placeElement.querySelector('.elements__image').src = element.link;
+  placeElement.querySelector('.elements__like').addEventListener('click', function (evt) { 
+    evt.target.classList.toggle('elements__like_active');
+});
   elementsList.append(placeElement)
 }
+
 
 
 
@@ -70,10 +74,12 @@ const renderCard = (text, link) => {
   const htmlElement = elementsTemplate.cloneNode(true);
   htmlElement.querySelector('.elements__title').textContent = text;
   htmlElement.querySelector('.elements__image').src = link;
+  htmlElement.querySelector('.elements__like').addEventListener('click', function (evt) { 
+    evt.target.classList.toggle('elements__like_active');
+});
   elementsList.prepend(htmlElement);
   closePopups(1)
 }
-
 
 
 function inputName(event) {
@@ -93,6 +99,7 @@ function closePopups(index) {
 }
 
 
+
 //Обработчик формы
 function formSubmitHandler (evt) {
     evt.preventDefault();
@@ -107,6 +114,8 @@ const handleSubmit = (evt) => {
   renderCard(placeInput.value, linkInput.value);
 }
 
+
+
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 editBtn.addEventListener('click', inputName);
@@ -118,6 +127,7 @@ formElement[1].addEventListener('submit', handleSubmit);
 
 
 
+
+
 renderItems()
-//'https://images.unsplash.com/photo-1580705297591-4e500635eedc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80'
 
