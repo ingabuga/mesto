@@ -3,6 +3,7 @@ const editBtn = document.querySelector('.profile__edit-button'); //выбира�
 const closeBtn = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа
 const addBtn = document.querySelector('.profile__add-button') //выбираем кнопку добавления карточки
 
+
 //Попап
 /*const popup = document.querySelector('.popup_profile'); //выбираем попап
 const popupCard = document.querySelector('.popup_card'); //выбираем попап карточки*/
@@ -60,13 +61,10 @@ const renderItem = (element) => {
   placeElement.querySelector('.elements__image').src = element.link;
   placeElement.querySelector('.elements__like').addEventListener('click', function (evt) { 
     evt.target.classList.toggle('elements__like_active');
-});
-  elementsList.append(placeElement)
+  }); 
+  setEventListeners(placeElement);
+  elementsList.append(placeElement);
 }
-
-
-
-
 
 
 
@@ -77,8 +75,9 @@ const renderCard = (text, link) => {
   htmlElement.querySelector('.elements__like').addEventListener('click', function (evt) { 
     evt.target.classList.toggle('elements__like_active');
 });
+  setEventListeners(htmlElement);
   elementsList.prepend(htmlElement);
-  closePopups(1)
+  closePopups(1);
 }
 
 
@@ -114,7 +113,16 @@ const handleSubmit = (evt) => {
   renderCard(placeInput.value, linkInput.value);
 }
 
+//функция удаления карточки
+function handleDelete(evt) {
+	evt.target.closest('.elements__item').remove();
+}
 
+//ОБработчик кнопки удаления карточки
+function setEventListeners(htmlElement) {
+	const deleteButton = htmlElement.querySelector('.elements__trash');
+	deleteButton.addEventListener('click', handleDelete);
+}
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
@@ -124,6 +132,10 @@ addBtn.addEventListener('click', () => openPopups(1));
 closeBtn[1].addEventListener('click', () => closePopups(1));
 formElement[0].addEventListener('submit', formSubmitHandler);
 formElement[1].addEventListener('submit', handleSubmit);
+/*trashBtn.addEventListener('click', function () {
+  const trashItem = trashBtn.closest('.elements__trash');
+  trashItem.remove();
+})*/
 
 
 
