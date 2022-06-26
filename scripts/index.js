@@ -11,7 +11,11 @@ const popups = document.querySelectorAll('.popup');
 
 let nameInput = popups[0].querySelector('.popup__text_input_name');//выбираем имя в попапе
 let jobInput = popups[0].querySelector('.popup__text_input_job'); //выбираем должность в попапе
-let formElement = document.querySelector('.popup__form'); //выбираем попап-форму
+
+let placeInput = popups[1].querySelector('.popup__text_input_name');
+let linkInput = popups[1].querySelector('.popup__text_input_job');
+
+let formElement = document.querySelectorAll('.popup__form'); //выбираем попап-форму
 let nameProfile = document.querySelector('.profile__title');
 let jobProfile = document.querySelector('.profile__title-job');
 
@@ -19,9 +23,8 @@ const elementsList = document.querySelector('.elements__element');
 const elementsTemplate = document.querySelector('.elements-template').content;
 
 
-
 const initialCards = [
-    {
+      {
       name: 'Архыз',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     },
@@ -47,29 +50,31 @@ const initialCards = [
     }
 ]; 
 
-initialCards.forEach(function (element) {
-  const placeElement = elementsTemplate.cloneNode(true);
-
-  placeElement.querySelector('.elements__title').textContent = element.name;
-  placeElement.querySelector('.elements__image').src = element.link;
-
-  elementsList.append(placeElement)
-})
-
-
-//функция открытия попапа
-/*function openPopup(event) {
-    event.preventDefault()
-    popups[0].classList.add('popup_opened');
-    nameInput.value = nameProfile.textContent;
-    jobInput.value = jobProfile.textContent;
+const renderItems = () => {
+  initialCards.forEach(renderItem);
 }
 
-//функция открытия попапа добавления карточки
-function openPopupCard(event) {
-  event.preventDefault()
-  popups[1].classList.add('popup_opened');
-}*/
+const renderItem = (element) => {
+  const placeElement = elementsTemplate.cloneNode(true);
+  placeElement.querySelector('.elements__title').textContent = element.name;
+  placeElement.querySelector('.elements__image').src = element.link;
+  elementsList.append(placeElement)
+}
+
+
+
+
+
+
+const renderCard = (text, link) => {
+  const htmlElement = elementsTemplate.cloneNode(true);
+  htmlElement.querySelector('.elements__title').textContent = text;
+  htmlElement.querySelector('.elements__image').src = link;
+  elementsList.prepend(htmlElement);
+  closePopups(1)
+}
+
+
 
 function inputName(event) {
   event.preventDefault()
@@ -88,19 +93,19 @@ function closePopups(index) {
 }
 
 
-
 //Обработчик формы
 function formSubmitHandler (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                                    // Так мы можем определить свою логику отправки.
-                                    // О том, как это делать, расскажем позже.
+    evt.preventDefault();
     nameProfile.textContent = nameInput.value; 
     jobProfile.textContent = jobInput.value;
-    // Закрываем попап после добавления новых данных
     closePopups(0);
 }
 
-
+//обработчик добавления карточки
+const handleSubmit = (evt) => {
+  evt.preventDefault()
+  renderCard(placeInput.value, linkInput.value);
+}
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
@@ -108,4 +113,11 @@ editBtn.addEventListener('click', inputName);
 closeBtn[0].addEventListener('click', () => closePopups(0));
 addBtn.addEventListener('click', () => openPopups(1));
 closeBtn[1].addEventListener('click', () => closePopups(1));
-formElement.addEventListener('submit', formSubmitHandler);
+formElement[0].addEventListener('submit', formSubmitHandler);
+formElement[1].addEventListener('submit', handleSubmit);
+
+
+
+renderItems()
+//'https://images.unsplash.com/photo-1580705297591-4e500635eedc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80'
+
