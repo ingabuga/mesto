@@ -2,7 +2,7 @@
 const editBtn = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля
 const closeBtn = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа
 const addBtn = document.querySelector('.profile__add-button') //выбираем кнопку добавления карточки
-
+const imageBtn = document.querySelectorAll('.elements__image');
 
 //Попап
 /*const popup = document.querySelector('.popup_profile'); //выбираем попап
