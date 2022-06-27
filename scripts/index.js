@@ -6,6 +6,9 @@ const addBtn = document.querySelector('.profile__add-button') //выбираем
 
 //Попап
 const popups = document.querySelectorAll('.popup'); //массив попапов
+const popupProfile = document.querySelectorAll('.popup_profile'); //попап профиля
+const popupPlace = document.querySelectorAll('.popup_place'); //попап нового места
+const popupPhoto = document.querySelectorAll('.popup_photo'); //попап превью фотографии
 
 //Попап редактирования профиля
 const nameInput = popups[0].querySelector('.popup__text_input_name');//выбираем имя в попапе
