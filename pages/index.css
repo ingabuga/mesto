@@ -39,6 +39,7 @@
 @import url(../bloсks/popup/_opened/popup_opened.css);
 @import url(../bloсks/popup/__preview/popup__preview.css);
 @import url(../bloсks/popup/__container/popup__container.css);
+@import url(../bloсks/popup/__description/popup__description.css);
 @import url(../bloсks/popup/__image/popup__image.css);
 @import url(../bloсks/popup/__form/popup__form.css);
 @import url(../bloсks/popup/__close-btn/popup__close-btn.css);
