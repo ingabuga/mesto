@@ -2,23 +2,28 @@
 const editBtn = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля
 const closeBtn = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа
 const addBtn = document.querySelector('.profile__add-button') //выбираем кнопку добавления карточки
-const imageBtn = document.querySelectorAll('.elements__image');
+//const imageBtn = document.querySelectorAll('.elements__image'); //выбираем изображение в карточке
 
 //Попап
-/*const popup = document.querySelector('.popup_profile'); //выбираем попап
-const popupCard = document.querySelector('.popup_card'); //выбираем попап карточки*/
-const popups = document.querySelectorAll('.popup');
+const popups = document.querySelectorAll('.popup'); //массив попапов
 
+//Попап редактирования профиля
+const nameInput = popups[0].querySelector('.popup__text_input_name');//выбираем имя в попапе
+const jobInput = popups[0].querySelector('.popup__text_input_job'); //выбираем должность в попапе
 
-let nameInput = popups[0].querySelector('.popup__text_input_name');//выбираем имя в попапе
-let jobInput = popups[0].querySelector('.popup__text_input_job'); //выбираем должность в попапе
+//Попап добавления карточки
+const placeInput = popups[1].querySelector('.popup__text_input_name');//выбираем название места
+const linkInput = popups[1].querySelector('.popup__text_input_job');//выбираем ссылку на фото
 
-let placeInput = popups[1].querySelector('.popup__text_input_name');
-let linkInput = popups[1].querySelector('.popup__text_input_job');
+//Попап превью фото карточки
+const popupImage = popups[2].querySelector('.popup__image');//выбираем изображение в попапе надо ли?
+const popupDescription = popups[2].querySelector('.popup__description');//выбираем подпись в попапе надо ли?
 
-let formElement = document.querySelectorAll('.popup__form'); //выбираем попап-форму
-let nameProfile = document.querySelector('.profile__title');
-let jobProfile = document.querySelector('.profile__title-job');
+//Поля формы реадктирования профиля
+const formElement = document.querySelectorAll('.popup__form'); //выбираем попап-форму
+const nameProfile = document.querySelector('.profile__title'); //выбираем Имя в профиле
+const jobProfile = document.querySelector('.profile__title-job');//выбираем Должность в профиле
+
 
 const elementsList = document.querySelector('.elements__element');
 const elementsTemplate = document.querySelector('.elements-template').content;
@@ -59,9 +64,6 @@ const renderItem = (element) => {
   const placeElement = elementsTemplate.cloneNode(true);
   placeElement.querySelector('.elements__title').textContent = element.name;
   placeElement.querySelector('.elements__image').src = element.link;
-  placeElement.querySelector('.elements__like').addEventListener('click', function (evt) { 
-    evt.target.classList.toggle('elements__like_active');
-  }); 
   setEventListeners(placeElement);
   elementsList.append(placeElement);
 }
@@ -72,9 +74,6 @@ const renderCard = (text, link) => {
   const htmlElement = elementsTemplate.cloneNode(true);
   htmlElement.querySelector('.elements__title').textContent = text;
   htmlElement.querySelector('.elements__image').src = link;
-  htmlElement.querySelector('.elements__like').addEventListener('click', function (evt) { 
-    evt.target.classList.toggle('elements__like_active');
-});
   setEventListeners(htmlElement);
   elementsList.prepend(htmlElement);
   closePopups(1);
@@ -111,6 +110,8 @@ function formSubmitHandler (evt) {
 const handleSubmit = (evt) => {
   evt.preventDefault()
   renderCard(placeInput.value, linkInput.value);
+  placeInput.value = '';
+  linkInput.value = '';
 }
 
 //функция удаления карточки
@@ -118,10 +119,30 @@ function handleDelete(evt) {
 	evt.target.closest('.elements__item').remove();
 }
 
-//ОБработчик кнопки удаления карточки
+//Функция лайка карточки
+function handleLike(evt) {
+	evt.target.classList.toggle('elements__like_active');
+}
+
+
+//Функция заполнения попапа превью фото
+function handlePreview(evt) {
+  popupImage.src = evt.target.closest('.elements__image').src;
+  popupImage.alt = evt.target.closest('.elements__item').querySelector('.elements__title').textContent;
+  popupDescription.textContent = evt.target.closest('.elements__item').querySelector('.elements__title').textContent;
+  openPopups(2);
+}
+
+//Слушатель кнопки удаления, кнопки лайка, превью фото
 function setEventListeners(htmlElement) {
 	const deleteButton = htmlElement.querySelector('.elements__trash');
 	deleteButton.addEventListener('click', handleDelete);
+  
+  const like = htmlElement.querySelector('.elements__like');
+  like.addEventListener('click', handleLike);
+  
+  const imageBtn = htmlElement.querySelector('.elements__image');
+  imageBtn.addEventListener('click', handlePreview);
 }
 
 // Прикрепляем обработчик к форме:
@@ -132,6 +153,7 @@ addBtn.addEventListener('click', () => openPopups(1));
 closeBtn[1].addEventListener('click', () => closePopups(1));
 formElement[0].addEventListener('submit', formSubmitHandler);
 formElement[1].addEventListener('submit', handleSubmit);
+closeBtn[2].addEventListener('click', () => closePopups(2));
 
 
 
