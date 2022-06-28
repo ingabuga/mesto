@@ -35,24 +35,34 @@ const elementsTemplate = document.querySelector('.elements-template').content;
 
 
 const renderItems = () => {
-  initialCards.forEach(renderItem);
+  initialCards.forEach(createCard);
 }
 
-const renderItem = (element) => {
+const createCard = (element) => {
   const placeElement = elementsTemplate.cloneNode(true);
   placeElement.querySelector('.elements__title').textContent = element.name;
   placeElement.querySelector('.elements__image').src = element.link;
-  setEventListeners(placeElement);
-  elementsList.append(placeElement);
+  
+  //Слушатель кнопок
+  const buttonDelete = placeElement.querySelector('.elements__trash');//кнопка удаления карточки
+	buttonDelete.addEventListener('click', handleDelete);
+  
+  const like = placeElement.querySelector('.elements__like');//кнопка лайка
+  like.addEventListener('click', handleLike);
+  
+  const buttonImage = placeElement.querySelector('.elements__image');//кнопка изображения
+  buttonImage.addEventListener('click', handlePreview);
+
+  elementsList.prepend(placeElement);
 }
 
 
-const renderCard = (text, link) => {
-  const htmlElement = elementsTemplate.cloneNode(true);
-  htmlElement.querySelector('.elements__title').textContent = text;
-  htmlElement.querySelector('.elements__image').src = link;
-  setEventListeners(htmlElement);
-  elementsList.prepend(htmlElement);
+//обработчик добавления карточки
+const handleSubmit = (event) => {
+  event.preventDefault()
+  createCard({name:placeInput.value, link:linkInput.value});
+  placeInput.value = '';
+  linkInput.value = '';
   closePopups(popupPlace);
 }
 
@@ -76,19 +86,12 @@ function closePopups(popup) {
 
 //Обработчик формы
 function formSubmitHandler (evt) {
-    evt.preventDefault();
-    nameProfile.textContent = nameInput.value; 
-    jobProfile.textContent = jobInput.value;
-    closePopups(popupProfile);
+  evt.preventDefault();
+  nameProfile.textContent = nameInput.value; 
+  jobProfile.textContent = jobInput.value;
+  closePopups(popupProfile);
 }
 
-//обработчик добавления карточки
-const handleSubmit = (evt) => {
-  evt.preventDefault()
-  renderCard(placeInput.value, linkInput.value);
-  placeInput.value = '';
-  linkInput.value = '';
-}
 
 //функция удаления карточки
 function handleDelete(evt) {
@@ -109,20 +112,8 @@ function handlePreview(evt) {
   openPopups(popupPhoto);
 }
 
-//Слушатель кнопки удаления, кнопки лайка, превью фото
-function setEventListeners(htmlElement) {
-	const buttonDelete = htmlElement.querySelector('.elements__trash');//кнопка удаления карточки
-	buttonDelete.addEventListener('click', handleDelete);
-  
-  const like = htmlElement.querySelector('.elements__like');//кнопка лайка
-  like.addEventListener('click', handleLike);
-  
-  const buttonImage = htmlElement.querySelector('.elements__image');//кнопка изображения
-  buttonImage.addEventListener('click', handlePreview);
-}
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
+// Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
 buttonEdit.addEventListener('click', inputName);
 buttonCard.addEventListener('click', () => openPopups(popupPlace));
 formProfile.addEventListener('submit', formSubmitHandler);
