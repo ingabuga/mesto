@@ -47,7 +47,6 @@ const renderItem = (element) => {
 }
 
 
-
 const renderCard = (text, link) => {
   const htmlElement = elementsTemplate.cloneNode(true);
   htmlElement.querySelector('.elements__title').textContent = text;
@@ -73,7 +72,6 @@ function openPopups(popup) {
 function closePopups(popup) {
   popup.classList.remove('popup_opened');
 }
-
 
 
 //Обработчик формы
@@ -130,23 +128,14 @@ buttonCard.addEventListener('click', () => openPopups(popupPlace));
 formProfile.addEventListener('submit', formSubmitHandler);
 formPlace.addEventListener('submit', handleSubmit);
 
-buttonClose[0].addEventListener('click', () => closePopups(popupProfile));
-buttonClose[1].addEventListener('click', () => closePopups(popupPlace));
-buttonClose[2].addEventListener('click', () => closePopups(popupPhoto));
 
-/*
 buttonClose.forEach((button) => {
   button.addEventListener('click', (evt) => {
-    const popup = evt.target.closest('.popup')
+    const popup = evt.target.closest('.popup');
+    console.log(popup);
     closePopups(popup)
-  }
-})*/
+  })
+});
 
 
-
-
-
-
-
-renderItems()
-
+renderItems();
