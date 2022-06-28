@@ -52,17 +52,16 @@ const createCard = (element) => {
   
   const buttonImage = placeElement.querySelector('.elements__image');//кнопка изображения
   buttonImage.addEventListener('click', handlePreview);
-
   elementsList.prepend(placeElement);
 }
+
 
 
 //обработчик добавления карточки
 const handleSubmit = (event) => {
   event.preventDefault()
   createCard({name:placeInput.value, link:linkInput.value});
-  placeInput.value = '';
-  linkInput.value = '';
+  event.target.reset();
   closePopups(popupPlace);
 }
 
@@ -74,6 +73,7 @@ function inputName(event) {
   openPopups(popupProfile);
 }
 
+//Функция открытия попапа
 function openPopups(popup) {
   popup.classList.add('popup_opened');
 }
