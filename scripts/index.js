@@ -6,13 +6,9 @@ const buttonCard = document.querySelector('.profile__add-button') //выбира
 
 //Попап
 const popups = document.querySelectorAll('.popup'); //массив попапов
-const popupProfile = document.querySelectorAll('.popup_profile'); //попап профиля
-const popupPlace = document.querySelectorAll('.popup_place'); //попап нового места
-const popupPhoto = document.querySelectorAll('.popup_photo'); //попап превью фотографии
-
-//Попап редактирования профиля
-const nameInput = popups[0].querySelector('.popup__text_input_name');//выбираем имя в попапе
-const jobInput = popups[0].querySelector('.popup__text_input_job'); //выбираем должность в попапе
+const popupProfile = document.querySelectorAll('.popup_profile'); //попап профиля 0
+const popupPlace = document.querySelectorAll('.popup_place'); //попап нового места 1
+const popupPhoto = document.querySelectorAll('.popup_photo'); //попап превью фотографии 2
 
 //Попап добавления карточки
 const placeInput = popups[1].querySelector('.popup__text_input_name');//выбираем название места
@@ -22,11 +18,14 @@ const linkInput = popups[1].querySelector('.popup__text_input_job');//выбир
 const popupImage = popups[2].querySelector('.popup__image');//выбираем изображение в попапе 
 const popupDescription = popups[2].querySelector('.popup__description');//выбираем подпись в попапе 
 
-//Поля формы реадктирования профиля
-const formElement = document.querySelectorAll('.popup__form'); //выбираем попап-форму
-
+//Формы редактирования данных
 const formProfile = document.querySelector('.popup__form_profile'); //выбираем форму данных профиля
 const formPlace = document.querySelector('.popup__form_place'); // выбираем форму данных нового места
+
+//Поля данных в форме профиля
+const nameInput = popups[0].querySelector('.popup__text_input_name');//выбираем имя в попапе
+const jobInput = popups[0].querySelector('.popup__text_input_job'); //выбираем должность в попапе
+
 const nameProfile = document.querySelector('.profile__title'); //выбираем Имя в профиле
 const jobProfile = document.querySelector('.profile__title-job');//выбираем Должность в профиле
 
@@ -35,32 +34,7 @@ const elementsList = document.querySelector('.elements__element');
 const elementsTemplate = document.querySelector('.elements-template').content;
 
 
-const initialCards = [
-      {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-]; 
+
 
 const renderItems = () => {
   initialCards.forEach(renderItem);
@@ -157,8 +131,8 @@ buttonEdit.addEventListener('click', inputName);
 buttonClose[0].addEventListener('click', () => closePopups(0));
 buttonCard.addEventListener('click', () => openPopups(1));
 buttonClose[1].addEventListener('click', () => closePopups(1));
-formElement[0].addEventListener('submit', formSubmitHandler);
-formElement[1].addEventListener('submit', handleSubmit);
+formProfile.addEventListener('submit', formSubmitHandler);
+formPlace.addEventListener('submit', handleSubmit);
 buttonClose[2].addEventListener('click', () => closePopups(2));
 
 
