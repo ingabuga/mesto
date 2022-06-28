@@ -35,7 +35,7 @@ const elementsTemplate = document.querySelector('.elements-template').content;
 
 
 const renderItems = () => {
-  initialCards.forEach(createCard);
+  initialCards.forEach(renderCard);
 }
 
 const createCard = (element) => {
@@ -52,15 +52,19 @@ const createCard = (element) => {
   
   const buttonImage = placeElement.querySelector('.elements__image');//кнопка изображения
   buttonImage.addEventListener('click', handlePreview);
-  elementsList.prepend(placeElement);
+  return placeElement;
+  //elementsList.prepend(placeElement);
 }
 
-
+function renderCard(item) {
+  const card = createCard(item);
+  elementsList.prepend(card);
+}
 
 //обработчик добавления карточки
 const handleSubmit = (event) => {
   event.preventDefault()
-  createCard({name:placeInput.value, link:linkInput.value});
+  renderCard({name:placeInput.value, link:linkInput.value});
   event.target.reset();
   closePopups(popupPlace);
 }
