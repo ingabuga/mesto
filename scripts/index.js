@@ -1,7 +1,7 @@
 //Кнопки
-const editBtn = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля
-const closeBtn = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа
-const addBtn = document.querySelector('.profile__add-button') //выбираем кнопку добавления карточки
+const buttonEdit = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля
+const buttonClose = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа
+const buttonCard = document.querySelector('.profile__add-button') //выбираем кнопку добавления карточки
 //const imageBtn = document.querySelectorAll('.elements__image'); //выбираем изображение в карточке
 
 //Попап
@@ -19,11 +19,14 @@ const placeInput = popups[1].querySelector('.popup__text_input_name');//выби
 const linkInput = popups[1].querySelector('.popup__text_input_job');//выбираем ссылку на фото
 
 //Попап превью фото карточки
-const popupImage = popups[2].querySelector('.popup__image');//выбираем изображение в попапе надо ли?
-const popupDescription = popups[2].querySelector('.popup__description');//выбираем подпись в попапе надо ли?
+const popupImage = popups[2].querySelector('.popup__image');//выбираем изображение в попапе 
+const popupDescription = popups[2].querySelector('.popup__description');//выбираем подпись в попапе 
 
 //Поля формы реадктирования профиля
 const formElement = document.querySelectorAll('.popup__form'); //выбираем попап-форму
+
+const formProfile = document.querySelector('.popup__form_profile'); //выбираем форму данных профиля
+const formPlace = document.querySelector('.popup__form_place'); // выбираем форму данных нового места
 const nameProfile = document.querySelector('.profile__title'); //выбираем Имя в профиле
 const jobProfile = document.querySelector('.profile__title-job');//выбираем Должность в профиле
 
@@ -138,8 +141,8 @@ function handlePreview(evt) {
 
 //Слушатель кнопки удаления, кнопки лайка, превью фото
 function setEventListeners(htmlElement) {
-	const deleteButton = htmlElement.querySelector('.elements__trash');
-	deleteButton.addEventListener('click', handleDelete);
+	const buttonDelete = htmlElement.querySelector('.elements__trash');
+	buttonDelete.addEventListener('click', handleDelete);
   
   const like = htmlElement.querySelector('.elements__like');
   like.addEventListener('click', handleLike);
@@ -150,13 +153,13 @@ function setEventListeners(htmlElement) {
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-editBtn.addEventListener('click', inputName);
-closeBtn[0].addEventListener('click', () => closePopups(0));
-addBtn.addEventListener('click', () => openPopups(1));
-closeBtn[1].addEventListener('click', () => closePopups(1));
+buttonEdit.addEventListener('click', inputName);
+buttonClose[0].addEventListener('click', () => closePopups(0));
+buttonCard.addEventListener('click', () => openPopups(1));
+buttonClose[1].addEventListener('click', () => closePopups(1));
 formElement[0].addEventListener('submit', formSubmitHandler);
 formElement[1].addEventListener('submit', handleSubmit);
-closeBtn[2].addEventListener('click', () => closePopups(2));
+buttonClose[2].addEventListener('click', () => closePopups(2));
 
 
 
