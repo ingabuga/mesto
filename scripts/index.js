@@ -65,7 +65,7 @@ function renderCard(item) {
 const handleSubmit = (event) => {
   event.preventDefault()
   renderCard({name:placeInput.value, link:linkInput.value});
-  event.target.reset();
+  event.target.reset(); //очистка полей ввода
   closePopups(popupPlace);
 }
 
@@ -127,10 +127,28 @@ formPlace.addEventListener('submit', handleSubmit);
 buttonClose.forEach((button) => {
   button.addEventListener('click', (evt) => {
     const popup = evt.target.closest('.popup');
-    console.log(popup);
     closePopups(popup)
   })
 });
 
+
+
+popupProfile.addEventListener('click', (event) => {
+  if(!event.defaultPrevented) {
+    closePopups(popupProfile)
+  }
+})
+
+popupPlace.addEventListener('click', (event) => {
+  if(!event.defaultPrevented) {
+    closePopups(popupPlace)
+  }
+})
+
+popupPhoto.addEventListener('click', (event) => {
+  if(!event.defaultPrevented) {
+    closePopups(popupPhoto)
+  }
+})
 
 renderItems();
