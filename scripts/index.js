@@ -53,7 +53,6 @@ const createCard = (element) => {
   const buttonImage = placeElement.querySelector('.elements__image');//кнопка изображения
   buttonImage.addEventListener('click', handlePreview);
   return placeElement;
-  //elementsList.prepend(placeElement);
 }
 
 function renderCard(item) {
@@ -124,31 +123,12 @@ formProfile.addEventListener('submit', formSubmitHandler);
 formPlace.addEventListener('submit', handleSubmit);
 
 
+
 buttonClose.forEach((button) => {
   button.addEventListener('click', (evt) => {
     const popup = evt.target.closest('.popup');
     closePopups(popup)
   })
 });
-
-
-
-popupProfile.addEventListener('click', (event) => {
-  if(!event.defaultPrevented) {
-    closePopups(popupProfile)
-  }
-})
-
-popupPlace.addEventListener('click', (event) => {
-  if(!event.defaultPrevented) {
-    closePopups(popupPlace)
-  }
-})
-
-popupPhoto.addEventListener('click', (event) => {
-  if(!event.defaultPrevented) {
-    closePopups(popupPhoto)
-  }
-})
 
 renderItems();
