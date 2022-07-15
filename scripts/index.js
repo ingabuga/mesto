@@ -122,13 +122,22 @@ buttonCard.addEventListener('click', () => openPopups(popupPlace));
 formProfile.addEventListener('submit', formSubmitHandler);
 formPlace.addEventListener('submit', handleSubmit);
 
-
+function escapeHandler(evt) {
+  
+}
 
 buttonClose.forEach((button) => {
   button.addEventListener('click', (evt) => {
     const popup = evt.target.closest('.popup');
     closePopups(popup)
-  })
+  })  
 });
+
+function escapeHandler(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopups(openedPopup)
+  }
+}
 
 renderItems();
