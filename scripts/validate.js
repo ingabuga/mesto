@@ -56,7 +56,7 @@ const hideInputError = (input) => {
 */
 
 
-/*
+
 //валидация с деактивацией кнопки отправки
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
@@ -126,7 +126,7 @@ const toggleButtonState = (inputList, buttonElement) => {
 }; 
 
 enableValidation();
-*/
+
 
 
 /*
