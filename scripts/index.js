@@ -79,6 +79,11 @@ function inputName(event) {
 //Функция открытия попапа
 function openPopups(popup) {
   popup.classList.add('popup_opened');
+  const inputEvent = new Event("input", { bubbles: true });
+    const inputForm = popup.querySelectorAll(".popup__text");
+    inputForm.forEach(function (input) {
+      input.dispatchEvent(inputEvent);
+    });
 }
 
 //функция закрытия попапа
