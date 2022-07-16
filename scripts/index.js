@@ -129,10 +129,7 @@ buttonCard.addEventListener('click', () => openPopups(popupPlace));
 formProfile.addEventListener('submit', formSubmitHandler);
 formPlace.addEventListener('submit', handleSubmit);
 
-popupProfile.addEventListener('keydown', escapeHandler); //слушатели нажатия escape
-popupPlace.addEventListener('keydown', escapeHandler);
-//popupPhoto.addEventListener('keydown', escapeHandler); 
-
+document.addEventListener('keydown', escapeHandler); //слушатели нажатия escape
 
 //Закртыие по клику на overlay
 popups.forEach((popup) => {
@@ -150,8 +147,6 @@ function overlayHandler(evt, popup) {
 }
 
 
-
-
 //функция закрытия попапа по нажатию Escape
 function escapeHandler(evt) {
   if (evt.key === 'Escape') {
@@ -159,6 +154,7 @@ function escapeHandler(evt) {
       closePopups(openedPopup);
   }
 }
+
 
 
 renderItems();
