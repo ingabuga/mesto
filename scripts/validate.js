@@ -47,8 +47,8 @@ const hideInputError = (input) => {
 */
 
 
-
-/*const parameters = {
+///*
+const parameters = {
   formSelector: '.popup__container',
   inputSelector: '.popup__text',
   submitButtonSelector: '.popup__save-button',
@@ -56,7 +56,7 @@ const hideInputError = (input) => {
   inputErrorClass: 'popup__text_error_active',
   errorClass: 'popup__text_input_error'
 };
-*/
+//*/
 
 
 //валидация с деактивацией кнопки отправки

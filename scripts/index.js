@@ -140,9 +140,11 @@ popups.forEach((popup) => {
 //функция отслеживающая нажатие на оверлей и кнопку закрытия
 function overlayHandler(evt, popup) {
   if (evt.target.classList.contains('popup_opened')) {
-    closePopups(popup);
+    //closePopups(popup);
+    deleteListener(popup)
   } else if (evt.target.classList.contains('popup__close-btn')) {
-    closePopups(popup);
+    //closePopups(popup);
+    deleteListener(popup)
   }
 }
 
@@ -153,6 +155,12 @@ function escapeHandler(evt) {
       const openedPopup = document.querySelector('.popup_opened');
       closePopups(openedPopup);
   }
+}
+
+//Удалитель слушателя попапа
+function deleteListener(popup) {
+  document.removeEventListener('keydown', escapeHandler);
+  closePopups(popup);
 }
 
 
