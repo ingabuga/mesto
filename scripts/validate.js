@@ -1,12 +1,3 @@
-/*const parameters = {
-  formSelector: '.popup__container',
-  inputSelector: '.popup__text',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_inactive',
-  inputErrorClass: 'popup__text_error_active',
-  errorClass: 'popup__text_input_error'
-};
-*/
 
 
 
@@ -55,6 +46,17 @@ const hideInputError = (input) => {
 };
 */
 
+
+
+/*const parameters = {
+  formSelector: '.popup__container',
+  inputSelector: '.popup__text',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_inactive',
+  inputErrorClass: 'popup__text_error_active',
+  errorClass: 'popup__text_input_error'
+};
+*/
 
 
 //валидация с деактивацией кнопки отправки

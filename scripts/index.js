@@ -7,10 +7,12 @@ const buttonCard = document.querySelector('.profile__add-button') //выбира
 const popupProfile = document.querySelector('.popup_profile'); //попап профиля 
 const popupPlace = document.querySelector('.popup_place'); //попап нового места 
 const popupPhoto = document.querySelector('.popup_photo'); //попап превью фотографии 
+const popups = document.querySelectorAll('.popup'); //все попапы
 
 //Попап добавления карточки
 const placeInput = popupPlace.querySelector('.popup__text_input_name');//выбираем название места
 const linkInput = popupPlace.querySelector('.popup__text_input_job');//выбираем ссылку на фото
+
 
 //Попап превью фото карточки
 const popupImage = popupPhoto.querySelector('.popup__image');//выбираем изображение в попапе 
@@ -79,7 +81,7 @@ function inputName(event) {
 //Функция открытия попапа
 function openPopups(popup) {
   popup.classList.add('popup_opened');
-  const inputEvent = new Event("input", { bubbles: true });
+  const inputEvent = new Event("input", {bubbles: true}); //проверка фполей формы
     const inputForm = popup.querySelectorAll(".popup__text");
     inputForm.forEach(function (input) {
       input.dispatchEvent(inputEvent);
@@ -97,7 +99,7 @@ function formSubmitHandler (evt) {
   evt.preventDefault();
   nameProfile.textContent = nameInput.value; 
   jobProfile.textContent = jobInput.value;
-  closePopups(popupProfile);
+  closePopups(popupProfile)
 }
 
 
@@ -127,22 +129,36 @@ buttonCard.addEventListener('click', () => openPopups(popupPlace));
 formProfile.addEventListener('submit', formSubmitHandler);
 formPlace.addEventListener('submit', handleSubmit);
 
-function escapeHandler(evt) {
-  
-}
+popupProfile.addEventListener('keydown', escapeHandler); //слушатели нажатия escape
+popupPlace.addEventListener('keydown', escapeHandler);
+//popupPhoto.addEventListener('keydown', escapeHandler); 
 
-buttonClose.forEach((button) => {
-  button.addEventListener('click', (evt) => {
-    const popup = evt.target.closest('.popup');
-    closePopups(popup)
-  })  
-});
 
-function escapeHandler(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopups(openedPopup)
+//Закртыие по клику на overlay
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+      overlayHandler(evt, popup)});
+})
+
+//функция отслеживающая нажатие на оверлей и кнопку закрытия
+function overlayHandler(evt, popup) {
+  if (evt.target.classList.contains('popup_opened')) {
+    closePopups(popup);
+  } else if (evt.target.classList.contains('popup__close-btn')) {
+    closePopups(popup);
   }
 }
+
+
+
+
+//функция закрытия попапа по нажатию Escape
+function escapeHandler(evt) {
+  if (evt.key === 'Escape') {
+      const openedPopup = document.querySelector('.popup_opened');
+      closePopups(openedPopup);
+  }
+}
+
 
 renderItems();
