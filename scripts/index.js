@@ -37,9 +37,11 @@ const renderItems = () => {
 
  
 const createCard = (element) => { 
-  const placeElement = elementsTemplate.cloneNode(true); 
-  placeElement.querySelector('.elements__title').textContent = element.name; 
-  placeElement.querySelector('.elements__image').src = element.link; 
+  const placeElement = elementsTemplate.cloneNode(true);
+  const elementsImage = placeElement.querySelector('.elements__image');//кнопка изображения
+  placeElement.querySelector('.elements__title').textContent = element.name;
+  elementsImage.src = element.link;
+  elementsImage.alt = element.name;
 
   //Слушатель кнопок 
   const buttonDelete = placeElement.querySelector('.elements__trash');//кнопка удаления карточки 
@@ -47,8 +49,8 @@ const createCard = (element) => {
 
   const like = placeElement.querySelector('.elements__like');//кнопка лайка 
   like.addEventListener('click', handleLike); 
-  const buttonImage = placeElement.querySelector('.elements__image');//кнопка изображения 
-  buttonImage.addEventListener('click', handlePreview); 
+  
+  elementsImage.addEventListener('click', handlePreview);
   return placeElement; 
 } 
 
