@@ -81,7 +81,7 @@ function inputName(event) {
 //Функция открытия попапа
 function openPopups(popup) {
   popup.classList.add('popup_opened');
-  const inputEvent = new Event("input", {bubbles: true}); //проверка фполей формы
+  const inputEvent = new Event("input", {bubbles: true}); //проверка полей формы
     const inputForm = popup.querySelectorAll(".popup__text");
     inputForm.forEach(function (input) {
       input.dispatchEvent(inputEvent);
@@ -140,8 +140,8 @@ popups.forEach((popup) => {
 //функция отслеживающая нажатие на оверлей и кнопку закрытия
 function overlayHandler(evt, popup) {
   if (evt.target.classList.contains('popup_opened')) {
-    //closePopups(popup);
-    deleteListener(popup)
+    closePopups(popup);
+    //deleteListener(popup)
   } else if (evt.target.classList.contains('popup__close-btn')) {
     //closePopups(popup);
     deleteListener(popup)
