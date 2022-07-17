@@ -142,11 +142,9 @@ popups.forEach((popup) => {
 //функция отслеживающая нажатие на оверлей и кнопку закрытия
 function overlayHandler(evt, popup) {
   if (evt.target.classList.contains('popup_opened')) {
-    //closePopups(popup);
-    deleteListener(popup)
+    closePopups(popup);
   } else if (evt.target.classList.contains('popup__close-btn')) {
-    //closePopups(popup);
-    deleteListener(popup)
+    closePopups(popup);
   }
 }
 
