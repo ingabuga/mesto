@@ -49,8 +49,8 @@ const createCard = (element) => {
 
   const like = placeElement.querySelector('.elements__like');//кнопка лайка 
   like.addEventListener('click', handleLike); 
-  
-  elementsImage.addEventListener('click', handlePreview);
+
+  elementsImage.addEventListener('click', () => handlePreview(elementsImage.src, elementsImage.alt));
   return placeElement; 
 } 
 
@@ -63,7 +63,12 @@ function renderCard(item) {
 const handleSubmit = (event) => { 
   event.preventDefault() 
   renderCard({name:placeInput.value, link:linkInput.value}); 
-  event.target.reset(); //очистка полей ввода 
+  formPlace.reset(); //очистка полей ввода 
+
+  const buttonElement = document.querySelector('.popup__save-button'); //деактивация кнопки submit
+  buttonElement.classList.add('popup__save-button_inactive'); 
+  buttonElement.setAttribute('disabled', true); 
+
   closePopups(popupPlace); 
 } 
 
@@ -78,11 +83,6 @@ function inputName(event) {
 function openPopups(popup) { 
   popup.classList.add('popup_opened'); 
   document.addEventListener('keydown', escapeHandler); 
-  const inputEvent = new Event("input", {bubbles: true}); //проверка фполей формы 
-    const inputForm = popup.querySelectorAll(".popup__text"); 
-    inputForm.forEach(function (input) { 
-      input.dispatchEvent(inputEvent); 
-    }); 
 } 
 
 //функция закрытия попапа 
@@ -110,10 +110,10 @@ function handleLike(evt) {
 } 
 
 //Функция заполнения попапа превью фото 
-function handlePreview(evt) { 
-  popupImage.src = evt.target.closest('.elements__image').src; 
-  popupImage.alt = evt.target.closest('.elements__item').querySelector('.elements__title').textContent; 
-  popupDescription.textContent = evt.target.closest('.elements__item').querySelector('.elements__title').textContent; 
+function handlePreview(link, name) { 
+  popupImage.src = link; 
+  popupImage.alt = name; 
+  popupDescription.textContent = name; 
   openPopups(popupPhoto); 
 } 
 
