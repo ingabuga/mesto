@@ -12,5 +12,5 @@
     width: 100%;
     min-width: 320px;
     height: 100%;
-    transition: opacity .3s, visibility .3s .3s ease-in-out;
+    transition: opacity .3s, visibility 0s .3s ease-in-out;
 }
