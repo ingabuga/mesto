@@ -5,7 +5,6 @@ const showInputError = (formElement, inputElement, errorMessage, parameters) => 
   errorElement.classList.add(parameters.inputErrorClass); 
 }; 
 
- 
 
 const hideInputError = (formElement, inputElement, parameters) => { 
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`); 
@@ -14,7 +13,6 @@ const hideInputError = (formElement, inputElement, parameters) => {
   errorElement.textContent = ''; 
 }; 
 
- 
 
 const checkInputValidity = (formElement, inputElement, parameters) => { 
   if (!inputElement.validity.valid) { 
@@ -22,11 +20,9 @@ const checkInputValidity = (formElement, inputElement, parameters) => {
   } else { 
     hideInputError(formElement, inputElement, parameters); 
   } 
-
 }; 
 
  
-
 const setEventListeners = (formElement, parameters) => { 
 
   const inputList = Array.from(formElement.querySelectorAll(parameters.inputSelector)); 
@@ -44,7 +40,12 @@ const setEventListeners = (formElement, parameters) => {
 
 }; 
 
- 
+const hasInvalidInput = (inputList) => { 
+  return inputList.some((inputElement) => { 
+    return !inputElement.validity.valid; 
+  }) 
+
+};  
 
 const enableValidation = (parameters) => { 
   const formList = Array.from(document.querySelectorAll(parameters.formSelector)); 
@@ -54,30 +55,27 @@ const enableValidation = (parameters) => {
 
 }; 
 
- 
 
- 
-
-const hasInvalidInput = (inputList) => { 
-  return inputList.some((inputElement) => { 
-    return !inputElement.validity.valid; 
-  }) 
-
-};  
-
-
-const toggleButtonState = (inputList, buttonElement, parameters) => { 
+const toggleButtonState = (inputList, submitButton, {inactiveButtonClass}) => { 
   if (hasInvalidInput(inputList)) { 
-    buttonElement.classList.add(parameters.inactiveButtonClass); 
-    buttonElement.setAttribute('disabled', true); 
+    disableSubmitButton(submitButton, inactiveButtonClass);
 
-  } else { 
-    buttonElement.classList.remove(parameters.inactiveButtonClass); 
-    buttonElement.removeAttribute('disabled', true); 
+  } else {  
+    enableSubmitButton(submitButton, inactiveButtonClass);
   } 
 
 };  
 
+
+function disableSubmitButton(submitButton, inactiveButtonClass) {
+  submitButton.classList.add(inactiveButtonClass);
+  submitButton.setAttribute('disabled', true);
+}
+
+function enableSubmitButton(submitButton, inactiveButtonClass) {
+  submitButton.classList.remove(inactiveButtonClass);
+  submitButton.removeAttribute('disabled', true);
+}
  
 
 enableValidation({ 
