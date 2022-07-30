@@ -1,13 +1,14 @@
 class Card {
-  constructor(title, image) {
-      this._title = title;
-      this._description = title;
-      this._image = image;
+  constructor(data, templateSelector) {
+      this._title = data.name;
+      this._description = data.name;
+      this._image = data.link;
+      this._templateSelector = templateSelector;
   }
 
  _getTemplate() {
     const cardElement = document
-    .querySelector('.elements-template')
+    .querySelector(this._templateSelector)
     .content
     .querySelector('.elements__item')
     .cloneNode(true);
@@ -18,25 +19,47 @@ class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._setEventListeners();
     this._element.querySelector('.elements__image').src = `${this._image}`;
     this._element.querySelector('.elements__title').textContent = this._title; 
     this._element.querySelector('.elements__image').alt = this._title;
     return this._element;
   }
 
+
+  _setEventListeners() {
+    this._element.querySelector('.elements__like').addEventListener('click', () => {
+      this._handleLike()// откройте попап
+    });
+
+    this._element.querySelector('.elements__trash').addEventListener('click', () => {
+      this._handleDelete()// откройте попап
+    });
+  }
+
+  _handleLike() {
+    this._element.querySelector('.elements__like').classList.toggle('elements__like_active');
+  }
+
+  _handleDelete() {
+    this._element.remove(); 
+  }
+
+  
 }
 
-initialCards.forEach((item) => {
-  const card = new Card(item.name, item.link);
+initialCards.forEach((data) => {
+  const card = new Card(data, '.elements-template');
   const cardElement = card.generateCard();
   document.querySelector('.elements__element').prepend(cardElement);
 }); 
 
-/*
+
 //Кнопки 
 const buttonEdit = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля 
 const buttonClose = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа 
-const buttonCard = document.querySelector('.profile__add-button') //выбираем кнопку добавления карточки 
+const buttonCard = document.querySelector('.profile__add-button'); //выбираем кнопку добавления карточки 
+const buttonLike = document.querySelectorAll('elements__like');
 
 //Попап 
 const popupProfile = document.querySelector('.popup_profile'); //попап профиля  
@@ -66,6 +89,7 @@ const jobProfile = document.querySelector('.profile__title-job');//выбира�
 const elementsList = document.querySelector('.elements__element'); 
 const elementsTemplate = document.querySelector('.elements-template').content; 
 
+/*
 const renderItems = () => { 
   initialCards.forEach(renderCard); 
 } 
