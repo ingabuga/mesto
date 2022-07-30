@@ -1,3 +1,38 @@
+class Card {
+  constructor(title, image) {
+      this._title = title;
+      this._description = title;
+      this._image = image;
+  }
+
+ _getTemplate() {
+    const cardElement = document
+    .querySelector('.elements-template')
+    .content
+    .querySelector('.elements__item')
+    .cloneNode(true);
+    
+    // вернём DOM-элемент карточки
+    return cardElement;
+  } 
+
+  generateCard() {
+    this._element = this._getTemplate();
+    this._element.querySelector('.elements__image').src = `${this._image}`;
+    this._element.querySelector('.elements__title').textContent = this._title; 
+    this._element.querySelector('.elements__image').alt = this._title;
+    return this._element;
+  }
+
+}
+
+initialCards.forEach((item) => {
+  const card = new Card(item.name, item.link);
+  const cardElement = card.generateCard();
+  document.querySelector('.elements__element').prepend(cardElement);
+}); 
+
+/*
 //Кнопки 
 const buttonEdit = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля 
 const buttonClose = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа 
@@ -64,11 +99,6 @@ const handleSubmit = (event) => {
   event.preventDefault() 
   renderCard({name:placeInput.value, link:linkInput.value}); 
   formPlace.reset(); //очистка полей ввода 
-  /*
-  const buttonElement = document.querySelector('.popup__save-button'); //деактивация кнопки submit
-  buttonElement.classList.add('popup__save-button_inactive'); 
-  buttonElement.setAttribute('disabled', true); 
-  */
   const submitButton = document.querySelector('.popup__save-button');
   disableSubmitButton(submitButton, 'popup__save-button_inactive');
   deleteListenerClose(popupPlace); 
@@ -78,11 +108,6 @@ function inputName(event) {
   event.preventDefault() 
   nameInput.value = nameProfile.textContent; 
   jobInput.value = jobProfile.textContent; 
-  /*
-  const buttonElement = document.querySelector('.popup__save-button'); //деактивация кнопки submit
-  buttonElement.classList.add('popup__save-button_inactive'); 
-  buttonElement.setAttribute('disabled', true); 
-  */
   const submitButton = document.querySelector('.popup__save-button');
   disableSubmitButton(submitButton, 'popup__save-button_inactive');
   openPopups(popupProfile); 
@@ -178,3 +203,4 @@ formProfile.addEventListener('submit', formSubmitHandler);
 formPlace.addEventListener('submit', handleSubmit); 
 
 renderItems();
+*/
