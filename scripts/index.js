@@ -1,3 +1,4 @@
+import {Card} from './cards.js';
 //Кнопки 
 const buttonEdit = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля 
 const buttonClose = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа 
@@ -84,7 +85,7 @@ const createCard = (element) => {
   return placeElement; 
 } 
 */
-
+/*
 class Card {
   constructor(data, templateSelector) {
       this._title = data.name;
@@ -94,11 +95,7 @@ class Card {
   }
 
  _getTemplate() {
-    const cardElement = document
-    .querySelector(this._templateSelector)
-    .content
-    .querySelector('.elements__item')
-    .cloneNode(true);
+    const cardElement = document.querySelector(this._templateSelector).content.querySelector('.elements__item').cloneNode(true);
     
     // вернём DOM-элемент карточки
     return cardElement;
@@ -135,6 +132,7 @@ class Card {
   _handleDelete() {
     this._element.remove(); 
   }
+/*
 
   _openPopup() {
     popupImage.src = this._image; 
@@ -142,9 +140,9 @@ class Card {
     popupDescription.textContent = this._title;
     openPopups(popupPhoto); 
   }
-  
-}
 
+}
+*/
 
 function renderCard(data) { 
   const card = new Card(data, '.elements-template');
