@@ -1,4 +1,4 @@
-import {Card} from './cards.js';
+import {Card} from './card.js';
 //Кнопки 
 const buttonEdit = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля 
 const buttonClose = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа 
