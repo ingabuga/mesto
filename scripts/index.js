@@ -1,4 +1,6 @@
 import {Card} from './card.js';
+//import {FormValidator} from './validate.js';
+
 //Кнопки 
 const buttonEdit = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля 
 const buttonClose = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа 
@@ -69,101 +71,17 @@ const validationData = {
   errorClass: 'popup__text_input_error' 
 };
 
+
 /*
-const renderItems = () => { 
-  initialCards.forEach(renderCard); 
-} 
-
- 
-const createCard = (element) => { 
-  const placeElement = elementsTemplate.cloneNode(true);
-  const elementsImage = placeElement.querySelector('.elements__image');//кнопка изображения
-  placeElement.querySelector('.elements__title').textContent = element.name;
-  elementsImage.src = element.link;
-  elementsImage.alt = element.name;
-
-  //Слушатель кнопок 
-  const buttonDelete = placeElement.querySelector('.elements__trash');//кнопка удаления карточки 
-	buttonDelete.addEventListener('click', handleDelete); 
-
-  const like = placeElement.querySelector('.elements__like');//кнопка лайка 
-  like.addEventListener('click', handleLike); 
-
-  elementsImage.addEventListener('click', () => handlePreview(elementsImage.src, elementsImage.alt));
-  return placeElement; 
-} 
-*/
-/*
-class Card {
-  constructor(data, templateSelector) {
-      this._title = data.name;
-      this._description = data.name;
-      this._image = data.link;
-      this._templateSelector = templateSelector;
-  }
-
- _getTemplate() {
-    const cardElement = document.querySelector(this._templateSelector).content.querySelector('.elements__item').cloneNode(true);
-    
-    // вернём DOM-элемент карточки
-    return cardElement;
-  } 
-
-  generateCard() {
-    this._element = this._getTemplate();
-    this._setEventListeners();
-    this._element.querySelector('.elements__image').src = `${this._image}`;
-    this._element.querySelector('.elements__title').textContent = this._title; 
-    this._element.querySelector('.elements__image').alt = this._title;
-    return this._element;
-  }
+const cardValidator = new FormValidator(validationData, popupPlace);
+cardValidator.enableValidation();
 
 
-  _setEventListeners() {
-    this._element.querySelector('.elements__image').addEventListener('click', () => {
-      this._openPopup()// открываем попап
-    });
-    
-    this._element.querySelector('.elements__like').addEventListener('click', () => {
-      this._handleLike()// лайкаем карточку
-    });
+const profileValidator = new FormValidator(validationData, popupProfile);
+profileValidator.enableValidation();
 
-    this._element.querySelector('.elements__trash').addEventListener('click', () => {
-      this._handleDelete()// удаляем карточку
-    });
-  }
-
-  _handleLike() {
-    this._element.querySelector('.elements__like').classList.toggle('elements__like_active');
-  }
-
-  _handleDelete() {
-    this._element.remove(); 
-  }
-/*
-
-  _openPopup() {
-    popupImage.src = this._image; 
-    popupImage.alt = this._title; 
-    popupDescription.textContent = this._title;
-    openPopups(popupPhoto); 
-  }
-
-}
 */
 
-class FormValidator {
-  constructor(data, profilePopup) {
-    this._formSelector = data.formSelector;
-    this._inputSelector = data.inputSelector;
-    this._submitButtonSelector = data.submitButtonSelector;
-    this._inactiveButtonClass = data.inactiveButtonClass;
-    this._inputErrorClass = data.inputErrorClass;
-    this._errorClass = data.errorClass;
-    this._currentForm = profilePopup;
-} 
-}
- 
 function renderCard(data) { 
   const card = new Card(data, '.elements-template', handlePreview);
   const cardElement = card.generateCard();

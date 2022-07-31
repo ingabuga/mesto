@@ -35,7 +35,7 @@ class Card {
       this._handlePreview = handlePreview;
   }
 
- _getTemplate() {
+  _getTemplate() {
     const cardElement = document.querySelector(this._templateSelector).content.querySelector('.elements__item').cloneNode(true);
     
     // вернём DOM-элемент карточки
