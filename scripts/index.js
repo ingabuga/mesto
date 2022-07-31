@@ -28,12 +28,16 @@ class Card {
 
 
   _setEventListeners() {
+    this._element.querySelector('.elements__image').addEventListener('click', () => {
+      this._openPopup()// открываем попап
+    });
+    
     this._element.querySelector('.elements__like').addEventListener('click', () => {
-      this._handleLike()// откройте попап
+      this._handleLike()// лайкаем карточку
     });
 
     this._element.querySelector('.elements__trash').addEventListener('click', () => {
-      this._handleDelete()// откройте попап
+      this._handleDelete()// удаляем карточку
     });
   }
 
@@ -45,6 +49,12 @@ class Card {
     this._element.remove(); 
   }
 
+  _openPopup() {
+    popupImage.src = this._image; 
+    popupImage.alt = this._title; 
+    popupDescription.textContent = this._title;
+    openPopups(popupPhoto); 
+  }
   
 }
 
@@ -136,7 +146,7 @@ function inputName(event) {
   disableSubmitButton(submitButton, 'popup__save-button_inactive');
   openPopups(popupProfile); 
 } 
-
+*/
 //Функция открытия попапа 
 function openPopups(popup) { 
   popup.classList.add('popup_opened'); 
@@ -169,7 +179,7 @@ function deleteListenerClose(popup) {
   resetPopup(popup);
 }
 
-
+/*
 //Обработчик формы 
 function formSubmitHandler (evt) { 
   evt.preventDefault(); 
@@ -196,7 +206,7 @@ function handlePreview(link, name) {
   openPopups(popupPhoto); 
 } 
 
- 
+*/
 //Закртыие по клику на overlay 
 popups.forEach((popup) => { 
   popup.addEventListener('mousedown', (evt) => { 
@@ -219,7 +229,7 @@ function escapeHandler(evt) {
       deleteListenerClose(openedPopup); 
   } 
 } 
-
+/*
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка» 
 buttonEdit.addEventListener('click', inputName); 
 buttonCard.addEventListener('click', () => openPopups(popupPlace)); 
