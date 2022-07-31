@@ -144,6 +144,10 @@ class Card {
 }
 */
 
+class FormValidator {
+
+}
+ 
 function renderCard(data) { 
   const card = new Card(data, '.elements-template', handlePreview);
   const cardElement = card.generateCard();
