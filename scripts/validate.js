@@ -77,7 +77,18 @@ function enableSubmitButton(submitButton, inactiveButtonClass) {
   submitButton.removeAttribute('disabled', true);
 }
  
+const validationData = {
+  formSelector: '.popup__form', 
+  inputSelector: '.popup__text', 
+  submitButtonSelector: '.popup__save-button', 
+  inactiveButtonClass: 'popup__save-button_inactive', 
+  inputErrorClass: 'error_active', 
+  errorClass: 'popup__text_input_error' 
+};
 
+enableValidation(validationData);
+
+/*
 enableValidation({ 
   formSelector: '.popup__form', 
   inputSelector: '.popup__text', 
@@ -87,6 +98,7 @@ enableValidation({
   errorClass: 'popup__text_input_error' 
 
 }); 
+*/
 
 /*
 class FormValidator {
