@@ -58,13 +58,6 @@ class Card {
   
 }
 
-initialCards.forEach((data) => {
-  const card = new Card(data, '.elements-template');
-  const cardElement = card.generateCard();
-  document.querySelector('.elements__element').prepend(cardElement);
-}); 
-
-
 //Кнопки 
 const buttonEdit = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля 
 const buttonClose = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа 
@@ -97,7 +90,15 @@ const nameProfile = document.querySelector('.profile__title'); //выбирае�
 const jobProfile = document.querySelector('.profile__title-job');//выбираем Должность в профиле 
 
 const elementsList = document.querySelector('.elements__element'); 
-const elementsTemplate = document.querySelector('.elements-template').content; 
+const elementsTemplate = document.querySelector('.elements-template').content;
+
+initialCards.forEach((data) => {
+  const card = new Card(data, '.elements-template');
+  const cardElement = card.generateCard();
+  elementsList.prepend(cardElement);
+}); 
+
+
 
 /*
 const renderItems = () => { 
@@ -122,11 +123,13 @@ const createCard = (element) => {
   elementsImage.addEventListener('click', () => handlePreview(elementsImage.src, elementsImage.alt));
   return placeElement; 
 } 
+*/
+function renderCard(data) { 
+  const card = new Card(data, '.elements-template');
+  const cardElement = card.generateCard();
+  elementsList.prepend(cardElement);
+};
 
-function renderCard(item) { 
-  const card = createCard(item); 
-  elementsList.prepend(card); 
-} 
 
 //обработчик добавления карточки 
 const handleSubmit = (event) => { 
@@ -146,7 +149,7 @@ function inputName(event) {
   disableSubmitButton(submitButton, 'popup__save-button_inactive');
   openPopups(popupProfile); 
 } 
-*/
+
 //Функция открытия попапа 
 function openPopups(popup) { 
   popup.classList.add('popup_opened'); 
@@ -179,7 +182,7 @@ function deleteListenerClose(popup) {
   resetPopup(popup);
 }
 
-/*
+
 //Обработчик формы 
 function formSubmitHandler (evt) { 
   evt.preventDefault(); 
@@ -187,7 +190,7 @@ function formSubmitHandler (evt) {
   jobProfile.textContent = jobInput.value; 
   deleteListenerClose(popupProfile) 
 } 
-
+/*
 //функция удаления карточки 
 function handleDelete(evt) { 
 	evt.target.closest('.elements__item').remove(); 
@@ -229,12 +232,12 @@ function escapeHandler(evt) {
       deleteListenerClose(openedPopup); 
   } 
 } 
-/*
+
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка» 
 buttonEdit.addEventListener('click', inputName); 
 buttonCard.addEventListener('click', () => openPopups(popupPlace)); 
 formProfile.addEventListener('submit', formSubmitHandler); 
 formPlace.addEventListener('submit', handleSubmit); 
-
+/*
 renderItems();
 */
