@@ -60,6 +60,14 @@ const initialCards = [
 }
 ]; 
 
+const validationData = {
+  formSelector: '.popup__form', 
+  inputSelector: '.popup__text', 
+  submitButtonSelector: '.popup__save-button', 
+  inactiveButtonClass: 'popup__save-button_inactive', 
+  inputErrorClass: 'error_active', 
+  errorClass: 'popup__text_input_error' 
+};
 
 /*
 const renderItems = () => { 
