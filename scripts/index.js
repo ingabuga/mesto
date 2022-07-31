@@ -145,13 +145,13 @@ class Card {
 */
 
 function renderCard(data) { 
-  const card = new Card(data, '.elements-template');
+  const card = new Card(data, '.elements-template', handlePreview);
   const cardElement = card.generateCard();
   elementsList.prepend(cardElement);
 };
 
 initialCards.forEach((data) => {
-  renderCard(data);
+  renderCard(data, '.elements-template', handlePreview);
 });
 
 
@@ -174,6 +174,14 @@ function inputName(event) {
   const submitButton = document.querySelector('.popup__save-button');
   disableSubmitButton(submitButton, 'popup__save-button_inactive');
   openPopups(popupProfile); 
+} 
+
+//Функция заполнения попапа превью фото 
+function handlePreview(link, name) {
+  popupImage.src = link; 
+  popupImage.alt = name; 
+  popupDescription.textContent = name; 
+  openPopups(popupPhoto); 
 } 
 
 //Функция открытия попапа 

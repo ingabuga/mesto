@@ -28,11 +28,11 @@ const initialCards = [
 */
 
 class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handlePreview) {
       this._title = data.name;
-      this._description = data.name;
       this._image = data.link;
       this._templateSelector = templateSelector;
+      this._handlePreview = handlePreview;
   }
 
  _getTemplate() {
@@ -47,14 +47,14 @@ class Card {
     this._setEventListeners();
     this._element.querySelector('.elements__image').src = `${this._image}`;
     this._element.querySelector('.elements__title').textContent = this._title; 
-    this._element.querySelector('.elements__image').alt = this._description;
+    this._element.querySelector('.elements__image').alt = this._title;
     return this._element;
   }
 
 
   _setEventListeners() {
     this._element.querySelector('.elements__image').addEventListener('click', () => {
-      this._openPopup()// открываем попап
+      this._handlePreview(this._image, this._title)// открываем попап
     });
     
     this._element.querySelector('.elements__like').addEventListener('click', () => {
@@ -73,14 +73,6 @@ class Card {
   _handleDelete() {
     this._element.remove(); 
   }
-/*
-  _openPopup() {
-    popupImage.src = this._image; 
-    popupImage.alt = this._title; 
-    popupDescription.textContent = this._title;
-    openPopups(popupPhoto); 
-  }
-*/
 }
 
 export {Card};
