@@ -62,14 +62,14 @@ const initialCards = [
 }
 ]; 
 
-const validationData = {
-  formSelector: '.popup__form', 
-  inputSelector: '.popup__text', 
-  submitButtonSelector: '.popup__save-button', 
-  inactiveButtonClass: 'popup__save-button_inactive', 
-  inputErrorClass: 'error_active', 
-  errorClass: 'popup__text_input_error' 
-};
+// const validationData = {
+//   formSelector: '.popup__form', 
+//   inputSelector: '.popup__text', 
+//   submitButtonSelector: '.popup__save-button', 
+//   inactiveButtonClass: 'popup__save-button_inactive', 
+//   inputErrorClass: 'error_active', 
+//   errorClass: 'popup__text_input_error' 
+// };
 
 
 
@@ -85,15 +85,15 @@ initialCards.forEach((data) => {
 });
 
 
-/*
-const cardValidator = new FormValidator(validationData, popupPlace);
-cardValidator.enableValidation();
+
+// const cardValidator = new FormValidator(validationData, popupPlace);
+// cardValidator.enableValidation();
 
 
-const profileValidator = new FormValidator(validationData, popupProfile);
-profileValidator.enableValidation();
+// const profileValidator = new FormValidator(validationData, popupProfile);
+// profileValidator.enableValidation();
 
-*/
+
 
 //обработчик добавления карточки 
 const handleSubmit = (event) => { 
@@ -101,7 +101,7 @@ const handleSubmit = (event) => {
   renderCard({name:placeInput.value, link:linkInput.value}); 
   formPlace.reset(); //очистка полей ввода 
   const submitButton = document.querySelector('.popup__save-button');
-  disableSubmitButton(submitButton, 'popup__save-button_inactive');
+  //disableSubmitButton(submitButton, 'popup__save-button_inactive');
   deleteListenerClose(popupPlace); 
 } 
 
@@ -109,8 +109,8 @@ function inputName(event) {
   event.preventDefault() 
   nameInput.value = nameProfile.textContent; 
   jobInput.value = jobProfile.textContent; 
-  const submitButton = document.querySelector('.popup__save-button');
-  disableSubmitButton(submitButton, 'popup__save-button_inactive');
+  // const submitButton = document.querySelector('.popup__save-button');
+  // disableSubmitButton(submitButton, 'popup__save-button_inactive');
   openPopups(popupProfile); 
 } 
 
@@ -139,10 +139,10 @@ function resetPopup(popup) {
       const inputs = Array.from(form.querySelectorAll('.popup__text'));
       const submitButton = popup.querySelector('.popup__save-button');
   
-      inputs.forEach((currentInput) => {
-        hideInputError(form, currentInput, {inputErrorClass: 'error_active', errorClass: 'popup__text_input_error'});
-        disableSubmitButton(submitButton, 'popup__save-button_inactive');
-      });
+      // inputs.forEach((currentInput) => {
+      //   hideInputError(form, currentInput, {inputErrorClass: 'error_active', errorClass: 'popup__text_input_error'});
+      //   disableSubmitButton(submitButton, 'popup__save-button_inactive');
+      // });
       form.reset();
       closePopups(popup);
   }
