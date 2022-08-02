@@ -72,15 +72,7 @@ const validationData = {
 };
 
 
-/*
-const cardValidator = new FormValidator(validationData, popupPlace);
-cardValidator.enableValidation();
 
-
-const profileValidator = new FormValidator(validationData, popupProfile);
-profileValidator.enableValidation();
-
-*/
 
 function renderCard(data) { 
   const card = new Card(data, '.elements-template', handlePreview);
@@ -93,7 +85,15 @@ initialCards.forEach((data) => {
 });
 
 
+/*
+const cardValidator = new FormValidator(validationData, popupPlace);
+cardValidator.enableValidation();
 
+
+const profileValidator = new FormValidator(validationData, popupProfile);
+profileValidator.enableValidation();
+
+*/
 
 //обработчик добавления карточки 
 const handleSubmit = (event) => { 
