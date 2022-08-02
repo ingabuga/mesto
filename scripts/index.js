@@ -1,5 +1,5 @@
 import {Card} from './card.js';
-//import {FormValidator} from './validate.js';
+import {FormValidator} from './validate.js';
 
 //Кнопки 
 const buttonEdit = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля 
@@ -62,14 +62,14 @@ const initialCards = [
 }
 ]; 
 
-// const validationData = {
-//   formSelector: '.popup__form', 
-//   inputSelector: '.popup__text', 
-//   submitButtonSelector: '.popup__save-button', 
-//   inactiveButtonClass: 'popup__save-button_inactive', 
-//   inputErrorClass: 'error_active', 
-//   errorClass: 'popup__text_input_error' 
-// };
+const validationData = {
+  formSelector: '.popup__form', 
+  inputSelector: '.popup__text', 
+  submitButtonSelector: '.popup__save-button', 
+  inactiveButtonClass: 'popup__save-button_inactive', 
+  inputErrorClass: 'error_active', 
+  errorClass: 'popup__text_input_error' 
+};
 
 
 
@@ -83,15 +83,6 @@ function renderCard(data) {
 initialCards.forEach((data) => {
   renderCard(data, '.elements-template', handlePreview);
 });
-
-
-
-// const cardValidator = new FormValidator(validationData, popupPlace);
-// cardValidator.enableValidation();
-
-
-// const profileValidator = new FormValidator(validationData, popupProfile);
-// profileValidator.enableValidation();
 
 
 
@@ -185,6 +176,17 @@ function escapeHandler(evt) {
       deleteListenerClose(openedPopup); 
   } 
 } 
+
+//Подключаем валидатор
+
+const cardValidator = new FormValidator(validationData, popupPlace); //валидатор формы нового места
+cardValidator.enableValidation();
+
+
+const profileValidator = new FormValidator(validationData, popupProfile);//валидатор формы профиля
+profileValidator.enableValidation();
+
+
 
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка» 
 buttonEdit.addEventListener('click', inputName); 
