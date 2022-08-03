@@ -3,9 +3,9 @@ import {FormValidator} from './validate.js';
 
 //Кнопки 
 const buttonEdit = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля 
-const buttonClose = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа 
+// const buttonClose = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа 
 const buttonCard = document.querySelector('.profile__add-button'); //выбираем кнопку добавления карточки 
-const buttonLike = document.querySelectorAll('elements__like');
+// const buttonLike = document.querySelectorAll('elements__like');
 
 //Попап 
 const popupProfile = document.querySelector('.popup_profile'); //попап профиля  
@@ -33,7 +33,7 @@ const nameProfile = document.querySelector('.profile__title'); //выбирае�
 const jobProfile = document.querySelector('.profile__title-job');//выбираем Должность в профиле 
 
 const elementsList = document.querySelector('.elements__element'); 
-const elementsTemplate = document.querySelector('.elements-template').content;
+// const elementsTemplate = document.querySelector('.elements-template').content;
 
 const initialCards = [
   {
@@ -91,8 +91,6 @@ const handleSubmit = (event) => {
   event.preventDefault() 
   renderCard({name:placeInput.value, link:linkInput.value}); 
   formPlace.reset(); //очистка полей ввода 
-  const submitButton = document.querySelector('.popup__save-button');
-  //disableSubmitButton(submitButton, 'popup__save-button_inactive');
   deleteListenerClose(popupPlace); 
 } 
 
@@ -100,8 +98,7 @@ function inputName(event) {
   event.preventDefault() 
   nameInput.value = nameProfile.textContent; 
   jobInput.value = jobProfile.textContent; 
-  // const submitButton = document.querySelector('.popup__save-button');
-  // disableSubmitButton(submitButton, 'popup__save-button_inactive');
+  profileValidator.clearError();
   openPopups(popupProfile); 
 } 
 
@@ -127,13 +124,8 @@ function closePopups(popup) {
 function resetPopup(popup) {
   if (!popup.classList.contains('popup_photo')) {
       const form = popup.querySelector('.popup__form');
-      const inputs = Array.from(form.querySelectorAll('.popup__text'));
-      const submitButton = popup.querySelector('.popup__save-button');
-  
-      // inputs.forEach((currentInput) => {
-      //   hideInputError(form, currentInput, {inputErrorClass: 'error_active', errorClass: 'popup__text_input_error'});
-      //   disableSubmitButton(submitButton, 'popup__save-button_inactive');
-      // });
+      profileValidator.clearError();
+      cardValidator.clearError();
       form.reset();
       closePopups(popup);
   }
@@ -178,10 +170,8 @@ function escapeHandler(evt) {
 } 
 
 //Подключаем валидатор
-
 const cardValidator = new FormValidator(validationData, popupPlace); //валидатор формы нового места
 cardValidator.enableValidation();
-
 
 const profileValidator = new FormValidator(validationData, popupProfile);//валидатор формы профиля
 profileValidator.enableValidation();
