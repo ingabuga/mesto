@@ -124,10 +124,12 @@ function openPopups(popup) {
 function closePopups(popup) { 
   document.removeEventListener('keydown', escapeHandler);
   popup.classList.remove('popup_opened');
+
   if (!popup.classList.contains('popup_photo')) {
   const form = popup.querySelector('.popup__form');
   form.reset();
   }
+  
   cardValidator.clearError();
 } 
 
