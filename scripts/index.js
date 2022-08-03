@@ -1,4 +1,4 @@
-import {Card} from './card.js';
+import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
 
 //Кнопки 
@@ -32,7 +32,7 @@ const jobInput = popupProfile.querySelector('.popup__text_input_job'); //выб�
 const nameProfile = document.querySelector('.profile__title'); //выбираем Имя в профиле 
 const jobProfile = document.querySelector('.profile__title-job');//выбираем Должность в профиле 
 
-const elementsList = document.querySelector('.elements__element'); 
+const cardsContainer = document.querySelector('.elements__element'); 
 // const elementsTemplate = document.querySelector('.elements-template').content;
 
 const initialCards = [
@@ -77,11 +77,15 @@ const validationData = {
 function renderCard(data) { 
   const card = new Card(data, '.elements-template', handlePreview);
   const cardElement = card.generateCard();
-  elementsList.prepend(cardElement);
+  return cardElement;
 };
 
+function createCard(data) {
+  cardsContainer.prepend(renderCard(data));
+}
+
 initialCards.forEach((data) => {
-  renderCard(data, '.elements-template', handlePreview);
+  createCard(data, '.elements-template', handlePreview);
 });
 
 
@@ -89,9 +93,9 @@ initialCards.forEach((data) => {
 //обработчик добавления карточки 
 const handleSubmit = (event) => { 
   event.preventDefault() 
-  renderCard({name:placeInput.value, link:linkInput.value}); 
+  createCard({name:placeInput.value, link:linkInput.value}); 
   formPlace.reset(); //очистка полей ввода 
-  deleteListenerClose(popupPlace); 
+  closePopups(popupPlace); 
 } 
 
 function inputName(event) { 
@@ -118,24 +122,14 @@ function openPopups(popup) {
 
 //функция закрытия попапа 
 function closePopups(popup) { 
-  popup.classList.remove('popup_opened');
-} 
-
-function resetPopup(popup) {
-  if (!popup.classList.contains('popup_photo')) {
-      const form = popup.querySelector('.popup__form');
-      profileValidator.clearError();
-      cardValidator.clearError();
-      form.reset();
-      closePopups(popup);
-  }
-  closePopups(popup);
-}
-
-function deleteListenerClose(popup) {
   document.removeEventListener('keydown', escapeHandler);
-  resetPopup(popup);
-}
+  popup.classList.remove('popup_opened');
+  if (!popup.classList.contains('popup_photo')) {
+  const form = popup.querySelector('.popup__form');
+  form.reset();
+  }
+  cardValidator.clearError();
+} 
 
 
 //Обработчик формы 
@@ -143,7 +137,7 @@ function formSubmitHandler (evt) {
   evt.preventDefault(); 
   nameProfile.textContent = nameInput.value;  
   jobProfile.textContent = jobInput.value; 
-  deleteListenerClose(popupProfile) 
+  closePopups(popupProfile) 
 } 
 
 //Закртыие по клику на overlay 
@@ -155,9 +149,9 @@ popups.forEach((popup) => {
 //функция отслеживающая нажатие на оверлей и кнопку закрытия 
 function overlayHandler(evt, popup) { 
   if (evt.target.classList.contains('popup_opened')) { 
-    deleteListenerClose(popup); 
+    closePopups(popup); 
   } else if (evt.target.classList.contains('popup__close-btn')) { 
-    deleteListenerClose(popup); 
+    closePopups(popup); 
   } 
 } 
 
@@ -165,7 +159,7 @@ function overlayHandler(evt, popup) {
 function escapeHandler(evt) { 
   if (evt.key === 'Escape') { 
       const openedPopup = document.querySelector('.popup_opened'); 
-      deleteListenerClose(openedPopup); 
+      closePopups(openedPopup); 
   } 
 } 
 
