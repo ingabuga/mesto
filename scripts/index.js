@@ -1,5 +1,5 @@
 import {Card} from './card.js';
-import {FormValidator} from './validate.js';
+import {FormValidator} from './FormValidator.js';
 
 //Кнопки 
 const buttonEdit = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля 
