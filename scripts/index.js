@@ -85,7 +85,7 @@ function createCard(data) {
 }
 
 initialCards.forEach((data) => {
-  createCard(data, '.elements-template', handlePreview);
+  createCard(data);
 });
 
 
@@ -94,8 +94,8 @@ initialCards.forEach((data) => {
 const handleSubmit = (event) => { 
   event.preventDefault() 
   createCard({name:placeInput.value, link:linkInput.value}); 
-  formPlace.reset(); //очистка полей ввода 
   closePopups(popupPlace); 
+  formPlace.reset(); //очистка полей ввода 
 } 
 
 function inputName(event) { 
@@ -124,12 +124,6 @@ function openPopups(popup) {
 function closePopups(popup) { 
   document.removeEventListener('keydown', escapeHandler);
   popup.classList.remove('popup_opened');
-
-  if (!popup.classList.contains('popup_photo')) {
-  const form = popup.querySelector('.popup__form');
-  form.reset();
-  }
-  
   cardValidator.clearError();
 } 
 
@@ -139,7 +133,7 @@ function formSubmitHandler (evt) {
   evt.preventDefault(); 
   nameProfile.textContent = nameInput.value;  
   jobProfile.textContent = jobInput.value; 
-  closePopups(popupProfile) 
+  closePopups(popupProfile);
 } 
 
 //Закртыие по клику на overlay 
@@ -151,9 +145,11 @@ popups.forEach((popup) => {
 //функция отслеживающая нажатие на оверлей и кнопку закрытия 
 function overlayHandler(evt, popup) { 
   if (evt.target.classList.contains('popup_opened')) { 
-    closePopups(popup); 
+    closePopups(popup);
+    formPlace.reset();
   } else if (evt.target.classList.contains('popup__close-btn')) { 
-    closePopups(popup); 
+    closePopups(popup);
+    formPlace.reset(); 
   } 
 } 
 
@@ -162,6 +158,7 @@ function escapeHandler(evt) {
   if (evt.key === 'Escape') { 
       const openedPopup = document.querySelector('.popup_opened'); 
       closePopups(openedPopup); 
+      formPlace.reset();
   } 
 } 
 

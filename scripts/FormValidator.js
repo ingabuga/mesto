@@ -35,14 +35,6 @@ class FormValidator {
   }; 
 
 
-  _isValid(inputElement) {
-    if(!inputElement.validity.valid) {
-        this._showInputError(inputElement, inputElement.validationMessage);
-    } else {
-        this._hideInputError(inputElement);
-    }
-  }
-
   enableValidation() { 
     this._inputList = Array.from(this._formTemplate.querySelectorAll(this._inputSelector));
     this._buttonElement = this._formTemplate.querySelector(this._submitButtonSelector);  
