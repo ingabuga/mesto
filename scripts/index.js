@@ -145,13 +145,13 @@ popups.forEach((popup) => {
 
 //функция отслеживающая нажатие на оверлей и кнопку закрытия 
 function overlayHandler(evt, popup) { 
-  const popupField = popup.querySelector('.popup__form');
+  // const popupField = popup.querySelector('.popup__form');
   if (evt.target.classList.contains('popup_opened')) { 
     closePopups(popup);
-    popupField.reset();
+    formPlace.reset();
   } else if (evt.target.classList.contains('popup__close-btn')) { 
     closePopups(popup);
-    popupField.reset(); 
+    formPlace.reset(); 
   } 
 } 
 
@@ -160,8 +160,7 @@ function escapeHandler(evt) {
   if (evt.key === 'Escape') { 
       const openedPopup = document.querySelector('.popup_opened'); 
       closePopups(openedPopup); 
-      const popupInput = openedPopup.querySelector('.popup__form');
-      popupInput.reset();
+      formPlace.reset();
   } 
 } 
 
