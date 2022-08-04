@@ -21,6 +21,7 @@ const linkInput = popupPlace.querySelector('.popup__text_input_job');//выби�
 const popupImage = popupPhoto.querySelector('.popup__image');//выбираем изображение в попапе  
 const popupDescription = popupPhoto.querySelector('.popup__description');//выбираем подпись в попапе  
 
+
 //Формы редактирования данных 
 const formProfile = document.querySelector('.popup__form_profile'); //выбираем форму данных профиля 
 const formPlace = document.querySelector('.popup__form_place'); // выбираем форму данных нового места 
@@ -144,12 +145,13 @@ popups.forEach((popup) => {
 
 //функция отслеживающая нажатие на оверлей и кнопку закрытия 
 function overlayHandler(evt, popup) { 
+  const popupField = popup.querySelector('.popup__form');
   if (evt.target.classList.contains('popup_opened')) { 
     closePopups(popup);
-    formPlace.reset();
+    popupField.reset();
   } else if (evt.target.classList.contains('popup__close-btn')) { 
     closePopups(popup);
-    formPlace.reset(); 
+    popupField.reset(); 
   } 
 } 
 
@@ -158,7 +160,8 @@ function escapeHandler(evt) {
   if (evt.key === 'Escape') { 
       const openedPopup = document.querySelector('.popup_opened'); 
       closePopups(openedPopup); 
-      formPlace.reset();
+      const popupInput = openedPopup.querySelector('.popup__form');
+      popupInput.reset();
   } 
 } 
 
