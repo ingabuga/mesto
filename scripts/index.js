@@ -115,6 +115,14 @@ function handlePreview(link, name) {
   openPopups(popupPhoto); 
 } 
 
+//Функция открытия попапа добавления карточки
+function openCardPopup() {
+  cardValidator.clearError();
+  formPlace.reset(); 
+  openPopups(popupPlace);
+}
+
+
 //Функция открытия попапа 
 function openPopups(popup) { 
   popup.classList.add('popup_opened'); 
@@ -125,7 +133,7 @@ function openPopups(popup) {
 function closePopups(popup) { 
   document.removeEventListener('keydown', escapeHandler);
   popup.classList.remove('popup_opened');
-  cardValidator.clearError();
+  // cardValidator.clearError();
 } 
 
 
@@ -145,13 +153,10 @@ popups.forEach((popup) => {
 
 //функция отслеживающая нажатие на оверлей и кнопку закрытия 
 function overlayHandler(evt, popup) { 
-  // const popupField = popup.querySelector('.popup__form');
   if (evt.target.classList.contains('popup_opened')) { 
     closePopups(popup);
-    formPlace.reset();
   } else if (evt.target.classList.contains('popup__close-btn')) { 
     closePopups(popup);
-    formPlace.reset(); 
   } 
 } 
 
@@ -160,7 +165,6 @@ function escapeHandler(evt) {
   if (evt.key === 'Escape') { 
       const openedPopup = document.querySelector('.popup_opened'); 
       closePopups(openedPopup); 
-      formPlace.reset();
   } 
 } 
 
@@ -175,6 +179,6 @@ profileValidator.enableValidation();
 
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка» 
 buttonEdit.addEventListener('click', inputName); 
-buttonCard.addEventListener('click', () => openPopups(popupPlace)); 
+buttonCard.addEventListener('click', openCardPopup);  
 formProfile.addEventListener('submit', formSubmitHandler); 
 formPlace.addEventListener('submit', handleSubmit); 
