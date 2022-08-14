@@ -1,0 +1,19 @@
+{
+  "name": "yandex_praktikum",
+  "version": "0.0.1",
+  "description": "<p align=\"left\">Студент Александр Павлов</p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ingabuga/mesto.git"
+  },
+  "author": "Alexander Pavlov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ingabuga/mesto/issues"
+  },
+  "homepage": "https://github.com/ingabuga/mesto#readme"
+}

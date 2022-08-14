@@ -1,93 +1,130 @@
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
+import Section from './Section.js'
+import {
+  buttonEdit,
+  buttonCard,
+  popupProfile,
+  popupPlace,
+  popupPhoto,
+  popups,
+  placeInput,
+  linkInput,
+  popupImage,
+  popupDescription,
+  formProfile,
+  formPlace,
+  nameInput,
+  jobInput,
+  nameProfile,
+  jobProfile,
+  cardsContainer,
+  initialCards,
+  validationData
+} from './constants.js';
 
-//Кнопки 
-const buttonEdit = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля 
-// const buttonClose = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа 
-const buttonCard = document.querySelector('.profile__add-button'); //выбираем кнопку добавления карточки 
-// const buttonLike = document.querySelectorAll('elements__like');
+// //Кнопки 
+// const buttonEdit = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля 
+// // const buttonClose = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа 
+// const buttonCard = document.querySelector('.profile__add-button'); //выбираем кнопку добавления карточки 
+// // const buttonLike = document.querySelectorAll('elements__like');
 
-//Попап 
-const popupProfile = document.querySelector('.popup_profile'); //попап профиля  
-const popupPlace = document.querySelector('.popup_place'); //попап нового места  
-const popupPhoto = document.querySelector('.popup_photo'); //попап превью фотографии  
-const popups = document.querySelectorAll('.popup'); //все попапы 
+// //Попап 
+// const popupProfile = document.querySelector('.popup_profile'); //попап профиля  
+// const popupPlace = document.querySelector('.popup_place'); //попап нового места  
+// const popupPhoto = document.querySelector('.popup_photo'); //попап превью фотографии  
+// const popups = document.querySelectorAll('.popup'); //все попапы 
 
-//Попап добавления карточки 
-const placeInput = popupPlace.querySelector('.popup__text_input_name');//выбираем название места 
-const linkInput = popupPlace.querySelector('.popup__text_input_job');//выбираем ссылку на фото 
+// //Попап добавления карточки 
+// const placeInput = popupPlace.querySelector('.popup__text_input_name');//выбираем название места 
+// const linkInput = popupPlace.querySelector('.popup__text_input_job');//выбираем ссылку на фото 
 
-//Попап превью фото карточки 
-const popupImage = popupPhoto.querySelector('.popup__image');//выбираем изображение в попапе  
-const popupDescription = popupPhoto.querySelector('.popup__description');//выбираем подпись в попапе  
-
-
-//Формы редактирования данных 
-const formProfile = document.querySelector('.popup__form_profile'); //выбираем форму данных профиля 
-const formPlace = document.querySelector('.popup__form_place'); // выбираем форму данных нового места 
-
-//Поля данных в форме профиля 
-const nameInput = popupProfile.querySelector('.popup__text_input_name');//выбираем имя в попапе 
-const jobInput = popupProfile.querySelector('.popup__text_input_job'); //выбираем должность в попапе 
-
-const nameProfile = document.querySelector('.profile__title'); //выбираем Имя в профиле 
-const jobProfile = document.querySelector('.profile__title-job');//выбираем Должность в профиле 
-
-const cardsContainer = document.querySelector('.elements__element'); 
-// const elementsTemplate = document.querySelector('.elements-template').content;
-
-const initialCards = [
-  {
-  name: 'Архыз',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-},
-{
-  name: 'Челябинская область',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-},
-{
-  name: 'Иваново',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-},
-{
-  name: 'Камчатка',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-},
-{
-  name: 'Холмогорский район',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-},
-{
-  name: 'Байкал',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-}
-]; 
-
-const validationData = {
-  formSelector: '.popup__form', 
-  inputSelector: '.popup__text', 
-  submitButtonSelector: '.popup__save-button', 
-  inactiveButtonClass: 'popup__save-button_inactive', 
-  inputErrorClass: 'error_active', 
-  errorClass: 'popup__text_input_error' 
-};
+// //Попап превью фото карточки 
+// const popupImage = popupPhoto.querySelector('.popup__image');//выбираем изображение в попапе  
+// const popupDescription = popupPhoto.querySelector('.popup__description');//выбираем подпись в попапе  
 
 
+// //Формы редактирования данных 
+// const formProfile = document.querySelector('.popup__form_profile'); //выбираем форму данных профиля 
+// const formPlace = document.querySelector('.popup__form_place'); // выбираем форму данных нового места 
+
+// //Поля данных в форме профиля 
+// const nameInput = popupProfile.querySelector('.popup__text_input_name');//выбираем имя в попапе 
+// const jobInput = popupProfile.querySelector('.popup__text_input_job'); //выбираем должность в попапе 
+
+// const nameProfile = document.querySelector('.profile__title'); //выбираем Имя в профиле 
+// const jobProfile = document.querySelector('.profile__title-job');//выбираем Должность в профиле 
+
+// // const cardsContainer = document.querySelector('.elements__element'); 
+// const cardsContainer = '.elements__element';
+// // const elementsTemplate = document.querySelector('.elements-template').content;
+
+// const initialCards = [
+//   {
+//   name: 'Архыз',
+//   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+// },
+// {
+//   name: 'Челябинская область',
+//   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+// },
+// {
+//   name: 'Иваново',
+//   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+// },
+// {
+//   name: 'Камчатка',
+//   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+// },
+// {
+//   name: 'Холмогорский район',
+//   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+// },
+// {
+//   name: 'Байкал',
+//   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+// }
+// ]; 
+
+// const validationData = {
+//   formSelector: '.popup__form', 
+//   inputSelector: '.popup__text', 
+//   submitButtonSelector: '.popup__save-button', 
+//   inactiveButtonClass: 'popup__save-button_inactive', 
+//   inputErrorClass: 'error_active', 
+//   errorClass: 'popup__text_input_error' 
+// };
 
 
-function renderCard(data) { 
-  const card = new Card(data, '.elements-template', handlePreview);
+
+const defaultCardList = new Section({ 
+  data: initialCards, 
+  renderer: (item) => {
+  const card = new Card(item, '.elements-template', handlePreview);
   const cardElement = card.generateCard();
-  return cardElement;
-};
-
-function createCard(data) {
-  cardsContainer.prepend(renderCard(data));
+  defaultCardList.addItem(cardElement);
 }
+}, 
+cardsContainer
+);
 
-initialCards.forEach((data) => {
-  createCard(data);
-});
+
+defaultCardList.renderItems();
+
+
+// function renderCard(data) { 
+  // const card = new Card(data, '.elements-template', handlePreview);
+//   const cardElement = card.generateCard();
+//   return cardElement;
+// };
+
+// function createCard(data) {
+//   cardsContainer.prepend(renderCard(data));
+// }
+
+// initialCards.forEach((data) => {
+//   createCard(data);
+// });
 
 
 
