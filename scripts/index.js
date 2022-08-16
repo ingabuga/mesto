@@ -1,7 +1,9 @@
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
-import Section from './Section.js'
-import Popup from './Popup.js'
+import Section from './Section.js';
+// import Popup from './Popup.js';
+import PopupWithImage from './PopupWithImage.js';
+
 import {
   buttonEdit,
   buttonCard,
@@ -41,6 +43,9 @@ cardsContainer
 
 defaultCardList.renderItems();
 
+
+const popupPreview = new PopupWithImage(popupPhoto);
+popupPreview.setEventListener();
 
 // function renderCard(data) { 
   // const card = new Card(data, '.elements-template', handlePreview);
@@ -84,12 +89,12 @@ function handlePreview(link, name) {
 } 
 
 //Функция открытия попапа добавления карточки
-function openCardPopup() {
-  cardValidator.clearError();
-  formPlace.reset(); 
-  openPopups(popupPlace);
-  // popupPlace.open();
-}
+// function openCardPopup() {
+//   cardValidator.clearError();
+//   formPlace.reset(); 
+//   openPopups(popupPlace);
+//   // popupPlace.open();
+// }
 
 
 //Функция открытия попапа 
@@ -110,24 +115,24 @@ function formSubmitHandler (evt) {
   evt.preventDefault(); 
   nameProfile.textContent = nameInput.value;  
   jobProfile.textContent = jobInput.value; 
-  closePopups(popupProfile);
-  // popupProfile.close();
+  // closePopups(popupProfile);
+  popupProfile.close();
 } 
 
 //Закрытие по клику на overlay 
-popups.forEach((popup) => { 
-  popup.addEventListener('mousedown', (evt) => { 
-      overlayHandler(evt, popup)}); 
-}) 
+// popups.forEach((popup) => { 
+//   popup.addEventListener('mousedown', (evt) => { 
+//       overlayHandler(evt, popup)}); 
+// }) 
 
 //функция отслеживающая нажатие на оверлей и кнопку закрытия 
-function overlayHandler(evt, popup) { 
-  if (evt.target.classList.contains('popup_opened')) { 
-    closePopups(popup);
-  } else if (evt.target.classList.contains('popup__close-btn')) { 
-    closePopups(popup);
-  } 
-} 
+// function overlayHandler(evt, popup) { 
+//   if (evt.target.classList.contains('popup_opened')) { 
+//     closePopups(popup);
+//   } else if (evt.target.classList.contains('popup__close-btn')) { 
+//     closePopups(popup);
+//   } 
+// } 
 
 //функция закрытия попапа по нажатию Escape 
 // function escapeHandler(evt) { 
