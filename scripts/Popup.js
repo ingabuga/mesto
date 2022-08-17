@@ -9,25 +9,25 @@ export default class Popup {
         document.addEventListener('keydown', this._handlerEscClose); 
     }
 
-    close() {
-        document.removeEventListner('keydown', this._handlerEscClose);
+    close () {
         this._popup.classList.remove('popup_opened');
+        document.removeEventListener('keydown', this._handlerEscClose);
     }
 
     _handlerEscClose(evt) {
         if (evt.key === 'Escape') { 
-            const openedPopup = document.querySelector('.popup_opened'); 
-            openedPopup.close(); 
+            this.close();
         } 
     }
 
     setEventListener() {
         this._popup.addEventListener('mousedown', (evt) => { 
             if (evt.target.classList.contains('popup_opened')) { 
-                this._popup.close();
+                this.close();
               } else if (evt.target.classList.contains('popup__close-btn')) { 
-                this._popup.close();
+                this.close();
               } 
         });
+
     }
 }

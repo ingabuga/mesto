@@ -1,7 +1,6 @@
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
 import Section from './Section.js';
-// import Popup from './Popup.js';
 import PopupWithImage from './PopupWithImage.js';
 
 import {
@@ -33,6 +32,7 @@ import {
 //     defaultCardList.setItem(startCards);
 //   }
 // }, '.elements');
+
 const popupPreview = new PopupWithImage(popupPhoto);
 
 
@@ -40,14 +40,7 @@ const popupPreview = new PopupWithImage(popupPhoto);
 const defaultCardList = new Section({ 
   data: initialCards, 
   renderer: (item) => {
-  // const card = new Card(
-  //   item, 
-  //   '.elements-template', 
-  //   handleCardClick: () => {
-  //     popupPreview.open(item.name, item.link);
-  //   });
   const cardElement = renderCard(item);
-  // const cardElement = card.generateCard();
   defaultCardList.addItem(cardElement);
 }
 }, 
@@ -72,7 +65,6 @@ const renderCard = (data) => {
 defaultCardList.renderItems();
 
 //превью карточки
-
 popupPreview.setEventListener();
 
 // function renderCard(data) { 
@@ -180,7 +172,7 @@ profileValidator.enableValidation();
 
 
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка» 
-buttonEdit.addEventListener('click', inputName); 
-buttonCard.addEventListener('click', openCardPopup);  
+// buttonEdit.addEventListener('click', inputName); 
+// buttonCard.addEventListener('click', openCardPopup);  
 formProfile.addEventListener('submit', formSubmitHandler); 
 formPlace.addEventListener('submit', handleSubmit); 
