@@ -26,25 +26,53 @@ import {
   validationData
 } from './constants.js';
 
+// const defaultCardList = new Section({
+//   items: initialCards,
+//   renderer: (items) => {
+//     const startCards = createCard(items);
+//     defaultCardList.setItem(startCards);
+//   }
+// }, '.elements');
+const popupPreview = new PopupWithImage(popupPhoto);
 
 
-
+//функция создания карточки из списка
 const defaultCardList = new Section({ 
   data: initialCards, 
   renderer: (item) => {
-  const card = new Card(item, '.elements-template', handlePreview);
-  const cardElement = card.generateCard();
+  // const card = new Card(
+  //   item, 
+  //   '.elements-template', 
+  //   handleCardClick: () => {
+  //     popupPreview.open(item.name, item.link);
+  //   });
+  const cardElement = renderCard(item);
+  // const cardElement = card.generateCard();
   defaultCardList.addItem(cardElement);
 }
 }, 
-cardsContainer
+'.elements__element'
 );
 
+const renderCard = (data) => {
+  const card = new Card({
+    data,
+    handleCardClick: () => {
+      popupPreview.open(data.name, data.link);
+    }
+  },
+    '.elements-template');
+  return card.generateCard();
+}
 
+
+
+
+//отрисовка карточек из списка
 defaultCardList.renderItems();
 
+//превью карточки
 
-const popupPreview = new PopupWithImage(popupPhoto);
 popupPreview.setEventListener();
 
 // function renderCard(data) { 

@@ -30,8 +30,8 @@ export const jobInput = popupProfile.querySelector('.popup__text_input_job'); //
 export const nameProfile = document.querySelector('.profile__title'); //выбираем Имя в профиле 
 export const jobProfile = document.querySelector('.profile__title-job');//выбираем Должность в профиле 
 
-// const cardsContainer = document.querySelector('.elements__element'); 
-export const cardsContainer = '.elements__element';
+export const cardsContainer = document.querySelector('.elements__element'); 
+// export const cardsContainer = '.elements__element';
 // const elementsTemplate = document.querySelector('.elements-template').content;
 
 export const initialCards = [
