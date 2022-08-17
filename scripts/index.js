@@ -51,6 +51,23 @@ const renderCard = (data) => {
   return card.generateCard();
 }
 
+//добавление новой карточки
+const popupNewCard = new PopupWithForm(popupPlace, 
+  {submitForm: (data) => {
+  const newCard = createCard(data);
+  cardsContainer.prepend(newCard);
+  popupNewCard.close();
+  formPlace.reset();
+  }
+});
+
+//обработчик добавления карточки 
+// const handleSubmit = (event) => { 
+//   event.preventDefault() 
+//   createCard({name:placeInput.value, link:linkInput.value}); 
+//   closePopups(popupPlace); 
+//   formPlace.reset(); //очистка полей ввода 
+// } 
 
 
 
@@ -63,13 +80,7 @@ popupPreview.setEventListener();
 
 
 
-//обработчик добавления карточки 
-const handleSubmit = (event) => { 
-  event.preventDefault() 
-  createCard({name:placeInput.value, link:linkInput.value}); 
-  closePopups(popupPlace); 
-  formPlace.reset(); //очистка полей ввода 
-} 
+
 
 function inputName(event) { 
   event.preventDefault() 
