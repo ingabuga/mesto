@@ -31,7 +31,6 @@ export const nameProfile = document.querySelector('.profile__title'); //выби
 export const jobProfile = document.querySelector('.profile__title-job');//выбираем Должность в профиле 
 
 export const cardsContainer = document.querySelector('.elements__element'); 
-// export const cardsContainer = '.elements__element';
 // const elementsTemplate = document.querySelector('.elements-template').content;
 
 export const initialCards = [

@@ -2,6 +2,7 @@ import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
 import Section from './Section.js';
 import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
 
 import {
   buttonEdit,
@@ -25,16 +26,8 @@ import {
   validationData
 } from './constants.js';
 
-// const defaultCardList = new Section({
-//   items: initialCards,
-//   renderer: (items) => {
-//     const startCards = createCard(items);
-//     defaultCardList.setItem(startCards);
-//   }
-// }, '.elements');
 
 const popupPreview = new PopupWithImage(popupPhoto);
-
 
 //функция создания карточки из списка
 const defaultCardList = new Section({ 
@@ -67,19 +60,6 @@ defaultCardList.renderItems();
 //превью карточки
 popupPreview.setEventListener();
 
-// function renderCard(data) { 
-  // const card = new Card(data, '.elements-template', handlePreview);
-//   const cardElement = card.generateCard();
-//   return cardElement;
-// };
-
-// function createCard(data) {
-//   cardsContainer.prepend(renderCard(data));
-// }
-
-// initialCards.forEach((data) => {
-//   createCard(data);
-// });
 
 
 
@@ -99,14 +79,6 @@ function inputName(event) {
   openPopups(popupProfile); 
 } 
 
-//Функция заполнения попапа превью фото 
-function handlePreview(link, name) {
-  popupImage.src = link; 
-  popupImage.alt = name; 
-  popupDescription.textContent = name; 
-  openPopups(popupPhoto); 
-  // popupPhoto.open();
-} 
 
 //Функция открытия попапа добавления карточки
 // function openCardPopup() {
@@ -131,13 +103,12 @@ function handlePreview(link, name) {
 
 
 //Обработчик формы 
-function formSubmitHandler (evt) { 
-  evt.preventDefault(); 
-  nameProfile.textContent = nameInput.value;  
-  jobProfile.textContent = jobInput.value; 
-  // closePopups(popupProfile);
-  popupProfile.close();
-} 
+// function formSubmitHandler (evt) { 
+//   evt.preventDefault(); 
+//   nameProfile.textContent = nameInput.value;  
+//   jobProfile.textContent = jobInput.value; 
+//   closePopups(popupProfile);
+// } 
 
 //Закрытие по клику на overlay 
 // popups.forEach((popup) => { 
@@ -174,5 +145,5 @@ profileValidator.enableValidation();
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка» 
 // buttonEdit.addEventListener('click', inputName); 
 // buttonCard.addEventListener('click', openCardPopup);  
-formProfile.addEventListener('submit', formSubmitHandler); 
-formPlace.addEventListener('submit', handleSubmit); 
+// formProfile.addEventListener('submit', formSubmitHandler); 
+// formPlace.addEventListener('submit', handleSubmit); 
