@@ -3,6 +3,7 @@ import {FormValidator} from './FormValidator.js';
 import Section from './Section.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
 
 import {
   buttonEdit,
@@ -68,11 +69,13 @@ buttonCard.addEventListener('click', () => {
   // checkNewPlcePopupValidation.toggleButtonState();
 });
 
+const userInfo = new UserInfo({nameInput: '.profile__title', jobInput: '.profile__title-job'});
+
 //попап редактирования профиля
 const profilePopup = new PopupWithForm(
   popupProfile, 
   {submitForm: (data) => {
-  // userProfile.setUserInfo(data);
+  userInfo.setUserInfo(data);
   profilePopup.close();
   }
 });
@@ -83,6 +86,11 @@ buttonEdit.addEventListener('click', () => {
   profilePopup.open();
   // checkNewPlcePopupValidation.toggleButtonState();
 });
+
+
+
+// formProfile.addEventListener('submit', formSubmitHandler); 
+
 
 //обработчик добавления карточки 
 // const handleSubmit = (event) => { 
@@ -178,5 +186,4 @@ profileValidator.enableValidation();
 
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка» 
 // buttonEdit.addEventListener('click', inputName); 
-// formProfile.addEventListener('submit', formSubmitHandler); 
 // formPlace.addEventListener('submit', handleSubmit); 
