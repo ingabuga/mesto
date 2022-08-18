@@ -62,15 +62,20 @@ const popupNewCard = new PopupWithForm(popupPlace,
 });
 popupNewCard.setEventListener();
 
+buttonCard.addEventListener('click', () => {
+  popupNewCard.open();
+});
+
+
 
 
 
 // buttonCard.addEventListener('click', openCardPopup);  
 
-buttonCard.addEventListener('click', () => {
-  popupNewCard.open();
-  // checkNewPlcePopupValidation.toggleButtonState();
-});
+// buttonCard.addEventListener('click', () => {
+//   popupNewCard.open();
+//   // checkNewPlcePopupValidation.toggleButtonState();
+// });
 
 //обработчик добавления карточки 
 // const handleSubmit = (event) => { 
