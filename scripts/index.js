@@ -63,12 +63,24 @@ const popupNewCard = new PopupWithForm(popupPlace,
 popupNewCard.setEventListener();
 
 
-
-
-// buttonCard.addEventListener('click', openCardPopup);  
-
 buttonCard.addEventListener('click', () => {
   popupNewCard.open();
+  // checkNewPlcePopupValidation.toggleButtonState();
+});
+
+//попап редактирования профиля
+const profilePopup = new PopupWithForm(
+  popupProfile, 
+  {submitForm: (data) => {
+  // userProfile.setUserInfo(data);
+  profilePopup.close();
+  }
+});
+profilePopup.setEventListener();
+
+
+buttonEdit.addEventListener('click', () => {
+  profilePopup.open();
   // checkNewPlcePopupValidation.toggleButtonState();
 });
 
