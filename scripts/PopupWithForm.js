@@ -35,6 +35,7 @@ export default class PopupWithform extends Popup {
         })
     }
 
+
     //перзаписываем родительский метод close и сбрасываем форму
     close() {
         super.close();

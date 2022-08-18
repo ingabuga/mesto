@@ -53,13 +53,17 @@ const renderCard = (data) => {
 
 //добавление новой карточки
 const popupNewCard = new PopupWithForm(popupPlace, 
-  {submitForm: (data) => {
-  const newCard = renderCard(data);
+  {submitForm: (item) => {
+  const newCard = renderCard(item);
   cardsContainer.prepend(newCard);
   popupNewCard.close();
   formPlace.reset();
   }
 });
+popupNewCard.setEventListener();
+
+
+
 
 // buttonCard.addEventListener('click', openCardPopup);  
 
