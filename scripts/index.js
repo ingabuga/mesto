@@ -54,11 +54,18 @@ const renderCard = (data) => {
 //добавление новой карточки
 const popupNewCard = new PopupWithForm(popupPlace, 
   {submitForm: (data) => {
-  const newCard = createCard(data);
+  const newCard = renderCard(data);
   cardsContainer.prepend(newCard);
   popupNewCard.close();
   formPlace.reset();
   }
+});
+
+// buttonCard.addEventListener('click', openCardPopup);  
+
+buttonCard.addEventListener('click', () => {
+  popupNewCard.open();
+  // checkNewPlcePopupValidation.toggleButtonState();
 });
 
 //обработчик добавления карточки 
@@ -155,6 +162,5 @@ profileValidator.enableValidation();
 
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка» 
 // buttonEdit.addEventListener('click', inputName); 
-// buttonCard.addEventListener('click', openCardPopup);  
 // formProfile.addEventListener('submit', formSubmitHandler); 
 // formPlace.addEventListener('submit', handleSubmit); 
