@@ -8,19 +8,19 @@ export const buttonCard = document.querySelector('.profile__add-button'); //вы
 export const popupProfile = document.querySelector('.popup_profile'); //попап профиля  
 export const popupPlace = document.querySelector('.popup_place'); //попап нового места  
 export const popupPhoto = document.querySelector('.popup_photo'); //попап превью фотографии  
-export const popups = document.querySelectorAll('.popup'); //все попапы 
+// export const popups = document.querySelectorAll('.popup'); //все попапы 
 
 //Попап добавления карточки 
-export const placeInput = popupPlace.querySelector('.popup__text_input_name');//выбираем название места 
-export const linkInput = popupPlace.querySelector('.popup__text_input_job');//выбираем ссылку на фото 
+// export const placeInput = popupPlace.querySelector('.popup__text_input_name');//выбираем название места 
+// export const linkInput = popupPlace.querySelector('.popup__text_input_job');//выбираем ссылку на фото 
 
 //Попап превью фото карточки 
-export const popupImage = popupPhoto.querySelector('.popup__image');//выбираем изображение в попапе  
-export const popupDescription = popupPhoto.querySelector('.popup__description');//выбираем подпись в попапе  
+// export const popupImage = popupPhoto.querySelector('.popup__image');//выбираем изображение в попапе  
+// export const popupDescription = popupPhoto.querySelector('.popup__description');//выбираем подпись в попапе  
 
 
 //Формы редактирования данных 
-export const formProfile = document.querySelector('.popup__form_profile'); //выбираем форму данных профиля 
+// export const formProfile = document.querySelector('.popup__form_profile'); //выбираем форму данных профиля 
 export const formPlace = document.querySelector('.popup__form_place'); // выбираем форму данных нового места 
 
 //Поля данных в форме профиля 

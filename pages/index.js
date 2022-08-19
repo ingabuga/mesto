@@ -1,9 +1,9 @@
-import {Card} from '../scripts/Card.js';
-import {FormValidator} from '../scripts/FormValidator.js';
-import Section from '../scripts/Section.js';
-import PopupWithImage from '../scripts/PopupWithImage.js';
-import PopupWithForm from '../scripts/PopupWithForm.js';
-import UserInfo from '../scripts/UserInfo.js';
+import {Card} from '../components/Card.js';
+import {FormValidator} from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
 
 import {
   buttonEdit,
@@ -11,12 +11,12 @@ import {
   popupProfile,
   popupPlace,
   popupPhoto,
-  popups,
-  placeInput,
-  linkInput,
-  popupImage,
-  popupDescription,
-  formProfile,
+  // popups,
+  // placeInput,
+  // linkInput,
+  // popupImage,
+  // popupDescription,
+  // formProfile,
   formPlace,
   nameInput,
   jobInput,
@@ -25,7 +25,7 @@ import {
   cardsContainer,
   initialCards,
   validationData
-} from '../scripts/constants.js';
+} from '../utils/constants.js';
 
 
 const popupPreview = new PopupWithImage(popupPhoto);
@@ -42,8 +42,7 @@ const defaultCardList = new Section({
 );
 
 const renderCard = (data) => {
-  const card = new Card({
-    data,
+  const card = new Card({data,
     handleCardClick: () => {
       popupPreview.open(data.name, data.link);
     }
@@ -64,7 +63,8 @@ const popupNewCard = new PopupWithForm(popupPlace,
 popupNewCard.setEventListener();
 
 //Редактирование информации класса пользователя
-const userInput = new UserInfo({nameInput: '.profile__title', jobInput: '.profile__title-job'});
+const userInput = new UserInfo({nameInput: '.profile__title', jobInput: '.profile__title-job'
+});
 
 //попап редактирования профиля
 const profilePopup = new PopupWithForm(
