@@ -85,41 +85,21 @@ function openProfile() {
 }
 
 
-// function inputName(event) { 
-//   event.preventDefault() 
-//   nameInput.value = nameProfile.textContent; 
-//   jobInput.value = jobProfile.textContent; 
-//   profileValidator.clearError();
-//   openPopups(popupProfile); 
-// } 
-
 //слушатели кнопок
 
 //Кнопка редактирования профиля
 buttonEdit.addEventListener('click', () => {
   // profilePopup.open();
+  profileValidator.toggleButtonState();
   openProfile();
-  profileValidator._toggleButtonState();
 });
 
 //кнопка добавления новых мест
 buttonCard.addEventListener('click', () => {
   cardValidator.clearError();
   popupNewCard.open();
-  cardValidator._toggleButtonState();
+  cardValidator.toggleButtonState();
 });
-
-
-// formProfile.addEventListener('submit', formSubmitHandler); 
-
-
-//обработчик добавления карточки 
-// const handleSubmit = (event) => { 
-//   event.preventDefault() 
-//   createCard({name:placeInput.value, link:linkInput.value}); 
-//   closePopups(popupPlace); 
-//   formPlace.reset(); //очистка полей ввода 
-// } 
 
 
 
@@ -129,31 +109,6 @@ defaultCardList.renderItems();
 //превью карточки
 popupPreview.setEventListener();
 
-
-
-
-
-
-
-
-
-//Функция открытия попапа добавления карточки
-// function openCardPopup() {
-//   cardValidator.clearError();
-//   formPlace.reset(); 
-//   openPopups(popupPlace);
-//   // popupPlace.open();
-// }
-
-
-
-//Обработчик формы 
-// function formSubmitHandler (evt) { 
-//   evt.preventDefault(); 
-//   nameProfile.textContent = nameInput.value;  
-//   jobProfile.textContent = jobInput.value; 
-//   closePopups(popupProfile);
-// } 
 
 
 //Подключаем валидатор
