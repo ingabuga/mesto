@@ -63,30 +63,51 @@ const popupNewCard = new PopupWithForm(popupPlace,
 });
 popupNewCard.setEventListener();
 
-
-buttonCard.addEventListener('click', () => {
-  popupNewCard.open();
-  // checkNewPlcePopupValidation.toggleButtonState();
-});
-
-const userInfo = new UserInfo({nameInput: '.profile__title', jobInput: '.profile__title-job'});
+//Редактирование информации класса пользователя
+const userInput = new UserInfo({nameInput: '.profile__title', jobInput: '.profile__title-job'});
 
 //попап редактирования профиля
 const profilePopup = new PopupWithForm(
   popupProfile, 
   {submitForm: (data) => {
-  userInfo.setUserInfo(data);
+  userInput.setUserInfo(data);
   profilePopup.close();
   }
 });
 profilePopup.setEventListener();
 
-
-buttonEdit.addEventListener('click', () => {
+//заполнение попапа профиля пользователя
+function openProfile() {
+  nameInput.value = nameProfile.textContent; 
+  jobInput.value = jobProfile.textContent; 
   profilePopup.open();
-  // checkNewPlcePopupValidation.toggleButtonState();
+  profileValidator.clearError();
+}
+
+
+// function inputName(event) { 
+//   event.preventDefault() 
+//   nameInput.value = nameProfile.textContent; 
+//   jobInput.value = jobProfile.textContent; 
+//   profileValidator.clearError();
+//   openPopups(popupProfile); 
+// } 
+
+//слушатели кнопок
+
+//Кнопка редактирования профиля
+buttonEdit.addEventListener('click', () => {
+  // profilePopup.open();
+  openProfile();
+  profileValidator._toggleButtonState();
 });
 
+//кнопка добавления новых мест
+buttonCard.addEventListener('click', () => {
+  cardValidator.clearError();
+  popupNewCard.open();
+  cardValidator._toggleButtonState();
+});
 
 
 // formProfile.addEventListener('submit', formSubmitHandler); 
@@ -113,13 +134,7 @@ popupPreview.setEventListener();
 
 
 
-function inputName(event) { 
-  event.preventDefault() 
-  nameInput.value = nameProfile.textContent; 
-  jobInput.value = jobProfile.textContent; 
-  profileValidator.clearError();
-  openPopups(popupProfile); 
-} 
+
 
 
 //Функция открытия попапа добавления карточки
@@ -131,18 +146,6 @@ function inputName(event) {
 // }
 
 
-//Функция открытия попапа 
-// function openPopups(popup) { 
-//   popup.classList.add('popup_opened'); 
-//   document.addEventListener('keydown', escapeHandler); 
-// } 
-
-//функция закрытия попапа 
-// function closePopups(popup) { 
-//   document.removeEventListener('keydown', escapeHandler);
-//   popup.classList.remove('popup_opened');
-// } 
-
 
 //Обработчик формы 
 // function formSubmitHandler (evt) { 
@@ -152,28 +155,6 @@ function inputName(event) {
 //   closePopups(popupProfile);
 // } 
 
-//Закрытие по клику на overlay 
-// popups.forEach((popup) => { 
-//   popup.addEventListener('mousedown', (evt) => { 
-//       overlayHandler(evt, popup)}); 
-// }) 
-
-//функция отслеживающая нажатие на оверлей и кнопку закрытия 
-// function overlayHandler(evt, popup) { 
-//   if (evt.target.classList.contains('popup_opened')) { 
-//     closePopups(popup);
-//   } else if (evt.target.classList.contains('popup__close-btn')) { 
-//     closePopups(popup);
-//   } 
-// } 
-
-//функция закрытия попапа по нажатию Escape 
-// function escapeHandler(evt) { 
-//   if (evt.key === 'Escape') { 
-//       const openedPopup = document.querySelector('.popup_opened'); 
-//       closePopups(openedPopup); 
-//   } 
-// } 
 
 //Подключаем валидатор
 const cardValidator = new FormValidator(validationData, popupPlace); //валидатор формы нового места
@@ -183,7 +164,3 @@ const profileValidator = new FormValidator(validationData, popupProfile);//ва�
 profileValidator.enableValidation();
 
 
-
-// Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка» 
-// buttonEdit.addEventListener('click', inputName); 
-// formPlace.addEventListener('submit', handleSubmit); 
