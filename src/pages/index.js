@@ -65,7 +65,7 @@ const popupNewCard = new PopupWithForm(popupPlace,
 popupNewCard.setEventListener();
 
 //Редактирование информации класса пользователя
-const userInput = new UserInfo({nameInput: '.profile__title', jobInput: '.profile__title-job'
+const userInput = new UserInfo({nameSelector: '.profile__title', jobSelector: '.profile__title-job'
 });
 
 //попап редактирования профиля
