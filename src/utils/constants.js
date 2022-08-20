@@ -7,7 +7,7 @@ export const buttonCard = document.querySelector('.profile__add-button'); //вы
 //Попап 
 export const popupProfile = document.querySelector('.popup_profile'); //попап профиля  
 export const popupPlace = document.querySelector('.popup_place'); //попап нового места  
-export const popupPhoto = document.querySelector('.popup_photo'); //попап превью фотографии  
+// export const popupPhoto = document.querySelector('.popup_photo'); //попап превью фотографии  
 // export const popups = document.querySelectorAll('.popup'); //все попапы 
 
 //Попап добавления карточки 
@@ -27,10 +27,10 @@ export const formPlace = document.querySelector('.popup__form_place'); // выб
 export const nameInput = popupProfile.querySelector('.popup__text_input_name');//выбираем имя в попапе 
 export const jobInput = popupProfile.querySelector('.popup__text_input_job'); //выбираем должность в попапе 
 
-export const nameProfile = document.querySelector('.profile__title'); //выбираем Имя в профиле 
-export const jobProfile = document.querySelector('.profile__title-job');//выбираем Должность в профиле 
+// export const nameProfile = document.querySelector('.profile__title'); //выбираем Имя в профиле 
+// export const jobProfile = document.querySelector('.profile__title-job');//выбираем Должность в профиле 
 
-export const cardsContainer = document.querySelector('.elements__element'); 
+// export const cardsContainer = document.querySelector('.elements__element'); 
 // const elementsTemplate = document.querySelector('.elements-template').content;
 
 export const initialCards = [
