@@ -59,7 +59,6 @@ const popupNewCard = new PopupWithForm(popupPlace,
   const newCard = renderCard(item);
   cardsContainer.prepend(newCard);
   popupNewCard.close();
-  formPlace.reset();
   }
 });
 popupNewCard.setEventListener();
@@ -80,8 +79,9 @@ profilePopup.setEventListener();
 
 //заполнение попапа профиля пользователя
 function openProfile() {
-  nameInput.value = nameProfile.textContent; 
-  jobInput.value = jobProfile.textContent; 
+  const profileData = userInput.getUserInfo();
+  nameInput.value = profileData.name; 
+  jobInput.value = profileData.job; 
   profilePopup.open();
   profileValidator.clearError();
 }
