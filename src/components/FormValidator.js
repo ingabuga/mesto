@@ -83,8 +83,8 @@ class FormValidator {
     this._buttonElement.removeAttribute('disabled', true);
   }
 
-  //Очистка полей ошибок после валидации
-  clearError() {
+  //сброс валидации и деактивация кнопки
+  resetValidation() {
     this._disableSubmitButton();
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);

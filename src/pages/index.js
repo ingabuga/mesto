@@ -57,7 +57,8 @@ const renderCard = (data) => {
 const popupNewCard = new PopupWithForm(popupPlace, 
   {submitForm: (item) => {
   const newCard = renderCard(item);
-  cardsContainer.prepend(newCard);
+  // cardsContainer.prepend(newCard);
+  defaultCardList.addItem(newCard);
   popupNewCard.close();
   }
 });
@@ -83,7 +84,7 @@ function openProfile() {
   nameInput.value = profileData.name; 
   jobInput.value = profileData.job; 
   profilePopup.open();
-  profileValidator.clearError();
+  profileValidator.resetValidation();
 }
 
 
@@ -92,15 +93,15 @@ function openProfile() {
 //Кнопка редактирования профиля
 buttonEdit.addEventListener('click', () => {
   // profilePopup.open();
-  profileValidator.toggleButtonState();
+  // profileValidator.toggleButtonState();
   openProfile();
 });
 
 //кнопка добавления новых мест
 buttonCard.addEventListener('click', () => {
-  cardValidator.clearError();
+  cardValidator.resetValidation();
   popupNewCard.open();
-  cardValidator.toggleButtonState();
+  // cardValidator.toggleButtonState();
 });
 
 
