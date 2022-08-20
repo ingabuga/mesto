@@ -30,7 +30,10 @@ import {
 } from '../utils/constants.js';
 
 
-const popupPreview = new PopupWithImage(popupPhoto);
+const popupPreview = new PopupWithImage(
+  '.popup_photo'
+  // popupPhoto
+  );
 
 //функция создания карточки из списка
 const defaultCardList = new Section({ 
@@ -54,24 +57,41 @@ const renderCard = (data) => {
 }
 
 //добавление новой карточки
-const popupNewCard = new PopupWithForm(popupPlace, 
-  {submitForm: (item) => {
+const popupNewCard = new PopupWithForm({
+  // popupPlace,
+  // popupSelector: '.popup_place',
+  popupSelector: '.popup_place', 
+  submitForm: (item) => {
   const newCard = renderCard(item);
   // cardsContainer.prepend(newCard);
   defaultCardList.addItem(newCard);
   popupNewCard.close();
   }
 });
+
+
+// const popupNewPlace = new PopupWithForm({
+//   popupSelector: ".new-place",
+//   handleFormSumbit: (formData) => {
+//     const card = new Card(formData, ".element-template", openImagePopup);
+//     const cardElement = card.generateCard();
+//     container.prepend(cardElement);
+//   },
+// });
+
 popupNewCard.setEventListener();
 
 //Редактирование информации класса пользователя
-const userInput = new UserInfo({nameSelector: '.profile__title', jobSelector: '.profile__title-job'
+const userInput = new UserInfo({
+  nameSelector: '.profile__title', 
+  jobSelector: '.profile__title-job'
 });
 
 //попап редактирования профиля
-const profilePopup = new PopupWithForm(
-  popupProfile, 
-  {submitForm: (data) => {
+const profilePopup = new PopupWithForm({
+  // popupProfile, 
+  popupSelector: '.popup_profile',
+  submitForm: (data) => {
   userInput.setUserInfo(data);
   profilePopup.close();
   }
