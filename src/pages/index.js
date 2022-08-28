@@ -62,8 +62,7 @@ const userInput = new UserInfo({
 });
 
 //попап редактирования профиля
-const profilePopup = new PopupWithForm({
-  // popupProfile, 
+const profilePopup = new PopupWithForm({ 
   popupSelector: '.popup_profile',
   submitForm: (data) => {
   userInput.setUserInfo(data);
@@ -113,3 +112,32 @@ const profileValidator = new FormValidator(validationData, popupProfile);//ва�
 profileValidator.enableValidation();
 
 
+async function getItems() {
+  try {
+    const res = await fetch('https://mesto.nomoreparties.co/v1/cohort-49/users/me', {
+      method: 'GET',
+      headers: {
+        authorization: 'ccf50a2a-0bfe-45bb-ba00-99b5825eb2e5'
+      }
+    });
+    // const result = await fetch('https://mesto.nomoreparties.co/v1/cohort-49/cards', {
+    //   headers: {
+    //     authorization: 'ccf50a2a-0bfe-45bb-ba00-99b5825eb2e5'
+    //   }
+    // });
+    const data = await res.json();
+    // const defaultCards = await result.json();
+    console.log(data);
+    console.log(data.name);
+    console.log(data.about);
+    // console.log(defaultCards);
+    userInput.setUserInfo(data.name, data.about);
+
+  } catch(e) {
+    alert('Не удалось загрузить карточки');
+  }
+}
+
+
+
+getItems();
