@@ -24,6 +24,7 @@ const popupPreview = new PopupWithImage('.popup_photo');
 //функция создания карточки из списка
 const defaultCardList = new Section({ 
   data: initialCards, 
+  // data: cardItem,
   renderer: (item) => {
   const cardElement = renderCard(item);
   defaultCardList.addItem(cardElement);
@@ -31,6 +32,10 @@ const defaultCardList = new Section({
 }, 
 '.elements__element'
 );
+
+
+
+
 
 const renderCard = (data) => {
   const card = new Card({data,
@@ -51,6 +56,9 @@ const popupNewCard = new PopupWithForm({
   popupNewCard.close();
   }
 });
+
+//отрисовка карточек из списка
+defaultCardList.renderItems();
 
 
 popupNewCard.setEventListener();
@@ -96,8 +104,7 @@ buttonCard.addEventListener('click', () => {
 
 
 
-//отрисовка карточек из списка
-defaultCardList.renderItems();
+
 
 //превью карточки
 popupPreview.setEventListener();
@@ -112,7 +119,7 @@ const profileValidator = new FormValidator(validationData, popupProfile);//ва�
 profileValidator.enableValidation();
 
 
-async function getItems() {
+async function getUserData() {
   try {
     const res = await fetch('https://mesto.nomoreparties.co/v1/cohort-49/users/me', {
       method: 'GET',
@@ -120,18 +127,50 @@ async function getItems() {
         authorization: 'ccf50a2a-0bfe-45bb-ba00-99b5825eb2e5'
       }
     });
-    // const result = await fetch('https://mesto.nomoreparties.co/v1/cohort-49/cards', {
-    //   headers: {
-    //     authorization: 'ccf50a2a-0bfe-45bb-ba00-99b5825eb2e5'
-    //   }
-    // });
+
     const data = await res.json();
-    // const defaultCards = await result.json();
-    console.log(data);
-    console.log(data.name);
-    console.log(data.about);
-    // console.log(defaultCards);
-    userInput.setUserInfo(data.name, data.about);
+    userInput.setUserInfo(data.name, data.about, data.avatar);
+
+  } catch(e) {
+    alert('Не удалось загрузить данные профиля');
+  }
+}
+
+async function patchUserData() {
+  try {
+    const resPatch = await fetch('https://mesto.nomoreparties.co/v1/cohort-49/users/me', {
+      method: 'PATCH',
+      headers: {
+        authorization: 'ccf50a2a-0bfe-45bb-ba00-99b5825eb2e5',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: 'Жак Ив Кусто',
+        about: 'Ученый, исследователь',
+        // avatar: 'https://imageup.ru/img267/4010540/heman.jpg'
+      })
+    });
+    const item = await resPatch.json();
+    console.log(item);
+
+  } catch(e) {
+    alert('Не удалось отредактировать данные профиля');
+  }
+}
+
+async function addCards() {
+  try {
+
+    const resCard = await fetch('https://mesto.nomoreparties.co/v1/cohort-49/cards', {
+      method: 'GET',
+      headers: {
+        authorization: 'ccf50a2a-0bfe-45bb-ba00-99b5825eb2e5'
+      }
+    });
+    const cardItem = await resCard.json();
+    console.log(cardItem);
+
+    
 
   } catch(e) {
     alert('Не удалось загрузить карточки');
@@ -140,4 +179,7 @@ async function getItems() {
 
 
 
-getItems();
+
+getUserData();
+patchUserData();
+addCards();
