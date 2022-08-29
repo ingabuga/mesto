@@ -6,6 +6,7 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 
 import {
   buttonEdit,
@@ -102,8 +103,13 @@ buttonCard.addEventListener('click', () => {
   popupNewCard.open();
 });
 
-
-
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-49',
+  headers: {
+      authorization: 'ccf50a2a-0bfe-45bb-ba00-99b5825eb2e5',
+      'Content-Type': 'application/json'
+  }
+});
 
 
 //превью карточки
@@ -119,67 +125,11 @@ const profileValidator = new FormValidator(validationData, popupProfile);//ва�
 profileValidator.enableValidation();
 
 
-async function getUserData() {
-  try {
-    const res = await fetch('https://mesto.nomoreparties.co/v1/cohort-49/users/me', {
-      method: 'GET',
-      headers: {
-        authorization: 'ccf50a2a-0bfe-45bb-ba00-99b5825eb2e5'
-      }
-    });
-
-    const data = await res.json();
-    userInput.setUserInfo(data.name, data.about, data.avatar);
-
-  } catch(e) {
-    alert('Не удалось загрузить данные профиля');
-  }
-}
-
-async function patchUserData() {
-  try {
-    const resPatch = await fetch('https://mesto.nomoreparties.co/v1/cohort-49/users/me', {
-      method: 'PATCH',
-      headers: {
-        authorization: 'ccf50a2a-0bfe-45bb-ba00-99b5825eb2e5',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: 'Жак Ив Кусто',
-        about: 'Ученый, исследователь',
-        // avatar: 'https://imageup.ru/img267/4010540/heman.jpg'
-      })
-    });
-    const item = await resPatch.json();
-    console.log(item);
-
-  } catch(e) {
-    alert('Не удалось отредактировать данные профиля');
-  }
-}
-
-async function addCards() {
-  try {
-
-    const resCard = await fetch('https://mesto.nomoreparties.co/v1/cohort-49/cards', {
-      method: 'GET',
-      headers: {
-        authorization: 'ccf50a2a-0bfe-45bb-ba00-99b5825eb2e5'
-      }
-    });
-    const cardItem = await resCard.json();
-    console.log(cardItem);
-
-    
-
-  } catch(e) {
-    alert('Не удалось загрузить карточки');
-  }
-}
 
 
 
 
-getUserData();
-patchUserData();
-addCards();
+// api.getUserData();
+// getUserData();
+// patchUserData();
+// addCards();
