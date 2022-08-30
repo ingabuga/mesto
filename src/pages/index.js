@@ -123,46 +123,6 @@ function renderPage() {
 
 
 
-
-
-// Модальное окно редактирования профиля
-// const popupWithProfileForm = new PopupWithForm(
-//   {
-//     selector: '.popup_type_profile',
-//     handleFormSubmit: (data) => {
-//       // Отображаем статус запроса
-//       popupWithProfileForm.displayLoadingStatus(true);
-//       api.updateUserProfile(data.profileName, data.profileAbout)
-//         .then(res => {
-//           updateUserProfile(res);
-//           popupWithProfileForm.close();
-//         })
-//         .catch(err => showError(err))
-//         .finally(() => popupWithProfileForm.displayLoadingStatus(false));
-//     }
-//   }
-// );
-
-// const profilePopup = new PopupWithForm(
-//   {
-//     selector: '.popup_profile',
-//     submitForm: (data) => {
-//       // Отображаем статус запроса
-//       // profilePopup.displayLoadingStatus(true);
-//       console.log(data);
-//       api.patchUserData(data.nameProfile, data.jobProfile)
-//         .then(res => {
-//           patchUserData(res);
-//           profilePopup.close();
-//         })
-//         // .catch(err => showError(err))
-//         // .finally(() => profilePopup.displayLoadingStatus(false));
-//     }
-//   }
-// );
-
-
-
 //заполнение попапа профиля пользователя
 function openProfile() {
   const profileData = userInput.getUserInfo();
@@ -218,8 +178,3 @@ profileValidator.enableValidation();
 
 
 renderPage();
-// api.getUserData();
-// api.getUserData();
-// getUserData();
-// patchUserData();
-// addCards();
