@@ -1,12 +1,14 @@
 //Кнопки 
 export const buttonEdit = document.querySelector('.profile__edit-button'); //выбираем кнопку редактирования профиля 
+export const buttonAvatar = document.querySelector('.profile__avatar-hover'); //выбираем кнопку редактирования аватара
 // const buttonClose = document.querySelectorAll('.popup__close-btn'); // выбираем кнопку закрытия попапа 
 export const buttonCard = document.querySelector('.profile__add-button'); //выбираем кнопку добавления карточки 
 // const buttonLike = document.querySelectorAll('elements__like');
 
 //Попап 
 export const popupProfile = document.querySelector('.popup_profile'); //попап профиля  
-export const popupPlace = document.querySelector('.popup_place'); //попап нового места  
+export const popupPlace = document.querySelector('.popup_place'); //попап нового места 
+export const popupAvatar = document.querySelector('.popup_avatar'); //попап смены аватарки
 // export const popupPhoto = document.querySelector('.popup_photo'); //попап превью фотографии  
 // export const popups = document.querySelectorAll('.popup'); //все попапы 
 
