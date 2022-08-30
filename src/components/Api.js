@@ -5,7 +5,7 @@ export default class Api {
     }
 
 
-    async getUserData() {
+    getUserData() {
         return fetch(`${this._baseUrl}/users/me`, {
           method: 'GET',
           headers: this._headers
@@ -13,7 +13,7 @@ export default class Api {
           .then(res => this._check(res))
       }
 
-    async  getInitialCards() {
+    getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
           method: 'GET',
           headers: this._headers
@@ -22,7 +22,7 @@ export default class Api {
       }
 
 
-    async patchUserData(name, about) {
+    patchUserData(name, about) {
         return fetch(`${this._baseUrl}/users/me`, {
           method: 'PATCH',
           headers: this._headers,
@@ -32,9 +32,10 @@ export default class Api {
           })
         })
           .then(res => this._check(res))
+          
       }
 
-    async  patchAvatar(link) {
+    patchAvatar(link) {
         return fetch(`${this._baseUrl}/users/me`, {
           method: 'PATCH',
           headers: this._headers,
@@ -43,6 +44,19 @@ export default class Api {
           })
         })
           .then(res => this._check(res))
+      }
+
+
+    addNewCard(name, link) {
+        return fetch(`${this._baseUrl}/cards`, {
+          method: 'POST',
+          headers: this._headers,
+          body: JSON.stringify({
+            name: name,
+            link: link
+          })
+        })
+          .then(res => this._checkFetch(res))
       }
 
     // async getUserData() {

@@ -19,20 +19,29 @@ import {
   validationData
 } from '../utils/constants.js';
 
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-49',
+  headers: {
+      authorization: 'ccf50a2a-0bfe-45bb-ba00-99b5825eb2e5',
+      'Content-Type': 'application/json'
+  }
+});
+
 
 const popupPreview = new PopupWithImage('.popup_photo');
 
 //функция создания карточки из списка
 const defaultCardList = new Section({ 
   data: initialCards, 
-  // data: cardItem,
+  // data: existingCards,
   renderer: (item) => {
   const cardElement = renderCard(item);
   defaultCardList.addItem(cardElement);
-}
+  }
 }, 
 '.elements__element'
 );
+
 
 
 
@@ -58,6 +67,27 @@ const popupNewCard = new PopupWithForm({
   }
 });
 
+//попап редактирования профиля
+const profilePopup = new PopupWithForm({ 
+  popupSelector: '.popup_profile',
+  submitForm: (data) => {
+  // userInput.setUserInfo(data);
+  api.patchUserData(data.nameProfile, data.jobProfile)
+  // .then(res => {
+  //   patchUserData(res);
+  //   profilePopup.close();
+  // })
+  .then(res => {
+    patchUserData(res);
+    profilePopup.close();
+  })
+  .catch(console.log('Что-то пошло не так'))
+  profilePopup.close();
+  }
+});
+
+
+
 //отрисовка карточек из списка
 defaultCardList.renderItems();
 
@@ -71,26 +101,7 @@ const userInput = new UserInfo({
   avatarSelector: '.profile__avatar'
 });
 
-//попап редактирования профиля
-const profilePopup = new PopupWithForm({ 
-  popupSelector: '.popup_profile',
-  submitForm: (data) => {
-  userInput.setUserInfo(data);
-  profilePopup.close();
-  }
-});
-profilePopup.setEventListener();
 
-//заполнение попапа профиля пользователя
-function openProfile() {
-  const profileData = userInput.getUserInfo();
-  nameInput.value = profileData.name; 
-  jobInput.value = profileData.job; 
-  profilePopup.open();
-  profileValidator.resetValidation();
-}
-
-let userId;
 
 // Рендеринг страницы данными с сервера
 function renderPage() {
@@ -101,13 +112,77 @@ function renderPage() {
     .then(([userData, existingCards]) => {
       userInput.setUserInfo(userData.name, userData.about);
       userInput.setUserAvatar(userData.avatar);
-      console.log(userData.avatar);
-      userId = userData._id;
-      defaultCardList.renderItems(existingCards.reverse())
+      defaultCardList.renderItems(existingCards.reverse());
+      console.log(existingCards);
+      
     })
-    // .catch(err => showError(err));
     .catch(console.log('Не удалось'));
 }
+
+
+
+
+
+
+
+// Модальное окно редактирования профиля
+// const popupWithProfileForm = new PopupWithForm(
+//   {
+//     selector: '.popup_type_profile',
+//     handleFormSubmit: (data) => {
+//       // Отображаем статус запроса
+//       popupWithProfileForm.displayLoadingStatus(true);
+//       api.updateUserProfile(data.profileName, data.profileAbout)
+//         .then(res => {
+//           updateUserProfile(res);
+//           popupWithProfileForm.close();
+//         })
+//         .catch(err => showError(err))
+//         .finally(() => popupWithProfileForm.displayLoadingStatus(false));
+//     }
+//   }
+// );
+
+// const profilePopup = new PopupWithForm(
+//   {
+//     selector: '.popup_profile',
+//     submitForm: (data) => {
+//       // Отображаем статус запроса
+//       // profilePopup.displayLoadingStatus(true);
+//       console.log(data);
+//       api.patchUserData(data.nameProfile, data.jobProfile)
+//         .then(res => {
+//           patchUserData(res);
+//           profilePopup.close();
+//         })
+//         // .catch(err => showError(err))
+//         // .finally(() => profilePopup.displayLoadingStatus(false));
+//     }
+//   }
+// );
+
+
+
+//заполнение попапа профиля пользователя
+function openProfile() {
+  const profileData = userInput.getUserInfo();
+  nameInput.value = profileData.name; 
+  jobInput.value = profileData.job; 
+  profilePopup.open();
+  profileValidator.resetValidation();
+}
+
+
+// Обновление данных пользователя
+function patchUserData(data) {
+  userInput.setUserInfo(data.name, data.about);
+}
+
+
+// let userId;
+
+
+profilePopup.setEventListener();
 
 
 //слушатели кнопок
@@ -123,13 +198,7 @@ buttonCard.addEventListener('click', () => {
   popupNewCard.open();
 });
 
-const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-49',
-  headers: {
-      authorization: 'ccf50a2a-0bfe-45bb-ba00-99b5825eb2e5',
-      'Content-Type': 'application/json'
-  }
-});
+
 
 
 //превью карточки
@@ -149,6 +218,7 @@ profileValidator.enableValidation();
 
 
 renderPage();
+// api.getUserData();
 // api.getUserData();
 // getUserData();
 // patchUserData();
