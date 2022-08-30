@@ -67,7 +67,8 @@ popupNewCard.setEventListener();
 //Редактирование информации класса пользователя
 const userInput = new UserInfo({
   nameSelector: '.profile__title', 
-  jobSelector: '.profile__title-job'
+  jobSelector: '.profile__title-job',
+  avatarSelector: '.profile__avatar'
 });
 
 //попап редактирования профиля
@@ -87,6 +88,25 @@ function openProfile() {
   jobInput.value = profileData.job; 
   profilePopup.open();
   profileValidator.resetValidation();
+}
+
+let userId;
+
+// Рендеринг страницы данными с сервера
+function renderPage() {
+  Promise.all([
+    api.getUserData(),
+    api.getInitialCards()
+  ])
+    .then(([userData, existingCards]) => {
+      userInput.setUserInfo(userData.name, userData.about);
+      userInput.setUserAvatar(userData.avatar);
+      console.log(userData.avatar);
+      userId = userData._id;
+      defaultCardList.renderItems(existingCards.reverse())
+    })
+    // .catch(err => showError(err));
+    .catch(console.log('Не удалось'));
 }
 
 
@@ -128,7 +148,7 @@ profileValidator.enableValidation();
 
 
 
-
+renderPage();
 // api.getUserData();
 // getUserData();
 // patchUserData();
