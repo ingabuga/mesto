@@ -61,12 +61,36 @@ const renderCard = (data) => {
 //попап добавления новой карточки
 const popupNewCard = new PopupWithForm({
   popupSelector: '.popup_place', 
-  submitForm: (item) => {
-  const newCard = renderCard(item);
-  defaultCardList.addItem(newCard);
-  popupNewCard.close();
+  submitForm: (data) => {
+    api.addNewCard(data.name, data.link)
+    .then(res => {
+    const newCard = renderCard(res);
+    defaultCardList.addItem(newCard);
+    popupNewCard.close();
+    })
+    .catch(console.log('карточка не добавилась'))
+  
   }
 });
+
+// Модальное окно добавления карточки
+// const popupWithCardForm = new PopupWithForm(
+//   {
+//     selector: '.popup_type_cards',
+//     handleFormSubmit: (data) => {
+//       // Отображаем статус запроса
+//       popupWithCardForm.displayLoadingStatus(true);
+//       api.addNewCard(data.title, data.link)
+//         .then(res => {
+//           const newCard = createCard(res);
+//           cardList.addItem(newCard);
+//           popupWithCardForm.close();
+//         })
+//         .catch(err => showError(err))
+//         .finally(() => popupWithCardForm.displayLoadingStatus(false));
+//     }
+//   }
+// );
 
 // Обновление информации пользователя
 function patchUserData(data) {
@@ -88,6 +112,7 @@ const profilePopup = new PopupWithForm({
   }
 });
 
+// https://imageup.ru/img267/4010540/heman.jpg
 
 //Попап редактирования аватара
 const popupWithAvatar = new PopupWithForm(
@@ -100,7 +125,7 @@ const popupWithAvatar = new PopupWithForm(
           popupWithAvatar.close();
         })
         .catch(console.log('Не удалось поправить аватар'))
-        popupWithAvatar.close();
+        // popupWithAvatar.close();
         // .finally(console.log('Все не так когда твоя девушка больна'))
     }
   }

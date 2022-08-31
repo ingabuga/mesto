@@ -56,7 +56,7 @@ export default class Api {
             link: link
           })
         })
-          .then(res => this._checkFetch(res))
+          .then(res => this._check(res))
       }
 
 
