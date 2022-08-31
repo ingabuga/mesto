@@ -73,24 +73,6 @@ const popupNewCard = new PopupWithForm({
   }
 });
 
-// Модальное окно добавления карточки
-// const popupWithCardForm = new PopupWithForm(
-//   {
-//     selector: '.popup_type_cards',
-//     handleFormSubmit: (data) => {
-//       // Отображаем статус запроса
-//       popupWithCardForm.displayLoadingStatus(true);
-//       api.addNewCard(data.title, data.link)
-//         .then(res => {
-//           const newCard = createCard(res);
-//           cardList.addItem(newCard);
-//           popupWithCardForm.close();
-//         })
-//         .catch(err => showError(err))
-//         .finally(() => popupWithCardForm.displayLoadingStatus(false));
-//     }
-//   }
-// );
 
 // Обновление информации пользователя
 function patchUserData(data) {
