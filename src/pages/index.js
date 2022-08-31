@@ -36,8 +36,8 @@ const popupPreview = new PopupWithImage('.popup_photo');
 
 //функция создания карточки из списка
 const defaultCardList = new Section({ 
-  data: initialCards, 
-  // data: existingCards,
+  // data: initialCards, 
+  // data: defaultCards,
   renderer: (item) => {
   const cardElement = renderCard(item);
   defaultCardList.addItem(cardElement);
@@ -68,7 +68,7 @@ const popupNewCard = new PopupWithForm({
   }
 });
 
-// Обновление информации ползователя
+// Обновление информации пользователя
 function patchUserData(data) {
   userInput.setUserInfo(data.name, data.about);
 }
@@ -112,7 +112,7 @@ function patchUserAvatar(data) {
 }
 
 //отрисовка карточек из списка
-defaultCardList.renderItems();
+// defaultCardList.renderItems();
 
 //слушатель попапа нового места
 popupNewCard.setEventListener();
@@ -126,32 +126,17 @@ const userInput = new UserInfo({
 
 
 
-// Рендеринг страницы данными с сервера
-// function renderPage() {
-//   Promise.all([
-//     api.getUserData(),
-//     api.getInitialCards()
-//   ])
-//     .then(([userData, existingCards]) => {
-//       userInput.setUserInfo(userData.name, userData.about);
-//       userInput.setUserAvatar(userData.avatar);
-//       defaultCardList.renderItems(existingCards.reverse());
-//       console.log(existingCards);
-      
-//     })
-//     .catch(console.log('Не удалось'));
-// }
 
 function renderPage() {
   Promise.all([
     api.getUserData(),
     api.getInitialCards()
   ])
-    .then(([userData, existingCards]) => {
+    .then(([userData, defaultCards]) => {
       patchUserData(userData);
       patchUserAvatar(userData);
-      userId = userData._id;
-      defaultCardList.renderItems(existingCards.reverse())
+      // userId = userData._id;
+      defaultCardList.renderItems(defaultCards);
     })
     .catch(console.log('список карточек нихт'));
 }
