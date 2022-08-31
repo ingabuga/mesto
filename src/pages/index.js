@@ -29,7 +29,7 @@ const api = new Api({
   }
 });
 
-// let userId;
+let userId = null;
 
 
 const popupPreview = new PopupWithImage('.popup_photo');
@@ -58,7 +58,7 @@ const renderCard = (data) => {
   return card.generateCard();
 }
 
-//добавление новой карточки
+//попап добавления новой карточки
 const popupNewCard = new PopupWithForm({
   popupSelector: '.popup_place', 
   submitForm: (item) => {
@@ -68,7 +68,7 @@ const popupNewCard = new PopupWithForm({
   }
 });
 
-// Обновление информации о пользователе
+// Обновление информации ползователя
 function patchUserData(data) {
   userInput.setUserInfo(data.name, data.about);
 }
@@ -78,12 +78,7 @@ function patchUserData(data) {
 const profilePopup = new PopupWithForm({ 
   popupSelector: '.popup_profile',
   submitForm: (data) => {
-  // userInput.setUserInfo(data);
   api.patchUserData(data.nameProfile, data.jobProfile)
-  // .then(res => {
-  //   patchUserData(res);
-  //   profilePopup.close();
-  // })
   .then(res => {
     patchUserData(res);
     profilePopup.close();
@@ -94,23 +89,19 @@ const profilePopup = new PopupWithForm({
 });
 
 
-
-
 //Попап редактирования аватара
 const popupWithAvatar = new PopupWithForm(
   {
     popupSelector: '.popup_avatar',
     submitForm: (data) => {
-      // Отображаем статус запроса
-      // popupAvatar.displayLoadingStatus(true);
-      api.patchAvatar(data)
+      api.patchAvatar(data.link)
         .then(res => {
           patchUserAvatar(res);
           popupWithAvatar.close();
         })
-        // .catch(err => showError(err))
         .catch(console.log('Не удалось поправить аватар'))
-        // .finally(() => popupAvatar.displayLoadingStatus(false));
+        popupWithAvatar.close();
+        // .finally(console.log('Все не так когда твоя девушка больна'))
     }
   }
 );
@@ -136,21 +127,34 @@ const userInput = new UserInfo({
 
 
 // Рендеринг страницы данными с сервера
+// function renderPage() {
+//   Promise.all([
+//     api.getUserData(),
+//     api.getInitialCards()
+//   ])
+//     .then(([userData, existingCards]) => {
+//       userInput.setUserInfo(userData.name, userData.about);
+//       userInput.setUserAvatar(userData.avatar);
+//       defaultCardList.renderItems(existingCards.reverse());
+//       console.log(existingCards);
+      
+//     })
+//     .catch(console.log('Не удалось'));
+// }
+
 function renderPage() {
   Promise.all([
     api.getUserData(),
     api.getInitialCards()
   ])
     .then(([userData, existingCards]) => {
-      userInput.setUserInfo(userData.name, userData.about);
-      userInput.setUserAvatar(userData.avatar);
-      defaultCardList.renderItems(existingCards.reverse());
-      console.log(existingCards);
-      
+      patchUserData(userData);
+      patchUserAvatar(userData);
+      userId = userData._id;
+      defaultCardList.renderItems(existingCards.reverse())
     })
-    .catch(console.log('Не удалось'));
+    .catch(console.log('список карточек нихт'));
 }
-
 
 
 

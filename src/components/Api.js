@@ -36,7 +36,7 @@ export default class Api {
       }
 
     patchAvatar(link) {
-        return fetch(`${this._baseUrl}/users/me`, {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
           method: 'PATCH',
           headers: this._headers,
           body: JSON.stringify({
@@ -59,20 +59,6 @@ export default class Api {
           .then(res => this._checkFetch(res))
       }
 
-    // async getUserData() {
-    //     try {
-    //     const res = await fetch('https://mesto.nomoreparties.co/v1/cohort-49/users/me', {
-    //         method: 'GET',
-    //         headers: this._headers
-    //     });
-    
-    //     const data = await res.json();
-    //     userInput.setUserInfo(data.name, data.about, data.avatar);
-    
-    //     } catch(e) {
-    //     alert('Не удалось загрузить данные профиля');
-    //     }
-    // }
 
     
 
