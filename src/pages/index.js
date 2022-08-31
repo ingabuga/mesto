@@ -29,6 +29,8 @@ const api = new Api({
   }
 });
 
+// let userId;
+
 
 const popupPreview = new PopupWithImage('.popup_photo');
 
@@ -66,6 +68,12 @@ const popupNewCard = new PopupWithForm({
   }
 });
 
+// Обновление информации о пользователе
+function patchUserData(data) {
+  userInput.setUserInfo(data.name, data.about);
+}
+
+
 //попап редактирования профиля
 const profilePopup = new PopupWithForm({ 
   popupSelector: '.popup_profile',
@@ -84,6 +92,8 @@ const profilePopup = new PopupWithForm({
   profilePopup.close();
   }
 });
+
+
 
 
 //Попап редактирования аватара
@@ -113,7 +123,7 @@ function patchUserAvatar(data) {
 //отрисовка карточек из списка
 defaultCardList.renderItems();
 
-
+//слушатель попапа нового места
 popupNewCard.setEventListener();
 
 //Редактирование информации класса пользователя
@@ -156,19 +166,6 @@ function openProfile() {
 
 
 
-
-//заполнение попапа смены аватарки
-// function openAvatar() {
-//   const profileData = userInput.getUserInfo();
-//   nameInput.value = profileData.name; 
-//   jobInput.value = profileData.job; 
-//   profilePopup.open();
-//   profileValidator.resetValidation();
-// }
-
-
-// let userId;
-
 popupWithAvatar.setEventListener();
 
 profilePopup.setEventListener();
@@ -200,12 +197,15 @@ popupPreview.setEventListener();
 
 
 //Подключаем валидатор
+//валидатор добавления нового места
 const cardValidator = new FormValidator(validationData, popupPlace); //валидатор формы нового места
 cardValidator.enableValidation();
 
+//валидатор смены данных пользователя
 const profileValidator = new FormValidator(validationData, popupProfile);//валидатор формы профиля
 profileValidator.enableValidation();
 
+//валидатор попапа смены ававтарки
 const avatarValidator = new FormValidator(validationData, popupAvatar); //валидатор формы добавления аватара
 avatarValidator.enableValidation();
 
