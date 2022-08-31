@@ -46,9 +46,6 @@ const defaultCardList = new Section({
 
 
 
-
-
-
 const renderCard = (data) => {
   const card = new Card({data,
     handleCardClick: () => {
@@ -90,27 +87,27 @@ const profilePopup = new PopupWithForm({
 
 
 //Попап редактирования аватара
-// const popupAvatar = new PopupWithForm(
-//   {
-//     selector: '.popup_avatar',
-//     submitForm: (data) => {
-//       // Отображаем статус запроса
-//       // popupAvatar.displayLoadingStatus(true);
-//       api.patchAvatar(data.link)
-//         .then(res => {
-//           patchUserAvatar(res);
-//           popupAvatar.close();
-//         })
-//         // .catch(err => showError(err))
-//         .catch(console.log('Не удалось поправить аватар'))
-//         // .finally(() => popupAvatar.displayLoadingStatus(false));
-//     }
-//   }
-// );
+const popupWithAvatar = new PopupWithForm(
+  {
+    popupSelector: '.popup_avatar',
+    submitForm: (data) => {
+      // Отображаем статус запроса
+      // popupAvatar.displayLoadingStatus(true);
+      api.patchAvatar(data)
+        .then(res => {
+          patchUserAvatar(res);
+          popupWithAvatar.close();
+        })
+        // .catch(err => showError(err))
+        .catch(console.log('Не удалось поправить аватар'))
+        // .finally(() => popupAvatar.displayLoadingStatus(false));
+    }
+  }
+);
 
 // Обновление аватара 
 function patchUserAvatar(data) {
-  userInput.setUserAvatar(data.link);
+  userInput.setUserAvatar(data.avatar);
 }
 
 //отрисовка карточек из списка
@@ -158,49 +155,21 @@ function openProfile() {
 }
 
 
-// Обновление данных пользователя
-// function patchUserData(data) {
-//   userInput.setUserInfo(data.name, data.about);
-// }
-
 
 
 //заполнение попапа смены аватарки
-function openAvatar() {
-  const profileData = userInput.getUserInfo();
-  nameInput.value = profileData.name; 
-  jobInput.value = profileData.job; 
-  profilePopup.open();
-  profileValidator.resetValidation();
-}
-
-
-// Обновление аватара
-// function updateUserAvatar(data) {
-//   userInput.setUserAvatar(data.link);
+// function openAvatar() {
+//   const profileData = userInput.getUserInfo();
+//   nameInput.value = profileData.name; 
+//   jobInput.value = profileData.job; 
+//   profilePopup.open();
+//   profileValidator.resetValidation();
 // }
 
-// Модальное окно редактирования аватара
-// const popupWithAvatar = new PopupWithForm(
-//   {
-//     selector: '.popup_avatar',
-//     submitForm: (data) => {
-//       // Отображаем статус запроса
-//       // popupWithAvatar.displayLoadingStatus(true);
-//       api.patchAvatar(data.link)
-//         .then(res => {
-//           updateUserAvatar(res);
-//           popupAvatar.close();
-//         })
-//         .catch(console.log('Аватар не отправлен'))
-//         // .finally(() => popupWithAvatar.displayLoadingStatus(false));
-//     }
-//   }
-// );
 
 // let userId;
 
-// popupAvatar.setEventListener();
+popupWithAvatar.setEventListener();
 
 profilePopup.setEventListener();
 
@@ -221,7 +190,7 @@ buttonCard.addEventListener('click', () => {
 //Кнопка редактирования аватара
 buttonAvatar.addEventListener('click', () => {
   avatarValidator.resetValidation();
-  openAvatar();
+  popupWithAvatar.open();
 });
 
 
