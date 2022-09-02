@@ -141,7 +141,7 @@ function renderPage() {
     .then(([userData, defaultCards]) => {
       patchUserData(userData);
       patchUserAvatar(userData);
-      // userId = userData._id;
+      userId = userData._id;
       defaultCardList.renderItems(defaultCards);
     })
     .catch(console.log('список карточек нихт'));
