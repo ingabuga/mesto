@@ -1,4 +1,4 @@
-class Card {
+export default class Card {
   constructor({data, handleCardClick}, templateSelector) {
       this._title = data.name;
       this._image = data.link;
@@ -35,19 +35,17 @@ class Card {
       this._handleLike()// лайкаем карточку
     });
 
-    this._element.querySelector('.elements__trash').addEventListener('click', () => {
-      this._handleDelete()// удаляем карточку
-    });
+    // this._element.querySelector('.elements__trash').addEventListener('click', () => {
+    //   this._handleDelete()// удаляем карточку
+    // });
   }
 
   _handleLike() {
     this._likeButton.classList.toggle('elements__like_active');
   }
 
-  _handleDelete() {
-    this._element.remove();
-    this._element = null; 
-  }
+  // _handleDelete() {
+  //   this._element.remove();
+  //   this._element = null; 
+  // }
 }
-
-export {Card};

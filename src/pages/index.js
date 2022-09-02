@@ -1,7 +1,7 @@
 import './index.css';
 
-import {Card} from '../components/Card.js';
-import {FormValidator} from '../components/FormValidator.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -17,7 +17,6 @@ import {
   popupAvatar,
   nameInput,
   jobInput,
-  initialCards,
   validationData
 } from '../utils/constants.js';
 
@@ -46,7 +45,8 @@ const defaultCardList = new Section({
 '.elements__element'
 );
 
-
+//отрисовка карточек из списка
+// defaultCardList.renderItems();
 
 const renderCard = (data) => {
   const card = new Card({data,
@@ -118,8 +118,7 @@ function patchUserAvatar(data) {
   userInput.setUserAvatar(data.avatar);
 }
 
-//отрисовка карточек из списка
-// defaultCardList.renderItems();
+
 
 //слушатель попапа нового места
 popupNewCard.setEventListener();
