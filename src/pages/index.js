@@ -35,8 +35,6 @@ const popupPreview = new PopupWithImage('.popup_photo');
 
 //функция создания карточки из списка
 const defaultCardList = new Section({ 
-  // data: initialCards, 
-  // data: defaultCards,
   renderer: (item) => {
   const cardElement = renderCard(item);
   defaultCardList.addItem(cardElement);
@@ -47,6 +45,8 @@ const defaultCardList = new Section({
 
 //отрисовка карточек из списка
 // defaultCardList.renderItems();
+
+
 
 const renderCard = (data) => {
   const card = new Card({data,
