@@ -66,45 +66,24 @@ function toggleLike(card, cardId, isLiked) {
 }
 
 
-const renderCard = (data) => {
-
-  if (data.likes.find(element => element._id === userId)) {
-    const isLiked = true;
-  } else {
-    const isLiked = false;
-  }
-  
-  if (data.owner._id === userId) {
-  const card = new MyCard({data,
-      handleCardClick: () => {
-        popupPreview.open(data.name, data.link);
-      }
-    },
-      '.elements-template',
-      deleteCard,
-      toggleLike);
-
-  // card.toggleLike(isLiked);
-  return card.generateCard();
-  
-  } else {
-    const card = new Card({data,
-      handleCardClick: () => {
-        popupPreview.open(data.name, data.link);
-      }
-    },
-      '.elements-template-alien',
-      toggleLike);
-
-    // card.toggleLike(isLiked);
-    return card.generateCard();
-  
-  }
-
-  
+function openPopupWithImage(data) {
+  popupPreview.open(data.name, data.link);
 }
 
+function renderCard(data) {
 
+  const isLiked = (data.likes.find(element => element._id === userId))
+    ? true
+    : false;
+
+  const card = (data.owner._id === userId)
+    ? new MyCard({data, openPopupWithImage}, '.elements-template', deleteCard, toggleLike)
+    : new Card({data, openPopupWithImage}, '.elements-template-alien', toggleLike);
+
+  const addCard = card.generateCard();
+  card.toggleLike(isLiked);
+  return addCard;
+}
 
 //попап добавления новой карточки
 const popupNewCard = new PopupWithForm(
@@ -160,7 +139,6 @@ const popupWithAvatar = new PopupWithForm(
           popupWithAvatar.close();
         })
         .catch(console.log('Не удалось поправить аватар'))
-        // popupWithAvatar.close();
         // .finally(console.log('Все не так когда твоя девушка больна'))
     }
   }
@@ -175,7 +153,6 @@ const popupWithConfirmation = new PopupWithConfirmation(
       .then(() => {
         card.handleDeleteCard();
         popupWithConfirmation.close();
-        console.log('Удаление прошло')
       })
       .catch(console.log('Не удалось удалить'));
     }

@@ -45,6 +45,8 @@ export default class Card {
       this._handleCardClick(this._image, this._title)// открываем попап
     });
 
+
+
     this._likeButton.addEventListener('click', () => {
       this._handleClickLike(this, this._cardId, this._isLiked)// лайкаем карточку
     });
