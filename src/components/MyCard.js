@@ -1,13 +1,13 @@
 import Card from './Card.js';
 
 export default class MyCard extends Card {
-    constructor({data, handleCardClick}, templateSelector, handleDeleteCard, handleClickLike) {
+    constructor({data, handleCardClick}, templateSelector, handleCardRemove, handleClickLike) {
       super({data, handleCardClick}, templateSelector, handleClickLike);
-      this._handleDeleteCard = handleDeleteCard;
+      this._handleCardRemove = handleCardRemove;
     }
   
 
-    handleCardDelete() {
+    handleRemoveCard() {
       this._element.remove();
       this._element = null; 
     }
@@ -16,20 +16,11 @@ export default class MyCard extends Card {
     _setEventListeners() {
       super._setEventListeners();
 
-      // this._element.querySelector('.elements__trash').addEventListener('click', () => {
-      //   this._handleDelete(this._cardId, this)// удаляем карточку
-      // });
-
       this._element.querySelector('.elements__trash').addEventListener('click', () => {
-        this._handleDeleteCard(this._cardId, this)// удаляем карточку
+        this._handleCardRemove(this._cardId, this)// удаляем карточку
       });
     } 
   
-    // _handleDelete() {
-    //   this._element.remove();
-    //   this._element = null; 
-    // }
-
 
   }
   

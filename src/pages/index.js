@@ -160,18 +160,21 @@ const popupWithAvatar = new PopupWithForm(
 const popupWithConfirmation = new PopupWithConfirmation(
   {
     popupSelector: '.popup_delete',
-    submitForm: (id, card) => {
-      api.removeCard(id)
-      .then(() => {
-        card.handleDeleteCard();
-        popupWithConfirmation.close();
-      })
-      .catch((err) => {(console.log(err))});
+    submitForm: (cardId, card) => {
+      api.removeCard(cardId)
+        .then(() => { 
+          card.handleRemoveCard();
+          popupWithConfirmation.close();
+        })
+        .catch(err => showError(err));
     }
   }
 );
 
-//открытие попапа удаления карточки
+
+
+
+//колбэк открытия попапа удаления карточки
 function deleteCard(cardId, card) {
   popupWithConfirmation.open(cardId, card);
 }
@@ -183,8 +186,7 @@ function patchUserAvatar(data) {
 
 
 
-//слушатель попапа нового места
-popupNewCard.setEventListener();
+
 
 //Редактирование информации класса пользователя
 const userInput = new UserInfo({
@@ -232,6 +234,9 @@ profilePopup.setEventListener();
 
 //превью карточки
 popupPreview.setEventListener();
+
+//слушатель попапа нового места
+popupNewCard.setEventListener();
 
 
 //слушатели кнопок
