@@ -59,15 +59,24 @@ export default class Api {
         .then(res => this._check(res))
   }
 
+  removeCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then(res => this._check(res))
+  }
+  
+
   addLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
       headers: this._headers
     })
-      .then(res => this._chec(res))
+      .then(res => this._check(res))
   }
 
-  deleteLike(id) {
+  removeLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'DELETE',
       headers: this._headers

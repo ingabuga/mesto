@@ -45,26 +45,12 @@ export default class Card {
       this._handleCardClick(this._image, this._title)// открываем попап
     });
 
-    // this._likeButton.addEventListener('click', () => {
-    //   this._handleLike()// лайкаем карточку
-    // });
-
     this._likeButton.addEventListener('click', () => {
       this._handleClickLike(this, this._cardId, this._isLiked)// лайкаем карточку
     });
 
-    // this._element.querySelector('.elements__trash').addEventListener('click', () => {
-    //   this._handleDelete()// удаляем карточку
-    // });
   }
 
-  // _handleLike() {
-  //   this._likeButton.classList.toggle('elements__like_active');
-  // }
-
-  // _handleLike(isLiked) {
-  //   this._likeButton.classList.toggle('elements__like_active');
-  // }
 
   // Переключение сердечка на карточке
   toggleLike(isLiked) { 
@@ -77,9 +63,4 @@ export default class Card {
     }
   }
 
-
-  // _handleDelete() {
-  //   this._element.remove();
-  //   this._element = null; 
-  // }
 }

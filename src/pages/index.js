@@ -1,10 +1,12 @@
 import './index.css';
 
 import Card from '../components/Card.js';
+import MyCard from '../components/MyCard.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
@@ -43,35 +45,86 @@ const defaultCardList = new Section({
 '.elements__element'
 );
 
-//отрисовка карточек из списка
-// defaultCardList.renderItems();
 
+//Изменение счетчика лайков
+function toggleLike(card, cardId, isLiked) {
+  if (isLiked) {
+    api.removeLike(cardId)
+      .then(res => {
+        card.toggleLike(false);
+        card.countLikes(res.likes);
+      })
+      .catch(console.log('лайк'));
+  } else {
+    api.addLike(cardId)
+      .then(res => {
+        card.toggleLike(true);
+        card.countLikes(res.likes);
+      })
+      .catch(console.log('Не лайк'));
+  }
+}
 
 
 const renderCard = (data) => {
-  const card = new Card({data,
-    handleCardClick: () => {
-      popupPreview.open(data.name, data.link);
-    }
-  },
-    '.elements-template');
-  return card.generateCard();
-}
 
-//попап добавления новой карточки
-const popupNewCard = new PopupWithForm({
-  popupSelector: '.popup_place', 
-  submitForm: (data) => {
-    api.addNewCard(data.name, data.link)
-    .then(res => {
-    const newCard = renderCard(res);
-    defaultCardList.addItem(newCard);
-    popupNewCard.close();
-    })
-    .catch(console.log('карточка не добавилась'))
+  if (data.likes.find(element => element._id === userId)) {
+    const isLiked = true;
+  } else {
+    const isLiked = false;
+  }
+  
+  if (data.owner._id === userId) {
+  const card = new MyCard({data,
+      handleCardClick: () => {
+        popupPreview.open(data.name, data.link);
+      }
+    },
+      '.elements-template',
+      deleteCard,
+      toggleLike);
+
+  // card.toggleLike(isLiked);
+  return card.generateCard();
+  
+  } else {
+    const card = new Card({data,
+      handleCardClick: () => {
+        popupPreview.open(data.name, data.link);
+      }
+    },
+      '.elements-template-alien',
+      toggleLike);
+
+    // card.toggleLike(isLiked);
+    return card.generateCard();
   
   }
-});
+
+  
+}
+
+
+
+//попап добавления новой карточки
+const popupNewCard = new PopupWithForm(
+  {
+    popupSelector: '.popup_place', 
+    submitForm: (data) => {
+      api.addNewCard(data.name, data.link)
+      .then(res => {
+      const newCard = renderCard(res);
+      defaultCardList.addItem(newCard);
+      popupNewCard.close();
+      })
+      .catch(console.log('карточка не добавилась'))
+    }
+  }
+);
+
+
+
+
 
 
 // Обновление информации пользователя
@@ -113,6 +166,27 @@ const popupWithAvatar = new PopupWithForm(
   }
 );
 
+// Попап удаления карточки
+const popupWithConfirmation = new PopupWithConfirmation(
+  {
+    popupSelector: '.popup_delete',
+    submitForm: (id, card) => {
+      api.removeCard(id)
+      .then(() => {
+        card.handleDeleteCard();
+        popupWithConfirmation.close();
+        console.log('Удаление прошло')
+      })
+      .catch(console.log('Не удалось удалить'));
+    }
+  }
+);
+
+//открытие попапа удаления карточки
+function deleteCard(cardId, card) {
+  popupWithConfirmation.open(cardId, card);
+}
+
 // Обновление аватара 
 function patchUserAvatar(data) {
   userInput.setUserAvatar(data.avatar);
@@ -142,7 +216,7 @@ function renderPage() {
       patchUserData(userData);
       patchUserAvatar(userData);
       userId = userData._id;
-      defaultCardList.renderItems(defaultCards);
+      defaultCardList.renderItems(defaultCards.reverse());
     })
     .catch(console.log('список карточек нихт'));
 }
@@ -160,10 +234,15 @@ function openProfile() {
 }
 
 
+//слушатели попапов
+popupWithConfirmation.setEventListener();
 
 popupWithAvatar.setEventListener();
 
 profilePopup.setEventListener();
+
+//превью карточки
+popupPreview.setEventListener();
 
 
 //слушатели кнопок
@@ -186,8 +265,7 @@ buttonAvatar.addEventListener('click', () => {
 });
 
 
-//превью карточки
-popupPreview.setEventListener();
+
 
 
 
