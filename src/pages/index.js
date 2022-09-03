@@ -54,14 +54,14 @@ function toggleLike(card, cardId, isLiked) {
         card.toggleLike(false);
         card.countLikes(res.likes);
       })
-      .catch(console.log('лайк'));
+      .catch((err) => {(console.log(err))});
   } else {
     api.addLike(cardId)
       .then(res => {
         card.toggleLike(true);
         card.countLikes(res.likes);
       })
-      .catch(console.log('Не лайк'));
+      .catch((err) => {(console.log(err))});
   }
 }
 
@@ -105,7 +105,7 @@ const popupNewCard = new PopupWithForm(
       defaultCardList.addItem(newCard);
       popupNewCard.close();
       })
-      .catch(console.log('карточка не добавилась'))
+      .catch((err) => {(console.log(err))})
       .finally(() => popupNewCard.displayLoading(false));
     }
   }
@@ -132,7 +132,7 @@ const profilePopup = new PopupWithForm({
     patchUserData(res);
     profilePopup.close();
   })
-  .catch(console.log('Что-то пошло не так'))
+  .catch((err) => {(console.log(err))})
   .finally(() => profilePopup.displayLoading(false));
   }
 });
@@ -150,7 +150,7 @@ const popupWithAvatar = new PopupWithForm(
           patchUserAvatar(res);
           popupWithAvatar.close();
         })
-        .catch(console.log('Не удалось поправить аватар'))
+        .catch((err) => {(console.log(err))})
         .finally(() => popupWithAvatar.displayLoading(false));
     }
   }
@@ -166,7 +166,7 @@ const popupWithConfirmation = new PopupWithConfirmation(
         card.handleDeleteCard();
         popupWithConfirmation.close();
       })
-      .catch(console.log('Не удалось удалить'));
+      .catch((err) => {(console.log(err))});
     }
   }
 );
@@ -207,7 +207,7 @@ function renderPage() {
       userId = userData._id;
       defaultCardList.renderItems(defaultCards.reverse());
     })
-    .catch(console.log('список карточек нихт'));
+    .catch((err) => {(console.log(err))});
 }
 
 
