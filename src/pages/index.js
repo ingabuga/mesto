@@ -66,50 +66,6 @@ function toggleLike(card, cardId, isLiked) {
 }
 
 
-// function  renderCard(data) {
-
-//   if (data.likes.find(element => element._id === userId)) {
-//     const isLiked = true;
-//   } else {
-//     const isLiked = false;
-//   }
-  
-//   if (data.owner._id === userId) {
-//   const card = new MyCard({data,
-//       handleCardClick: () => {
-//         popupPreview.open(data.name, data.link);
-//       }
-//     },
-//       '.elements-template',
-//       deleteCard,
-//       toggleLike);
-
-//   // card.toggleLike(isLiked);
-//   // return card.generateCard();
-
-//   } else {
-//     const card = new Card({data,
-//       handleCardClick: () => {
-//         popupPreview.open(data.name, data.link);
-//       }
-//     },
-//       '.elements-template-alien',
-//       toggleLike);
-
-//     // card.toggleLike(isLiked);
-//     // return card.generateCard();
-
-//   }
-//   const addCard = card.generateCard();
-//   card.toggleLike(isLiked);
-//   return addCard;
-
-// }
-
-// function openPopupWithImage() {
-//   popupPreview.open(data.name, data.link);
-// }
-
 function renderCard(data) {
 
   const isLiked = (data.likes.find(element => element._id === userId))
@@ -142,6 +98,7 @@ const popupNewCard = new PopupWithForm(
   {
     popupSelector: '.popup_place', 
     submitForm: (data) => {
+      popupNewCard.displayLoading(true);
       api.addNewCard(data.name, data.link)
       .then(res => {
       const newCard = renderCard(res);
@@ -149,6 +106,7 @@ const popupNewCard = new PopupWithForm(
       popupNewCard.close();
       })
       .catch(console.log('карточка не добавилась'))
+      .finally(() => popupNewCard.displayLoading(false));
     }
   }
 );
@@ -168,13 +126,14 @@ function patchUserData(data) {
 const profilePopup = new PopupWithForm({ 
   popupSelector: '.popup_profile',
   submitForm: (data) => {
+    profilePopup.displayLoading(true);
   api.patchUserData(data.nameProfile, data.jobProfile)
   .then(res => {
     patchUserData(res);
     profilePopup.close();
   })
   .catch(console.log('Что-то пошло не так'))
-  profilePopup.close();
+  .finally(() => profilePopup.displayLoading(false));
   }
 });
 
@@ -185,13 +144,14 @@ const popupWithAvatar = new PopupWithForm(
   {
     popupSelector: '.popup_avatar',
     submitForm: (data) => {
+      popupWithAvatar.displayLoading(true);
       api.patchAvatar(data.link)
         .then(res => {
           patchUserAvatar(res);
           popupWithAvatar.close();
         })
         .catch(console.log('Не удалось поправить аватар'))
-        // .finally(console.log('Все не так когда твоя девушка больна'))
+        .finally(() => popupWithAvatar.displayLoading(false));
     }
   }
 );
