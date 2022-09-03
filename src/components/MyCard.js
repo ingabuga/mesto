@@ -1,8 +1,8 @@
 import Card from './Card.js';
 
 export default class MyCard extends Card {
-    constructor(data, handleCardClick, templateSelector, handleDeleteCard, handleClickLike) {
-      super(data, handleCardClick, templateSelector, handleClickLike);
+    constructor({data, handleCardClick}, templateSelector, handleDeleteCard, handleClickLike) {
+      super({data, handleCardClick}, templateSelector, handleClickLike);
       this._handleDeleteCard = handleDeleteCard;
     }
   

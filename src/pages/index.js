@@ -66,9 +66,49 @@ function toggleLike(card, cardId, isLiked) {
 }
 
 
-function openPopupWithImage(data) {
-  popupPreview.open(data.name, data.link);
-}
+// function  renderCard(data) {
+
+//   if (data.likes.find(element => element._id === userId)) {
+//     const isLiked = true;
+//   } else {
+//     const isLiked = false;
+//   }
+  
+//   if (data.owner._id === userId) {
+//   const card = new MyCard({data,
+//       handleCardClick: () => {
+//         popupPreview.open(data.name, data.link);
+//       }
+//     },
+//       '.elements-template',
+//       deleteCard,
+//       toggleLike);
+
+//   // card.toggleLike(isLiked);
+//   // return card.generateCard();
+
+//   } else {
+//     const card = new Card({data,
+//       handleCardClick: () => {
+//         popupPreview.open(data.name, data.link);
+//       }
+//     },
+//       '.elements-template-alien',
+//       toggleLike);
+
+//     // card.toggleLike(isLiked);
+//     // return card.generateCard();
+
+//   }
+//   const addCard = card.generateCard();
+//   card.toggleLike(isLiked);
+//   return addCard;
+
+// }
+
+// function openPopupWithImage() {
+//   popupPreview.open(data.name, data.link);
+// }
 
 function renderCard(data) {
 
@@ -77,8 +117,20 @@ function renderCard(data) {
     : false;
 
   const card = (data.owner._id === userId)
-    ? new MyCard({data, openPopupWithImage}, '.elements-template', deleteCard, toggleLike)
-    : new Card({data, openPopupWithImage}, '.elements-template-alien', toggleLike);
+    ? new MyCard({data, 
+      handleCardClick: () => {
+      popupPreview.open(data.name, data.link);
+      }}, 
+      '.elements-template', 
+      deleteCard, 
+      toggleLike)
+
+    : new Card({data, 
+      handleCardClick: () => {
+      popupPreview.open(data.name, data.link);
+      }}, 
+      '.elements-template-alien', 
+      toggleLike);
 
   const addCard = card.generateCard();
   card.toggleLike(isLiked);
