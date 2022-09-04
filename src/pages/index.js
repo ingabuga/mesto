@@ -160,15 +160,6 @@ const popupWithAvatar = new PopupWithForm(
 const popupWithConfirmation = new PopupWithConfirmation(
   {
     popupSelector: '.popup_delete',
-<<<<<<< HEAD
-    submitForm: (cardId, card) => {
-      api.removeCard(cardId)
-        .then(() => { 
-          card.handleRemoveCard();
-          popupWithConfirmation.close();
-        })
-        .catch(err => showError(err));
-=======
     submitForm: (id, card) => {
       api.removeCard(id)
       .then(() => {
@@ -176,7 +167,6 @@ const popupWithConfirmation = new PopupWithConfirmation(
         popupWithConfirmation.close();
       })
       .catch((err) => {(console.log(err))});
->>>>>>> feature/remove
     }
   }
 );
