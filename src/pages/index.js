@@ -163,7 +163,7 @@ const popupWithConfirmation = new PopupWithConfirmation(
     submitForm: (id, card) => {
       api.removeCard(id)
       .then(() => {
-        card.handleDeleteCard();
+        card.handleCardDelete();
         popupWithConfirmation.close();
       })
       .catch((err) => {(console.log(err))});
