@@ -14,9 +14,9 @@
         <main>
             <section class="profile">
                 <div class="profile__info">
+                    <!-- <%=require('./images/Cousteau.jpg')%> -->
                     <div class="profile__avatar-frame">
                         <div class="profile__avatar-hover"></div>
-                        <!-- <%=require('./images/Cousteau.jpg')%> -->
                         <img class="profile__avatar" src="#" name="avatar" alt="Улыбающийся Жак Ив Кусто в красной шапочке">
                      </div>  
                     <div class="profile__text">
@@ -57,7 +57,7 @@
                 <form class="popup__form popup__form_profile" name="profile" novalidate>
                     <h2 class="popup__title">Обновить аватар</h2>
                     <label class="popup__field">
-                        <input type="url" id="link-input" placeholder="Ссылка на аватар" name="link" value="" class="popup__text popup__text_input_job" required>
+                        <input type="url" id="avatar-input" placeholder="Ссылка на аватар" name="link" value="" class="popup__text popup__text_input_job" required>
                         <span id="avatar-input-error" class="error"></span>
                     </label>
                     <button class="popup__save-button" type="submit">Сохранить</button>
