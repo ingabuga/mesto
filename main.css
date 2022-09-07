@@ -735,10 +735,14 @@ template {
     position:absolute;
     top: 20px;
     right: 20px;
+    visibility: hidden;
 }
 
 .elements__trash:hover {
     opacity: .6;
+}
+.elements__trash-active {
+    visibility: visible;
 }
 .elements__likes {
     display: flex;
