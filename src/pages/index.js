@@ -37,8 +37,8 @@ const popupPreview = new PopupWithImage('.popup_photo');
 
 //функция создания карточки из списка
 const defaultCardList = new Section({ 
-  renderer: (item) => {
-  const cardElement = renderCard(item);
+  renderer: (item, id) => {
+  const cardElement = renderCard(item, id);
   defaultCardList.addItem(cardElement);
   }
 }, 
@@ -66,27 +66,36 @@ function toggleLike(card, cardId, isLiked) {
 }
 
 
-function renderCard(data) {
+function renderCard(data, userId) {
 
   const isLiked = (data.likes.find(element => element._id === userId))
     ? true
     : false;
 
-  const card = (data.owner._id === userId)
-    ? new MyCard({data, 
-      handleCardClick: () => {
-      popupPreview.open(data.name, data.link);
-      }}, 
-      '.elements-template', 
-      deleteCard, 
-      toggleLike)
+  // const card = (data.owner._id === userId)
+  //   ? new MyCard({data, 
+  //     handleCardClick: () => {
+  //     popupPreview.open(data.name, data.link);
+  //     }}, 
+  //     '.elements-template', 
+  //     deleteCard, 
+  //     toggleLike)
 
-    : new Card({data, 
-      handleCardClick: () => {
-      popupPreview.open(data.name, data.link);
-      }}, 
-      '.elements-template-alien', 
-      toggleLike);
+  //   : new Card({data, 
+  //     handleCardClick: () => {
+  //     popupPreview.open(data.name, data.link);
+  //     }}, 
+  //     '.elements-template-alien', 
+  //     toggleLike);
+
+  const card = new Card({data, 
+        handleCardClick: () => {
+        popupPreview.open(data.name, data.link);
+        }}, 
+        '.elements-template', 
+        deleteCard,
+        toggleLike,
+        userId);
 
   const addCard = card.generateCard();
   card.toggleLike(isLiked);
@@ -101,7 +110,7 @@ const popupNewCard = new PopupWithForm(
       popupNewCard.displayLoading(true);
       api.addNewCard(data.name, data.link)
       .then(res => {
-      const newCard = renderCard(res);
+      const newCard = renderCard(res, res.owner._id);
       defaultCardList.addItem(newCard);
       popupNewCard.close();
       })
@@ -207,7 +216,7 @@ function renderPage() {
       patchUserData(userData);
       patchUserAvatar(userData);
       userId = userData._id;
-      defaultCardList.renderItems(defaultCards.reverse());
+      defaultCardList.renderItems(defaultCards.reverse(), userId);
     })
     .catch((err) => {(console.log(err))});
 }
